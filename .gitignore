@@ -1,0 +1,20 @@
+# Source material — not part of the published site
+ChatGPT Image*.png
+a_friendly_clean_minimalist_3d_robot_character*.png
+צילום מסך*.png
+*.docx
+לוגו ללא רקע.png
+לוגואים לקוחות/
+fireberry-logo.ebef34ab.svg
+origami-white-logo-1.png
+.claude/
+
+# Superseded flat robots, replaced by the 3D renders
+robot-wave.svg
+robot-think.svg
+robot-love.svg
+robot-point.svg
+
+# Build output (the repo root already is the site)
+dist/
+node_modules/
