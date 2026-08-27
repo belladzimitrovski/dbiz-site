@@ -256,6 +256,8 @@ a { color: inherit; text-decoration: none; }
 }
 .tool:hover { border-color: var(--tool); box-shadow: 0 10px 26px -12px var(--tool); transform: translateY(-3px); }
 .tool img { width: 24px; height: 24px; flex-shrink: 0; }
+/* SUMIT's mark is dark navy, so it rides on a small white coin to stay visible on the dark chip */
+.tool img.coin { border-radius: 6px; }
 /* Marks that follow the theme instead of a brand colour: black on light, white on dark */
 .tool img.mono { filter: brightness(0); transition: filter 0.4s var(--ease); }
 [data-theme="dark"] .tool img.mono { filter: brightness(0) invert(1); }
