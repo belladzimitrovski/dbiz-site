@@ -41,6 +41,17 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ===== Scenes: play the pair once most of the screen shows it =====
+const sceneObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      sceneObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.55 });
+document.querySelectorAll('.scene').forEach(el => sceneObserver.observe(el));
+
 // ===== Marquees: duplicate each lane so the loop has no seam =====
 document.querySelectorAll('.marquee-lane').forEach((lane) => {
   lane.innerHTML += lane.innerHTML;
@@ -115,6 +126,7 @@ const WEBHOOK_URL = 'https://hook.eu2.make.com/0fw2nh2spvtsxqtujz3ph4hrm9rum67z'
 const form = document.getElementById('contactForm');
 const note = document.getElementById('formNote');
 const submitBtn = form.querySelector('button');
+const submitLabel = submitBtn.textContent;
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -151,13 +163,13 @@ form.addEventListener('submit', async (e) => {
     form.reset();
   } catch (err) {
     alert('אופס, משהו השתבש בשליחה. אפשר גם להתקשר: 052-710-1136');
-    submitBtn.textContent = 'שליחה';
+    submitBtn.textContent = submitLabel;
   } finally {
     setTimeout(() => {
       note.hidden = true;
       submitBtn.disabled = false;
-      submitBtn.textContent = 'שליחה';
-    }, 5000);
+      submitBtn.textContent = submitLabel;
+    }, 6000);
   }
 });
 

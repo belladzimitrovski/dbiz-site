@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DBIZ · העסק עובד נקודה</title>
-  <meta name="description" content="בלי דזימטרובסקי · DBIZ — אוטומציות ומערכות דיגיטליות שעושות את העבודה המשעממת במקומכם, כדי שהעסק שלכם ירוץ בשקט. בלי כאב ראש, בלי מילים גדולות." />
+  <title>DBIZ · אוטומציה עסקית בהתאמה אישית</title>
+  <meta name="description" content="בלי דזימטרובסקי · DBIZ — אוטומציה עסקית בהתאמה אישית. מערכת אחת, פשוטה, נוחה וברורה שנבנית לפי הצורך המדויק של העסק שלכם. דיביז. העסק עובד — נקודה." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,13 +19,11 @@
   <!-- ===== Header ===== -->
   <header class="site-header" id="header">
     <div class="container header-inner">
-      <a href="#hero" class="logo">
-        <img src="logo-dbiz.png" alt="DBIZ" />
-      </a>
       <nav class="nav" id="nav">
+        <a href="#solution">הפתרון</a>
         <a href="#about">עליי</a>
         <a href="#why">למה אני</a>
-        <a href="#tools">מערכות</a>
+        <a href="#process">איך זה עובד</a>
         <a href="#testimonials">המלצות</a>
         <a href="#contact" class="nav-cta">צרו קשר</a>
       </nav>
@@ -38,132 +36,219 @@
           <span></span><span></span><span></span>
         </button>
       </div>
+      <!-- Logo sits top-left (end of the RTL row) with the positioning line under it -->
+      <a href="#hero" class="logo">
+        <img src="logo-dbiz.png" alt="DBIZ" />
+        <span class="logo-tag">אוטומציה עסקית בהתאמה אישית</span>
+      </a>
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
+  <!-- ===== Opener ===== -->
   <section class="hero" id="hero">
     <div class="hero-glow"></div>
     <div class="container hero-inner">
-      <div class="hero-text">
-        <span class="eyebrow reveal">אוטומציה · דיגיטל · חדשנות</span>
-        <h1 class="reveal">העסק עובד.<br /><span class="accent">נקודה.</span></h1>
-        <p class="hero-sub reveal">
-          אני בונה לעסקים אוטומציות ומערכות דיגיטליות שעושות את העבודה המשעממת
-          במקומכם — כדי שתישאר לכם האנרגיה לדבר האמיתי. בשקט, בלי כאב ראש,
-          ובלי מילים גדולות.
-        </p>
-        <div class="hero-actions reveal">
-          <a href="#contact" class="btn btn-primary">בואו נדבר</a>
-          <a href="#why" class="btn btn-ghost">איך זה עובד</a>
-        </div>
-      </div>
-      <div class="hero-robot reveal">
-        <img src="robot-wave-3d.png" alt="הרובוט של DBIZ מנופף לשלום" class="robot-3d floaty" />
-      </div>
+      <h1 class="reveal">נקודת מבט של לקוחות,<br /><span class="accent">היא לא נקודת מבט של בעל העסק...</span></h1>
+      <a href="#scenes" class="scroll-hint reveal" aria-label="המשך גלילה">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </section>
 
-  <!-- ===== Clients ===== -->
-  <section class="section section-tint clients-strip" id="clients">
-    <div class="container">
-      <p class="clients-title reveal">מבין לקוחותינו</p>
-      <div class="clients-track marquee-track reveal">
-        <div class="clients-lane marquee-lane">
-          <span class="client"><img src="client-hamerkaz.svg" alt="המרכז לקידום מקצועי — סמינר עלי באר" /></span>
-          <span class="client"><img src="client-heichal-yosef.png" alt="ישיבת היכל יוסף" /></span>
-          <span class="client"><img src="client-shalmei-simcha.png" alt="שלמי שמחה" /></span>
-          <span class="client"><img src="client-platinum.png" alt="פלטיניום" /></span>
-          <span class="client"><img src="client-klass.png" alt="Klass — כלים עם סטייל" /></span>
-          <span class="client"><img src="client-schwartz.png" alt="שוורץ תכשיטים" /></span>
-          <span class="client"><img src="client-alfon.png" alt="אלפון ערד" class="tealplate" /></span>
-        </div>
+  <!-- ===== Scenes: each pair fills the screen; the red line lands a beat after the first ===== -->
+  <div id="scenes">
+    <section class="scene" style="--img: url('scene-chairs.jpg')">
+      <div class="container scene-inner">
+        <p class="scene-them">הם רואים כסאות.</p>
+        <p class="scene-you">אתם רואים את הדברים שנופלים ביניהם.</p>
       </div>
+    </section>
+    <section class="scene" style="--img: url('scene-bread.jpg')">
+      <div class="container scene-inner">
+        <p class="scene-them">הם רואים מאפים.</p>
+        <p class="scene-you">אתם רואים רק את הקשה.</p>
+      </div>
+    </section>
+    <section class="scene" style="--img: url('scene-watches.jpg')">
+      <div class="container scene-inner">
+        <p class="scene-them">הם רואים שעוני יוקרה.</p>
+        <p class="scene-you">אתם רואים את הזמן נוזל בין האצבעות.</p>
+      </div>
+    </section>
+    <section class="scene" style="--img: url('scene-gym.jpg')">
+      <div class="container scene-inner">
+        <p class="scene-them">הם רואים מכשירי כושר.</p>
+        <p class="scene-you">אתם רואים שעות של זיעה ומאמץ.</p>
+      </div>
+    </section>
+    <section class="scene" style="--img: url('scene-clinic.jpg')">
+      <div class="container scene-inner">
+        <p class="scene-them">הם רואים קליניקה מפנקת.</p>
+        <p class="scene-you">אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== The point ===== -->
+  <section class="section" id="point">
+    <div class="container prose">
+      <h2 class="reveal">וזאת בדיוק הנקודה.</h2>
+      <p class="reveal">אתם בעלי העסק, ואתם רואים...</p>
+      <p class="reveal">
+        אתם רואים את הפרטים הקטנים שנופלים ללא הרף בין הכיסאות: תשלום שלא עבר בזמן,
+        גבייה שלא נעשתה, משלוחים שיצאו לכתובת לא מעודכנת, הזמנה של פריטים שגויים,
+      </p>
+      <p class="reveal">ולידים...<br />לידים שמתפספסים כל הזמן...</p>
+      <p class="reveal">
+        העסק הוא הבייבי שלכם, אתם מטפלים בו סביב השעון, לילה ויום. זמינים לטלפון,
+        מתאמים פגישות, ממלאים טבלאות בדייקנות, מקפידים לתייק כל מסמך ושולחים מיילים
+        לכל המי ומי.
+      </p>
+      <p class="reveal">ואולי, אולי אתם גם מעסיקים עובדים.</p>
+      <p class="reveal">
+        עובדים מוכשרים, יעילים וחרוצים שדורשים אחזקת משרד, גיוס שוטף, תפעול וגם
+        משכורת לא קטנה...
+      </p>
+      <p class="reveal">ועדיין...</p>
+      <p class="reveal">
+        הזמן נוזל בין האצבעות, לא נותן לכם מרווח נשימה, והר המשימות ממשיך להעפיל לגובה.
+      </p>
+      <p class="reveal">
+        הראש מפוצץ בכמויות מידע שאסור בשום אופן לשכוח, פריטי מידע קטנים וסופר חשובים:
+        דיוקים, שינויים ועדכונים של הרגע האחרון. (אם רק היה אפשר לרכוש עוד דיסק קשיח
+        למוח...)
+      </p>
+      <p class="reveal">
+        המחשב מלא בתיקיות ותתי תיקיות ותתי תתי... עד אפס מקום וזיכרון.
+        להתחיל לזכור איפה כל תיקייה מאוחסנת ומה בדיוק היא מכילה? זה כבר יותר מדי...
+      </p>
+
+      <div class="punch reveal">
+        <p>הכול מרגיש קשה, קשה...</p>
+        <p>אתם מזיעים ומתאמצים.</p>
+        <p>והכי מתסכל —</p>
+        <p>רק אתם יודעים — שאתם בעצם <span class="accent">לא יודעים.</span></p>
+      </div>
+
+      <p class="reveal">אתם לא יודעים כמה העסק שלכם מרוויח. (ואם הוא מרוויח בכלל?!)</p>
+      <p class="reveal">
+        הוצאות, תשלומים, הזמנות מראש ותשלומי משכורות שוטפים את העו״ש, התזרים נע ונד,
+        והשאלה ״כמה הרווחתם?״ קשה מדי במבחן המציאות.
+      </p>
+
+      <div class="punch reveal">
+        <p>ואם נתמקד בנקודה —</p>
+        <p>אתם רואים שהעסק <span class="accent">פשוט לא מתנהל!</span></p>
+      </div>
+      <p class="reveal aside">(ואת זה גם הלקוחות, שלא רואים, יודעים להרגיש...)</p>
+    </div>
+  </section>
+
+  <!-- ===== Solution ===== -->
+  <section class="section section-tint" id="solution">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="lead-in">אבל אני —</p>
+        <h2>אני כבר רואה <span class="accent">את הפתרון!</span></h2>
+        <p class="section-sub">
+          אני רואה אוטומציה שנבנתה לפי הצורך המדויק שלכם. מערכת אחת, פשוטה, נוחה וברורה
+          שמזניקה את העסק שלכם לנקודת השיא.
+        </p>
+      </div>
+
+      <div class="cards cards-3">
+        <article class="card reveal">
+          <h3>הלידים?</h3>
+          <p>מטופלים מיד ובאופן אישי, בלי שאף לקוח יתפספס.</p>
+        </article>
+        <article class="card reveal">
+          <h3>הגבייה והתשלומים?</h3>
+          <p>זורמים מעצמם, בלי פיגורים, בלי אי־נעימויות, בלי גירעונות ובלי קנסות.</p>
+        </article>
+        <article class="card reveal">
+          <h3>כוח האדם?</h3>
+          <p>הופך למינימלי, מדויק ויעיל, והתפוקה עולה — כשהמערכת עושה את כל העבודה השחורה והסיזיפית.</p>
+        </article>
+        <article class="card reveal">
+          <h3>התמונה הכללית?</h3>
+          <p>ברורה. מצב העסק עומד מולכם בכל רגע נתון, באופן מדויק.</p>
+        </article>
+        <article class="card reveal">
+          <h3>הרווחים?</h3>
+          <p>מתחילים למלא את הכיס. כי עסק מנוהל חוסך עלויות, וכשהוא גם מפולח נכון — אתם יודעים בדיוק איפה הכסף הגדול ואיזה ענף בעסק להמשיך ולפתח.</p>
+        </article>
+        <article class="card reveal">
+          <h3>והראש שלכם?</h3>
+          <p>מתפנה סוף סוף מכל אלפי הפרטים הקטנים — לדברים הגדולים באמת.</p>
+        </article>
+      </div>
+
+      <p class="ask-more reveal">יש עוד שאלות שלא קיבלו מענה? <a href="#contact">כאן אפשר לשאול.</a></p>
+      <p class="slogan reveal">דיביז. העסק עובד — <span class="accent">נקודה!</span></p>
     </div>
   </section>
 
   <!-- ===== About ===== -->
   <section class="section" id="about">
-    <div class="container about-grid">
-      <div class="about-visual reveal">
-        <div class="about-card">
-          <img src="robot-hello-3d.png" alt="הרובוט של DBIZ מברך לשלום" class="about-robot robot-3d floaty" />
-          <p class="about-tag">נעים להכיר 👋</p>
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="lead-in">רגע... אתם ודאי שואלים,</p>
+        <h2>מי אני בכלל?</h2>
+        <p class="section-sub">נחזור לנקודת ההתחלה, להיכרות קצרה.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="about-hello">נעים מאוד, אני בלי דזימטרובסקי.</p>
+          <p>
+            אני מתמחה בתחום המחשוב והטכנולוגיה ועוסקת בבניית מערכות חכמות לבעלי עסקים.
+            אני עוזרת להם להכניס קצת סדר לעסק, למצוא ידיים ורגליים בבלגן הדיגיטלי,
+            ולהמיר את עשרות התיקיות, האקסלים והתזכורות במערכת אחת חכמה — שפשוט עובדת.
+          </p>
+        </div>
+        <div class="robot-say reveal">
+          <p class="bubble">ואני העוזר שלה —<br /><strong>ביחד אנחנו צוות מנצח 😊</strong></p>
+          <img src="robot-hello-3d.png" alt="הרובוט של DBIZ מברך לשלום" class="robot-3d floaty" />
         </div>
       </div>
-      <div class="about-text reveal">
-        <span class="section-label">קצת עליי</span>
-        <h2>טכנולוגיה שלא מרגישים —<br />פשוט נהנים ממנה.</h2>
+
+      <div class="belief reveal">
+        <p class="belief-head">אני מאמינה שצריך לעבוד כדי להרוויח, בהחלט צריך לעבוד.<br /><span class="accent">אבל לא לעבוד קשה!</span></p>
         <p>
-          נעים להכיר, אני בלי דזימטרובסקי. כבר שנים שאני עוזרת לעסקים קטנים
-          ובינוניים לעשות סדר בבלגן הדיגיטלי — להחליף את ערימות האקסלים, ההעתקות
-          הידניות והדברים שנופלים בין הכיסאות, במערכת אחת חכמה שפשוט עובדת.
+          ואני עוזרת לבעלי עסקים לעבוד בקלות, לשחרר עומס ולהתפנות למינוף העסק שלהם.
         </p>
         <p>
-          אני מאמינה שהטכנולוגיה הכי טובה היא זו שלא מרגישים. בלי ז'רגון מסובך ובלי
-          מסכים שמלחיצים — רק פתרון שרץ בשקט ברקע, ומחזיר לכם את הזמן, את הראש ואת
-          השקט הנפשי לחזור לעסוק במה שאתם הכי אוהבים.
+          אני חושבת שגם המערכת שעובדת בשבילכם צריכה להיות נוחה. אני מארגנת תכנים,
+          מצמצמת תפריטים, מסנכרנת תוכנות, ובונה לכם ממשק ידידותי למשתמש וקל לתפעול.
         </p>
-        <p>
-          לכל עסק יש סיפור אחר, ולכן אין אצלי פתרונות מהמדף. אני יושבת, מקשיבה,
-          ובונה בדיוק את מה שאתם צריכים — לא יותר, ולא פחות.
-        </p>
+        <p class="belief-foot">כל כך קל, גם לכאלה שעדיין לא למדו לקרוא בלי נקודות...</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Why me ===== -->
-  <section class="section section-tint" id="why">
+  <!-- ===== Options ===== -->
+  <section class="section section-tint" id="options">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="section-label">למה אני</span>
-        <h2>למה עסקים בוחרים בי</h2>
+      <div class="robot-say robot-say-center reveal">
+        <img src="robot-wave-3d.png" alt="הרובוט של DBIZ מנופף" class="robot-3d floaty" />
+        <p class="bubble">אינסוף אפשרויות במערכת אחת,<br /><strong>תרשו לי להציע לכם?</strong></p>
       </div>
-      <div class="cards">
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>פשטות</h3>
-          <p>בלי ז'רגון ובלי כאב ראש. אתם תמיד מבינים בדיוק מה נבנה, איך זה עובד ולמה.</p>
-        </article>
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>התאמה אישית</h3>
-          <p>אני לא מאמינה בפתרונות מהמדף. כל מערכת נבנית מאפס סביב הדרך שבה אתם עובדים.</p>
-        </article>
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>זמינות</h3>
-          <p>אני לא נעלמת כשהפרויקט עולה לאוויר. נשארת לצדכם, זמינה לכל שאלה, לאורך כל הדרך.</p>
-        </article>
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.6-1 1-1 2H9c0-1-.3-1.4-1-2A6 6 0 0 1 12 3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>חדשנות</h3>
-          <p>מעודכנת בכל כלי ופיצ'ר חדש — כולל עולם ה-AI — ורותמת את המתקדם ביותר לצמיחה שלכם.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== Tools / systems ===== -->
-  <section class="section" id="tools">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-label">ארגז הכלים</span>
-        <h2>המערכות שמניעות<br />את העסק שלכם</h2>
-        <p class="section-sub">
-          פלטפורמות האוטומציה, ה-CRM וה-AI המובילות בעולם. אני בוחרת מתוכן בדיוק את
-          מה שמתאים לכם, ומחברת הכל למערכת אחת שעובדת חלק — בלי כפילויות, בלי העתקות
-          ידניות ובלי דברים שנשכחים בדרך.
-        </p>
-      </div>
+      <!-- Each option rises in its own card -->
+      <ul class="options">
+        <li class="option reveal">מערכת דיוור</li>
+        <li class="option reveal">צירוף קבצים</li>
+        <li class="option reveal">הצעות מחיר</li>
+        <li class="option reveal">סליקה</li>
+        <li class="option reveal">קבלות</li>
+        <li class="option reveal">ניהול יומן</li>
+        <li class="option reveal">טפסים חכמים</li>
+        <li class="option reveal">שימור ומעקב לידים</li>
+        <li class="option reveal">מערכות טלפוניות</li>
+        <li class="option reveal">צ׳אטבוטים חכמים</li>
+        <li class="option reveal">מערכות CRM</li>
+        <li class="option reveal">סנכרון בין מערכות</li>
+      </ul>
 
       <div class="tools-track marquee-track reveal" id="toolsTrack">
         <div class="tools-lane marquee-lane">
@@ -179,16 +264,121 @@
         </div>
       </div>
 
+      <div class="cta-block reveal">
+        <p class="slogan">דיביז. העסק עובד — <span class="accent">נקודה!</span></p>
+        <a href="#contact" class="btn btn-primary">קבעו פגישת אפיון</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Why me ===== -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="lead-in">אז למה דווקא אני?</p>
+        <h2>בגלל התאמה.<br /><span class="accent">האישית.</span></h2>
+        <p class="section-sub">נקודת המוצא שלי היא שכל עסק הוא משהו אחר, עולם שלם.</p>
+      </div>
+
+      <!-- Three lines rise one after another, each with an object for its business -->
+      <div class="biz-lines">
+        <div class="biz-line reveal">
+          <span class="biz-art" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><path d="M25 6h14l-2 12 9 6-5 34H23L18 24l9-6z" fill="var(--teal)" opacity=".9"/><g fill="#fff"><circle cx="28" cy="30" r="1.8"/><circle cx="36" cy="27" r="1.8"/><circle cx="32" cy="37" r="1.8"/><circle cx="26" cy="44" r="1.8"/><circle cx="38" cy="42" r="1.8"/><circle cx="31" cy="51" r="1.8"/><circle cx="40" cy="52" r="1.8"/><circle cx="32" cy="21" r="1.4"/></g></svg>
+          </span>
+          <p>אינה דומה מתפרה שעוסקת בתפירת שמלות ערב מנוקדות</p>
+        </div>
+        <div class="biz-line reveal">
+          <span class="biz-art biz-niqqud" aria-hidden="true">נְקֻדָּה</span>
+          <p>לנותן שירות של ניקוד טקסטים</p>
+        </div>
+        <div class="biz-line reveal">
+          <span class="biz-art" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><circle cx="27" cy="27" r="17" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="3.5"/><circle cx="25" cy="29" r="4" fill="#7a4a35"/><path d="M39.5 39.5L55 55" stroke="var(--teal)" stroke-width="6" stroke-linecap="round"/></svg>
+          </span>
+          <p>או מכון המתמחה בהסרת נקודות חן.</p>
+        </div>
+      </div>
+
+      <div class="prose prose-why reveal">
+        <p>
+          לכל עסק יש תהליך עבודה משלו, אפיון לקוח שונה וצרכים ייחודיים —
+          הדורשים גם כן מענה ייחודי!
+        </p>
+        <p>
+          ובדיוק מהסיבה הזו, אצלי לא תמצאו אוטומציות מוכנות המונחות על המדף בשורה
+          אופקית, ממתינות ללקוח שירכוש אותן.
+        </p>
+        <p>
+          אני מתמחה בייעוץ ובהתאמת מערכות טכנולוגיות. מקשיבה היטב לסיפור של העסק החל
+          מנקודת הפתיחה, שומעת את נקודות החוזק ומנסה להניח אצבע על נקודות התורפה,
+          מחברת נקודה לנקודה עד לקבלת התמונה השלמה.
+        </p>
+        <p>
+          בנקודה הזו, אני יושבת לבנות את האוטומציה שהיא כולה שלכם. בעזרת ידע טכנולוגי,
+          היכרות עם כלי AI מתקדמים ופיצ'רים חדשניים, אני מגייסת גם חשיבה יצירתית כדי
+          למצוא פתרון ייחודי לכל צורך שהעסק שלכם מבקש.
+        </p>
+        <p>ואתם מקבלים מערכת שנתפרה לפי מידות העסק שלכם בדיוק.</p>
+        <div class="punch">
+          <p>לא פחות, ולא יותר.</p>
+          <p class="accent">נקודה.</p>
+        </div>
+      </div>
+
+      <div class="robot-say robot-say-center reveal">
+        <img src="robot-check-3d.png" alt="הרובוט של DBIZ עם וי" class="robot-3d floaty" />
+        <p class="bubble">
+          <strong>היחס אנושי, אישי וחם.</strong><br />
+          וזה לא אני אמרתי 😊<br />
+          <a href="#testimonials" class="bubble-link">לקריאת ההמלצות ←</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Process ===== -->
+  <section class="section section-tint" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="lead-in">אז איך עושים את זה?</p>
+        <h2>ארבע נקודות פשוטות:</h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="card-num">1</span>
+          <h3>נקודת תצפית</h3>
+          <p>אנחנו יושבים לפגישת עומק, שבה אנחנו עורכים תצפית על העסק, לומדים את תהליכי העבודה וממפים את הצרכים.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">2</span>
+          <h3>נקודה למחשבה</h3>
+          <p>זה הזמן שלי לחבר את הנקודות ולהגיע לתמונה השלמה. ולחשוב... אני יוצאת מנקודת הנחה שהכול בר שינוי, אין תקרת זכוכית, הכול אפשרי. אני מביאה פתרונות יצירתיים וחדשים עבור העסק שלכם.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">3</span>
+          <h3>נקודת זינוק</h3>
+          <p>המערכת המותאמת עולה לאוויר, והעסק מזנק בסיעתא דשמיא!</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">4</span>
+          <h3>נקודה חמה</h3>
+          <p>ערוץ הקשר נשאר פתוח גם הרבה אחרי שהמערכת עולה לאוויר. אני כאן לצידכם, זמינה לתיקונים, לשיפורים ולליווי מקיף — עד שהעסק שלכם יתחיל לעבוד.</p>
+        </article>
+      </div>
+      <div class="cta-block reveal">
+        <p class="slogan accent">נקודה.</p>
+        <a href="#contact" class="btn btn-primary">אני רוצה להזניק את העסק שלי!</a>
+      </div>
     </div>
   </section>
 
   <!-- ===== Testimonials ===== -->
-  <section class="section section-tint" id="testimonials">
+  <section class="section" id="testimonials">
     <div class="container">
       <div class="section-head reveal">
-        <img src="robot-check-3d.png" alt="" class="head-robot robot-3d floaty" />
         <span class="section-label">המלצות</span>
-        <h2>מה אומרים עליי</h2>
+        <h2>מה הניקוד שהלקוחות שלי מפרגנים לנו?</h2>
       </div>
 
       <div class="carousel reveal">
@@ -310,22 +500,58 @@
     </div>
   </section>
 
+  <!-- ===== Clients ===== -->
+  <section class="section section-tint clients-strip" id="clients">
+    <div class="container">
+      <h2 class="clients-title reveal">עסקים שנקודת המפנה שלהם התחילה כאן.</h2>
+      <div class="clients-track marquee-track reveal">
+        <div class="clients-lane marquee-lane">
+          <span class="client"><img src="client-hamerkaz.svg" alt="המרכז לקידום מקצועי — סמינר עלי באר" /></span>
+          <span class="client"><img src="client-heichal-yosef.png" alt="ישיבת היכל יוסף" /></span>
+          <span class="client"><img src="client-shalmei-simcha.png" alt="שלמי שמחה" /></span>
+          <span class="client"><img src="client-platinum.png" alt="פלטיניום" /></span>
+          <span class="client"><img src="client-klass.png" alt="Klass — כלים עם סטייל" /></span>
+          <span class="client"><img src="client-schwartz.png" alt="שוורץ תכשיטים" /></span>
+          <span class="client"><img src="client-alfon.png" alt="אלפון ערד" class="tealplate" /></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Contact ===== -->
   <section class="section" id="contact">
     <div class="container contact-grid">
       <div class="contact-intro reveal">
-        <img src="robot-phone-3d.png" alt="" class="intro-robot robot-3d floaty" />
-        <span class="section-label">צרו קשר</span>
-        <h2>בואו נעשה לעסק שלכם<br />שקט נפשי.</h2>
+        <p class="lead-in">ומה בנקודה הזו?</p>
+        <h2>אתם מבינים שגם לעסק שלכם <span class="accent">מגיע לזנק.</span></h2>
+
+        <div class="coffee" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <g class="steam" fill="none" stroke="var(--muted)" stroke-width="3" stroke-linecap="round">
+              <path d="M44 38c-6-8 6-12 0-20"/>
+              <path d="M58 38c-6-8 6-12 0-20"/>
+              <path d="M72 38c-6-8 6-12 0-20"/>
+            </g>
+            <path d="M28 48h60v22a26 26 0 0 1-26 26h-8a26 26 0 0 1-26-26z" fill="var(--teal)"/>
+            <path d="M88 56h6a10 10 0 0 1 0 20h-8" fill="none" stroke="var(--teal)" stroke-width="6"/>
+            <ellipse cx="58" cy="102" rx="38" ry="5" fill="var(--teal-soft)"/>
+          </svg>
+        </div>
+
         <p>
-          ספרו לי קצת על העסק ועל מה שהכי מעיק עליכם כרגע, ואחזור אליכם עם כיוון —
-          בלי התחייבות, בלי לחץ, ובלי מילים גדולות.
+          כי גם אם אתם מנהלים עסק עמוס ועתיר פעילות,<br />
+          הגיע הזמן שתוכלו לשתות כוס קפה בנחת...<br />
+          מלאו את הקומקום במים טריים,<br />
+          הדליקו את המתג,<br />
+          זה יכול לקרות כל כך מהר,
         </p>
+
+        <div class="robot-say robot-say-inline">
+          <img src="robot-phone-3d.png" alt="הרובוט של DBIZ עם טלפון" class="robot-3d floaty" />
+          <p class="bubble"><strong>עוד לפני שהמים יגיעו לנקודת הרתיחה.</strong></p>
+        </div>
+
         <ul class="contact-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21a8 8 0 1 0-16 0M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>בלי דזימטרובסקי</span>
-          </li>
           <li>
             <a href="tel:0527101136">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h3l2 5-2 1a12 12 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -343,25 +569,30 @@
 
       <form class="contact-form reveal" id="contactForm" novalidate>
         <div class="field">
-          <label for="name">שם מלא</label>
+          <label for="name">רק שם</label>
           <input type="text" id="name" name="name" placeholder="איך קוראים לכם?" required />
         </div>
         <div class="field-row">
           <div class="field">
-            <label for="phone">טלפון</label>
+            <label for="phone">ומספר טלפון</label>
             <input type="tel" id="phone" name="phone" placeholder="050-0000000" required />
           </div>
           <div class="field">
-            <label for="email">אימייל</label>
+            <label for="email">וכתובת דוא״ל</label>
             <input type="email" id="email" name="email" placeholder="name@email.com" />
           </div>
         </div>
         <div class="field">
-          <label for="message">במה אוכל לעזור?</label>
-          <textarea id="message" name="message" rows="4" placeholder="ספרו לי קצת על העסק..."></textarea>
+          <label for="message">וכאן ספרו לי מה קורה בעסק שלכם בנקודת הזמן הזו...</label>
+          <textarea id="message" name="message" rows="4"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-full">שליחה</button>
-        <p class="form-note" id="formNote" hidden>תודה! קיבלתי את הפנייה ואחזור אליכם בהקדם. 🙌</p>
+        <button type="submit" class="btn btn-primary btn-full">דיביז. העסק עובד — נקודה.</button>
+
+        <!-- After a successful send the robot pops up with a speech bubble -->
+        <div class="form-robot" id="formNote" hidden>
+          <img src="robot-hello-3d.png" alt="" class="robot-3d" />
+          <p class="bubble"><strong>אני כבר אסדר את הבלאגן 😊</strong></p>
+        </div>
       </form>
     </div>
   </section>
@@ -370,8 +601,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <img src="logo-dbiz.png" alt="DBIZ" class="footer-logo" />
-      <p class="footer-tag">העסק עובד. נקודה.</p>
-      <p class="footer-copy">© <span id="year"></span> DBIZ · כל הזכויות שמורות</p>
+      <p class="footer-tag">דיביז. העסק עובד — נקודה.</p>
+      <p class="footer-copy">© <span id="year"></span> DBIZ · בלי דזימטרובסקי · כל הזכויות שמורות</p>
     </div>
   </footer>
 
