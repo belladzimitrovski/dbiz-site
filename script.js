@@ -41,16 +41,73 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ===== Scenes: play the pair once most of the screen shows it =====
-const sceneObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      sceneObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.55 });
-document.querySelectorAll('.scene').forEach(el => sceneObserver.observe(el));
+// ===== Hero cases: type "they see", then the red "you see", swap the art, repeat =====
+const CASES = [
+  ['הם רואים כסאות.', 'אתם רואים את הדברים שנופלים ביניהם.'],
+  ['הם רואים מאפים.', 'אתם רואים רק את הקשה.'],
+  ['הם רואים שעוני יוקרה.', 'אתם רואים את הזמן נוזל בין האצבעות.'],
+  ['הם רואים מכשירי כושר.', 'אתם רואים שעות של זיעה ומאמץ.'],
+  ['הם רואים קליניקה מפנקת.', 'אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'],
+];
+const caseText = document.querySelector('.case-text');
+const themEl = document.getElementById('caseThem');
+const youEl = document.getElementById('caseYou');
+const caseDots = document.getElementById('caseDots');
+const sets = [...document.querySelectorAll('.stage-set')];
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const wait = (ms) => new Promise(r => setTimeout(r, ms));
+let caseRun = 0; // bumped on every jump so a stale loop stops typing
+
+const typeInto = async (el, text, speed, run) => {
+  if (run !== caseRun) return;
+  el.classList.add('typing');
+  for (let i = 1; i <= text.length; i++) {
+    if (run !== caseRun) return;
+    el.textContent = text.slice(0, i);
+    await wait(speed);
+  }
+  el.classList.remove('typing');
+};
+
+const showCase = async (i, run) => {
+  sets.forEach((s, n) => s.classList.toggle('active', n === i));
+  [...caseDots.children].forEach((d, n) => d.classList.toggle('active', n === i));
+  caseText.classList.remove('clearing');
+  themEl.textContent = youEl.textContent = '';
+  themEl.classList.remove('typing');
+  youEl.classList.remove('typing');
+  const [them, you] = CASES[i];
+  if (reduceMotion) {
+    themEl.textContent = them;
+    youEl.textContent = you;
+    await wait(5000);
+  } else {
+    await wait(450);
+    await typeInto(themEl, them, 55, run);
+    await wait(500);
+    await typeInto(youEl, you, 42, run);
+    await wait(2800);
+  }
+  if (run !== caseRun) return;
+  caseText.classList.add('clearing');
+  await wait(420);
+};
+
+const playCases = async (start) => {
+  const run = ++caseRun;
+  for (let i = start; run === caseRun; i = (i + 1) % CASES.length) {
+    await showCase(i, run);
+  }
+};
+
+CASES.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'case-dot';
+  dot.setAttribute('aria-label', `מקרה ${i + 1}`);
+  dot.addEventListener('click', () => playCases(i));
+  caseDots.appendChild(dot);
+});
+playCases(0);
 
 // ===== Marquees: duplicate each lane so the loop has no seam =====
 document.querySelectorAll('.marquee-lane').forEach((lane) => {

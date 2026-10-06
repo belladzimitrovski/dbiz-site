@@ -44,50 +44,67 @@
     </div>
   </header>
 
-  <!-- ===== Opener ===== -->
+  <!-- ===== Opener: one screen that cycles the "they see / you see" cases ===== -->
   <section class="hero" id="hero">
     <div class="hero-glow"></div>
     <div class="container hero-inner">
-      <h1 class="reveal">נקודת מבט של לקוחות,<br /><span class="accent">היא לא נקודת מבט של בעל העסק...</span></h1>
-      <a href="#scenes" class="scroll-hint reveal" aria-label="המשך גלילה">
+      <h1 class="hero-kicker">נקודת מבט של לקוחות, <span class="accent">היא לא נקודת מבט של בעל העסק...</span></h1>
+
+      <div class="cases">
+        <!-- Text is typed in by script.js; the full list below is what screen readers get -->
+        <div class="case-text" aria-hidden="true">
+          <p class="case-them"><span id="caseThem"></span></p>
+          <p class="case-you"><span id="caseYou"></span></p>
+          <div class="case-dots" id="caseDots"></div>
+        </div>
+
+        <!-- One illustrated set per case; the active one is shown on the left -->
+        <div class="case-stage" aria-hidden="true">
+          <div class="stage-set" data-case="0">
+            <img src="art/chair.png" alt="" style="--x: 4%;  --y: 30%; --w: 44%" />
+            <img src="art/chair.png" alt="" class="flip" style="--x: 52%; --y: 30%; --w: 44%" />
+            <img src="art/page-facing-up.png" alt="" class="fall" style="--x: 40%; --y: 2%; --w: 18%; --d: 0s" />
+            <img src="art/credit-card.png" alt="" class="fall" style="--x: 42%; --y: 2%; --w: 17%; --d: 1s" />
+            <img src="art/money-with-wings.png" alt="" class="fall" style="--x: 41%; --y: 2%; --w: 18%; --d: 2s" />
+          </div>
+          <div class="stage-set" data-case="1">
+            <img src="art/bread.png" alt="" style="--x: 28%; --y: 26%; --w: 46%" />
+            <img src="art/baguette-bread.png" alt="" style="--x: 2%;  --y: 56%; --w: 36%" />
+            <img src="art/croissant.png" alt="" style="--x: 60%; --y: 56%; --w: 36%" />
+            <img src="art/pretzel.png" alt="" style="--x: 62%; --y: 6%;  --w: 26%" />
+          </div>
+          <div class="stage-set" data-case="2">
+            <img src="art/watch.png" alt="" style="--x: 24%; --y: 18%; --w: 52%" />
+            <img src="art/stopwatch.png" alt="" style="--x: 64%; --y: 58%; --w: 30%" />
+            <img src="art/hourglass-not-done.png" alt="" style="--x: 4%;  --y: 54%; --w: 28%" />
+          </div>
+          <div class="stage-set" data-case="3">
+            <img src="art/flexed-biceps.png" alt="" style="--x: 22%; --y: 14%; --w: 52%" />
+            <img src="art/running-shoe.png" alt="" style="--x: 50%; --y: 58%; --w: 42%" />
+            <img src="art/sweat-droplets.png" alt="" style="--x: 4%;  --y: 18%; --w: 26%" />
+          </div>
+          <div class="stage-set" data-case="4">
+            <img src="art/lotus.png" alt="" style="--x: 24%; --y: 30%; --w: 52%" />
+            <img src="art/candle.png" alt="" style="--x: 68%; --y: 6%;  --w: 24%" />
+            <img src="art/herb.png" alt="" style="--x: 4%;  --y: 8%;  --w: 30%" />
+            <img src="art/foot.png" alt="" style="--x: 4%;  --y: 62%; --w: 34%" />
+          </div>
+        </div>
+
+        <ul class="sr-only">
+          <li>הם רואים כסאות. אתם רואים את הדברים שנופלים ביניהם.</li>
+          <li>הם רואים מאפים. אתם רואים רק את הקשה.</li>
+          <li>הם רואים שעוני יוקרה. אתם רואים את הזמן נוזל בין האצבעות.</li>
+          <li>הם רואים מכשירי כושר. אתם רואים שעות של זיעה ומאמץ.</li>
+          <li>הם רואים קליניקה מפנקת. אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</li>
+        </ul>
+      </div>
+
+      <a href="#point" class="scroll-hint" aria-label="המשך גלילה">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </section>
-
-  <!-- ===== Scenes: each pair fills the screen; the red line lands a beat after the first ===== -->
-  <div id="scenes">
-    <section class="scene" style="--img: url('scene-chairs.jpg')">
-      <div class="container scene-inner">
-        <p class="scene-them">הם רואים כסאות.</p>
-        <p class="scene-you">אתם רואים את הדברים שנופלים ביניהם.</p>
-      </div>
-    </section>
-    <section class="scene" style="--img: url('scene-bread.jpg')">
-      <div class="container scene-inner">
-        <p class="scene-them">הם רואים מאפים.</p>
-        <p class="scene-you">אתם רואים רק את הקשה.</p>
-      </div>
-    </section>
-    <section class="scene" style="--img: url('scene-watches.jpg')">
-      <div class="container scene-inner">
-        <p class="scene-them">הם רואים שעוני יוקרה.</p>
-        <p class="scene-you">אתם רואים את הזמן נוזל בין האצבעות.</p>
-      </div>
-    </section>
-    <section class="scene" style="--img: url('scene-gym.jpg')">
-      <div class="container scene-inner">
-        <p class="scene-them">הם רואים מכשירי כושר.</p>
-        <p class="scene-you">אתם רואים שעות של זיעה ומאמץ.</p>
-      </div>
-    </section>
-    <section class="scene" style="--img: url('scene-clinic.jpg')">
-      <div class="container scene-inner">
-        <p class="scene-them">הם רואים קליניקה מפנקת.</p>
-        <p class="scene-you">אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</p>
-      </div>
-    </section>
-  </div>
 
   <!-- ===== The point ===== -->
   <section class="section" id="point">

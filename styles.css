@@ -7,7 +7,7 @@
   --teal-dark:   #0e7c7f;
   --teal-soft:   #e6f4f4;
   --teal-glow:   rgba(21, 154, 157, 0.18);
-  --dot-red:     #ff4a4a;
+  --dot-red:     #e23b3b;
   --ink:         #2b2e30;
   --ink-soft:    #4a5054;
   --muted:       #7b8388;
@@ -34,6 +34,7 @@
 
 /* ===== Dark theme ===== */
 [data-theme="dark"] {
+  --dot-red:     #ff5a55;
   --teal-soft:   rgba(28, 177, 180, 0.16);
   --teal-glow:   rgba(28, 177, 180, 0.28);
   --ink:         #eaf3f3;
@@ -151,52 +152,102 @@ a { color: inherit; text-decoration: none; }
    Hero
 =================================================== */
 .hero {
-  position: relative; min-height: 100svh; display: flex; align-items: center;
-  padding: 120px 0 80px; overflow: hidden;
+  position: relative; min-height: 100svh; display: flex;
+  padding: 104px 0 28px; overflow: hidden;
 }
 .hero-glow {
-  position: absolute; top: -6%; inset-inline-start: 34%; transform: translateX(-50%);
+  position: absolute; top: 10%; inset-inline-end: -8%;
   width: 760px; height: 760px; max-width: 130vw;
   background: radial-gradient(circle, var(--teal-glow) 0%, rgba(21,154,157,0.04) 45%, transparent 70%);
   z-index: 0; pointer-events: none;
 }
 .hero-inner {
-  position: relative; z-index: 1; text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: 56px;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
 }
-.hero h1 { font-size: clamp(2.1rem, 5.6vw, 4.2rem); font-weight: 800; line-height: 1.25; max-width: 1000px; text-wrap: balance; }
-.hero h1 .accent { color: var(--teal); }
+/* The framing line stays small and on top, leaving the screen to the cases */
+.hero-kicker {
+  font-size: clamp(1.05rem, 2.1vw, 1.45rem); font-weight: 600; line-height: 1.4;
+  text-align: center; color: var(--ink-soft); text-wrap: balance;
+}
+.hero-kicker .accent { color: var(--teal); }
 .scroll-hint {
-  width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--line);
+  width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line);
   display: flex; align-items: center; justify-content: center; color: var(--teal);
-  animation: nudge 2.2s ease-in-out infinite;
+  animation: nudge 2.2s ease-in-out infinite; flex-shrink: 0;
 }
-.scroll-hint svg { width: 24px; height: 24px; }
+.scroll-hint svg { width: 22px; height: 22px; }
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
 /* ===================================================
-   Scenes — "they see / you see", one screen each
+   Cases — typed "they see / you see" text, art on the left
 =================================================== */
-.scene {
-  position: relative; min-height: 100svh; display: flex; align-items: center;
-  background: #0b1214 var(--img) center / cover no-repeat; color: #fff; overflow: hidden;
+.cases {
+  flex: 1; width: 100%;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px;
 }
-/* Photos are busy, so a dark wash keeps both lines readable in either theme */
-.scene::before {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(270deg, rgba(6, 12, 14, 0.85) 0%, rgba(6, 12, 14, 0.6) 45%, rgba(6, 12, 14, 0.2) 100%);
+.case-text { min-height: 15rem; display: flex; flex-direction: column; justify-content: center; }
+.case-text p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 700; line-height: 1.25; }
+.case-them { font-size: clamp(1.7rem, 3.8vw, 3rem); color: var(--ink); margin-bottom: 16px; min-height: 1.25em; }
+.case-you  { font-size: clamp(2rem, 4.6vw, 3.7rem); color: var(--dot-red); min-height: 2.5em; }
+/* Blinking caret on whichever line is being typed */
+.case-text .typing::after {
+  content: ""; display: inline-block; width: 3px; height: 0.95em; margin-inline-start: 4px;
+  background: currentColor; vertical-align: -0.1em; animation: caret 0.8s steps(1) infinite;
 }
-.scene-inner { position: relative; z-index: 1; }
-.scene p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 700; line-height: 1.25; max-width: 760px; text-wrap: balance; }
-.scene-them { font-size: clamp(1.7rem, 4.4vw, 3.2rem); color: rgba(255, 255, 255, 0.92); margin-bottom: 18px; }
-.scene-you  { font-size: clamp(2rem, 5.4vw, 4rem); color: var(--dot-red); text-shadow: 0 4px 30px rgba(0, 0, 0, 0.45); }
-.scene-them, .scene-you { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
-/* The red line pops in a beat after the first one */
-.scene-you { transform: translateY(18px) scale(0.96); transition-delay: 0.85s; }
-.scene.in .scene-them, .scene.in .scene-you { opacity: 1; transform: none; }
+@keyframes caret { 50% { opacity: 0; } }
+.case-text.clearing p { opacity: 0; transition: opacity 0.4s var(--ease); }
+
+.case-dots { display: flex; gap: 9px; margin-top: 28px; }
+.case-dot {
+  width: 9px; height: 9px; border-radius: 50%; border: none; padding: 0; cursor: pointer;
+  background: var(--line); transition: all 0.3s var(--ease);
+}
+.case-dot:hover { background: var(--muted); }
+.case-dot.active { background: var(--dot-red); width: 26px; border-radius: 100px; }
+
+.case-stage {
+  position: relative; width: 100%; max-width: 440px; aspect-ratio: 1; justify-self: center;
+}
+/* Soft round "pedestal" behind each set */
+.case-stage::before {
+  content: ""; position: absolute; inset: 4%; border-radius: 50%;
+  background: radial-gradient(circle, var(--teal-glow) 0%, var(--teal-soft) 45%, transparent 70%);
+}
+/* Floor shadow the set stands on */
+.case-stage::after {
+  content: ""; position: absolute; left: 14%; right: 14%; bottom: 8%; height: 9%;
+  border-radius: 50%; background: radial-gradient(ellipse, rgba(0, 0, 0, 0.22), transparent 70%);
+}
+.stage-set { position: absolute; inset: 0; pointer-events: none; }
+.stage-set img {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); height: auto;
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.22));
+  opacity: 0; transform: scale(0.6) translateY(24px);
+  transition: opacity 0.5s var(--ease), transform 0.7s var(--ease);
+}
+.stage-set img.flip { scale: -1 1; }
+.stage-set.active img { opacity: 1; transform: none; }
+.stage-set.active img:nth-child(2) { transition-delay: 0.08s; }
+.stage-set.active img:nth-child(3) { transition-delay: 0.16s; }
+.stage-set.active img:nth-child(4) { transition-delay: 0.24s; }
+/* Little things keep slipping down between the chairs */
+.stage-set.active img.fall { animation: fall 3s var(--d) ease-in infinite; transition: none; opacity: 0; }
+@keyframes fall {
+  0%   { opacity: 0; transform: translateY(0) rotate(-12deg); }
+  15%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(260%) rotate(24deg); }
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 @media (prefers-reduced-motion: reduce) {
-  .scene-them, .scene-you { opacity: 1; transform: none; transition: none; }
   .scroll-hint { animation: none; }
+  .stage-set.active img.fall { animation: none; opacity: 1; }
+  .case-text .typing::after { animation: none; }
 }
 
 /* floating robots */
@@ -484,6 +535,9 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .nav { gap: 20px; }
   .nav a { font-size: 0.92rem; }
   .hero-glow { inset-inline-start: 50%; transform: translateX(-50%); }
+  .cases { grid-template-columns: 1fr; gap: 12px; align-content: center; }
+  .case-stage { order: -1; max-width: 320px; }
+  .case-text { text-align: center; align-items: center; }
   .cards, .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .options { grid-template-columns: repeat(3, 1fr); }
   .quote { flex: 0 0 calc((100% - 24px) / 2); }
@@ -505,10 +559,10 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .menu-toggle.open span:nth-child(2) { opacity: 0; }
   .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .hero { padding: 110px 0 60px; }
-  .scene::before { background: linear-gradient(0deg, rgba(6, 12, 14, 0.88) 0%, rgba(6, 12, 14, 0.55) 55%, rgba(6, 12, 14, 0.25) 100%); }
-  .scene { align-items: flex-end; }
-  .scene-inner { padding-bottom: 16vh; }
+  .hero { padding: 96px 0 20px; }
+  .case-stage { max-width: 250px; }
+  .case-text { min-height: 11rem; }
+  .case-dots { margin-top: 18px; }
   .options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .option { padding: 14px; font-size: 0.95rem; }
   .biz-line { padding: 14px 16px; gap: 16px; }
