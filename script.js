@@ -41,19 +41,19 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ===== Hero cases: type "they see", then the red "you see", swap the art, repeat =====
+// ===== Hero cases: "הם" / "אתם" stay fixed; type the rest of each line, swap the picture, repeat =====
 const CASES = [
-  ['הם רואים כסאות.', 'אתם רואים את הדברים שנופלים ביניהם.'],
-  ['הם רואים מאפים.', 'אתם רואים רק את הקשה.'],
-  ['הם רואים שעוני יוקרה.', 'אתם רואים את הזמן נוזל בין האצבעות.'],
-  ['הם רואים מכשירי כושר.', 'אתם רואים שעות של זיעה ומאמץ.'],
-  ['הם רואים קליניקה מפנקת.', 'אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'],
+  ['רואים כסאות.', 'רואים את הדברים שנופלים ביניהם.'],
+  ['רואים מאפים.', 'רואים רק את הקשה.'],
+  ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.'],
+  ['רואים מכשירי כושר.', 'רואים שעות של זיעה ומאמץ.'],
+  ['רואים קליניקה מפנקת.', 'יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'],
 ];
 const caseText = document.querySelector('.case-text');
 const themEl = document.getElementById('caseThem');
 const youEl = document.getElementById('caseYou');
 const caseDots = document.getElementById('caseDots');
-const sets = [...document.querySelectorAll('.stage-set')];
+const sets = [...document.querySelectorAll('.stage-img')];
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const wait = (ms) => new Promise(r => setTimeout(r, ms));
 let caseRun = 0; // bumped on every jump so a stale loop stops typing
