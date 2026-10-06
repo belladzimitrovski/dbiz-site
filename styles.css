@@ -161,11 +161,11 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-inner {
   position: relative; z-index: 1;
-  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px;
 }
 /* The framing line stays small and on top, leaving the screen to the cases */
 .hero-kicker {
-  font-size: clamp(1.05rem, 2.1vw, 1.45rem); font-weight: 600; line-height: 1.4;
+  font-size: clamp(1.15rem, 2.4vw, 1.7rem); font-weight: 600; line-height: 1.4;
   text-align: center; color: var(--ink-soft); text-wrap: balance;
 }
 .hero-kicker .accent { color: var(--teal); }
@@ -181,8 +181,8 @@ a { color: inherit; text-decoration: none; }
    Cases — typed "they see / you see" text, art on the left
 =================================================== */
 .cases {
-  flex: 1; width: 100%;
-  display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px;
+  width: 100%;
+  display: grid; grid-template-columns: 1.35fr 0.65fr; align-items: center; gap: 48px;
 }
 .case-text { min-height: 15rem; display: flex; flex-direction: column; justify-content: center; }
 .case-text p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 700; line-height: 1.25; }
@@ -252,6 +252,31 @@ a { color: inherit; text-decoration: none; }
 .prose h2 { font-size: clamp(2rem, 4.6vw, 3rem); margin-bottom: 30px; }
 .prose p { font-size: clamp(1.05rem, 2vw, 1.18rem); color: var(--ink-soft); margin-bottom: 18px; }
 .prose .aside { color: var(--muted); font-style: italic; }
+.prose-airy p { margin-bottom: 30px; line-height: 1.9; }
+.prose .still { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
+.prose .strong-line { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); }
+.wink {
+  padding: 3px 10px; border-radius: 10px; background: var(--teal-soft); color: var(--teal); font-weight: 500;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+
+/* ===== Key pair — the case the pains grow out of ===== */
+.key-point { min-height: 90svh; display: flex; align-items: center; background: linear-gradient(180deg, var(--bg) 0%, var(--tint-2) 100%); }
+.key-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.key-img {
+  width: clamp(180px, 26vw, 280px); aspect-ratio: 1; object-fit: cover; border-radius: 50%;
+  border: 6px solid var(--surface); box-shadow: var(--shadow-md); margin-bottom: 40px;
+}
+.key-them, .key-you { font-family: "Rubik", "Heebo", sans-serif; font-weight: 800; line-height: 1.2; text-wrap: balance; }
+.key-them { font-size: clamp(1.9rem, 4.6vw, 3.4rem); color: var(--ink); margin-bottom: 18px; }
+.key-you  { font-size: clamp(2.3rem, 6.4vw, 5rem); color: var(--teal); max-width: 1000px; }
+/* The second line lands a beat after the first */
+.key-you.reveal { transition-delay: 0.9s !important; }
+
+/* ===== Why me: the "off-the-shelf" joke ===== */
+.shelf-line { display: flex; align-items: center; gap: 28px; margin-bottom: 30px; }
+.shelf-line p { margin: 0 !important; flex: 1; }
+.shelf-art { width: 190px; flex-shrink: 0; }
 .punch { margin: 40px 0; padding-inline-start: 22px; border-inline-start: 4px solid var(--teal); }
 .prose .punch p, .punch p { font-family: "Rubik", sans-serif; font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.35; color: var(--ink); margin-bottom: 6px; }
 .prose .punch p.accent { color: var(--teal); }
@@ -281,6 +306,8 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 /* Bubbles pop slightly after their robot appears */
 .robot-say .bubble { transform: scale(0.85); opacity: 0; transform-origin: bottom center; transition: transform 0.6s var(--ease) 0.5s, opacity 0.6s var(--ease) 0.5s; }
 .visible .bubble, .visible.robot-say .bubble { transform: none; opacity: 1; }
+.bubble-later { display: inline-block; opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease) 3s, transform 0.6s var(--ease) 3s; }
+.visible .bubble-later { opacity: 1; transform: none; }
 
 /* ===== About ===== */
 .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; max-width: 980px; margin: 0 auto; }
@@ -460,6 +487,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 .contact-list svg { width: 22px; height: 22px; color: var(--teal); flex-shrink: 0; }
 
 .contact-form {
+  position: relative; overflow: hidden;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 40px; box-shadow: var(--shadow-md);
 }
@@ -476,10 +504,16 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   outline: none; border-color: var(--teal); background: var(--input-focus-bg);
   box-shadow: 0 0 0 4px var(--teal-glow);
 }
-.form-robot { display: flex; align-items: flex-end; justify-content: center; gap: 14px; margin-top: 22px; }
+.form-robot {
+  position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 18px;
+  padding: 24px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(4px);
+  animation: popIn 0.4s var(--ease) both;
+}
 .form-robot[hidden] { display: none; }
-.form-robot img { width: 96px; animation: popIn 0.6s var(--ease) both; }
-.form-robot .bubble { margin-bottom: 40px; animation: popIn 0.6s var(--ease) 0.35s both; }
+.form-robot img { width: clamp(150px, 20vw, 210px); animation: popIn 0.6s var(--ease) 0.1s both; }
+.form-robot .bubble { margin-bottom: 90px; font-size: 1.15rem; animation: popIn 0.6s var(--ease) 0.45s both; }
+.bubble-late { animation: fadeUp 0.6s var(--ease) 2.6s both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes popIn { from { opacity: 0; transform: scale(0.6) translateY(20px); } to { opacity: 1; transform: none; } }
 
 /* ===================================================
@@ -490,6 +524,8 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 .footer-logo { height: 40px; filter: brightness(0) invert(1); opacity: 0.92; }
 .footer-tag { font-family: "Rubik", sans-serif; color: var(--teal); font-size: 1.05rem; }
 .footer-copy { font-size: 0.86rem; color: var(--footer-muted); }
+.footer-credit { font-size: 0.86rem; color: var(--footer-text); }
+.footer-credit a:hover { color: var(--teal); }
 
 /* ===================================================
    Reveal animation
@@ -544,6 +580,11 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .header-inner { gap: 14px; }
   .section { padding: 72px 0; }
   .cards, .cards-3 { grid-template-columns: 1fr; }
+  .shelf-line { flex-direction: column; align-items: stretch; }
+  .shelf-art { width: 170px; align-self: center; }
+  .form-robot { flex-direction: column; }
+  .form-robot .bubble { margin-bottom: 0; }
+  .form-robot img + .bubble::after { display: none; }
   .field-row { grid-template-columns: 1fr; }
   .contact-form { padding: 28px 22px; }
   .quote { flex: 0 0 100%; padding: 26px 24px 30px; }

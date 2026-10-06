@@ -47,7 +47,6 @@ const CASES = [
   ['רואים מאפים.', 'רואים רק את הקשה.'],
   ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.'],
   ['רואים מכשירי כושר.', 'רואים שעות של זיעה ומאמץ.'],
-  ['רואים קליניקה מפנקת.', 'יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'],
 ];
 const themEl = document.getElementById('caseThem');
 const youEl = document.getElementById('caseYou');
@@ -212,7 +211,7 @@ form.addEventListener('submit', async (e) => {
       note.hidden = true;
       submitBtn.disabled = false;
       submitBtn.textContent = submitLabel;
-    }, 6000);
+    }, 9000);
   }
 });
 
