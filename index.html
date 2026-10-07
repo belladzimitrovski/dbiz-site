@@ -61,15 +61,15 @@
         <div class="case-stage" aria-hidden="true">
           <img src="cases/chairs.jpg" alt="" class="stage-img" />
           <img src="cases/bread.jpg" alt="" class="stage-img" />
-          <img src="cases/watches.jpg" alt="" class="stage-img" />
           <img src="cases/gym.jpg" alt="" class="stage-img" />
+          <img src="cases/watches.jpg" alt="" class="stage-img" />
         </div>
 
         <ul class="sr-only">
           <li>הם רואים כסאות. אתם רואים את הדברים שנופלים ביניהם.</li>
           <li>הם רואים מאפים. אתם רואים רק את הקשה.</li>
-          <li>הם רואים שעוני יוקרה. אתם רואים את הזמן נוזל בין האצבעות.</li>
           <li>הם רואים מכשירי כושר. אתם רואים שעות של זיעה ומאמץ.</li>
+          <li>הם רואים שעוני יוקרה. אתם רואים את הזמן נוזל בין האצבעות.</li>
         </ul>
       </div>
 
@@ -79,12 +79,46 @@
     </div>
   </section>
 
-  <!-- ===== Key pair: the clinic case gets its own screen, the pains follow from it ===== -->
-  <section class="section key-point" id="key">
-    <div class="container key-inner">
-      <img src="cases/clinic.jpg" alt="" class="key-img reveal" />
-      <p class="key-them reveal">הם רואים קליניקה מפנקת.</p>
-      <p class="key-you reveal">אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</p>
+  <!-- ===== Key pair: the clinic case, pinned on its own screen so nobody scrolls past it ===== -->
+  <section class="key-point" id="key">
+    <div class="key-pin">
+      <div class="container key-inner">
+        <div class="key-text" aria-hidden="true">
+          <p class="case-them key-them"><span class="case-fixed">הם</span> <span id="keyThem"></span></p>
+          <p class="case-you key-you"><span class="case-fixed">אתם</span> <span id="keyYou"></span></p>
+        </div>
+        <p class="sr-only">הם רואים קליניקה מפנקת. אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</p>
+
+        <!-- A reflexology foot map: the pressure points are literally "the point" -->
+        <figure class="key-art" aria-hidden="true">
+          <span class="key-sign">קליניקה לרפלקסולוגיה</span>
+          <svg viewBox="0 0 220 380">
+            <g class="foot">
+              <ellipse cx="74" cy="44" rx="19" ry="24"/>
+              <circle cx="106" cy="30" r="12"/>
+              <circle cx="130" cy="34" r="11"/>
+              <circle cx="150" cy="46" r="10"/>
+              <circle cx="166" cy="64" r="9"/>
+              <path d="M96 62c36-4 60 16 64 52 4 42 6 78 2 120-4 48-12 88-34 118-16 22-46 22-60 2-15-22-12-52-9-82 3-36-6-60-11-90-6-38-2-68 10-88 10-14 22-21 38-32z"/>
+            </g>
+            <g class="zones" fill="none">
+              <path d="M52 130c36 6 76 6 108-2"/>
+              <path d="M56 196c34 6 70 6 104-2"/>
+              <path d="M62 262c30 6 58 6 88-2"/>
+            </g>
+            <g class="pts">
+              <circle cx="74" cy="44" r="4"/><circle cx="106" cy="30" r="3"/><circle cx="130" cy="34" r="3"/>
+              <circle cx="150" cy="46" r="3"/><circle cx="166" cy="64" r="3"/>
+              <circle cx="80" cy="104" r="4"/><circle cx="136" cy="104" r="4"/>
+              <circle cx="70" cy="166" r="4"/><circle cx="142" cy="170" r="4"/>
+              <circle cx="88" cy="228" r="4"/><circle cx="130" cy="232" r="4"/>
+              <circle cx="96" cy="300" r="4"/><circle cx="122" cy="318" r="4"/>
+            </g>
+            <circle class="pt-main-ring" cx="106" cy="156" r="10"/>
+            <circle class="pt-main" cx="106" cy="156" r="8"/>
+          </svg>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -186,7 +220,7 @@
           </p>
         </div>
         <div class="robot-say reveal">
-          <p class="bubble">ואני העוזר שלה -<br /><strong>ביחד אנחנו צוות מנצח 😊</strong></p>
+          <p class="bubble"><span class="tl">ואני העוזר שלה-</span><br /><strong class="tl">ביחד אנחנו צוות מנצח 😊</strong></p>
           <img src="robot-hello-3d.png" alt="הרובוט של DBIZ מברך לשלום" class="robot-3d floaty" />
         </div>
       </div>
@@ -205,7 +239,7 @@
     <div class="container">
       <div class="robot-say robot-say-center reveal">
         <img src="robot-wave-3d.png" alt="הרובוט של DBIZ מנופף" class="robot-3d floaty" />
-        <p class="bubble">אינסוף אפשרויות במערכת אחת,<br /><strong>תרשו לי להציע לכם?</strong></p>
+        <p class="bubble"><span class="tl">אינסוף אפשרויות במערכת אחת,</span><br /><strong class="tl">תרשו לי להציע לכם?</strong></p>
       </div>
 
       <!-- Each option rises in its own card -->
@@ -277,7 +311,7 @@
       <div class="prose prose-why prose-airy">
         <p class="reveal">לכל עסק יש תהליך עבודה משלו, אפיון לקוח שונה וצרכים ייחודיים-<br />הדורשים גם כן מענה ייחודי!</p>
         <div class="shelf-line reveal">
-          <p class="strong-line">ובדיוק מהסיבה הזו, אצלי לא תמצאו אוטומציות מוכנות מונחות על המדף בשורה אופקית ממתינים ללקוח שירכוש אותן.</p>
+          <p class="strong-line">ובדיוק מהסיבה הזו, אצלי לא תמצאו אוטומציות מוצעות למכירה על המדף...</p>
           <!-- Tongue-in-cheek: "off-the-shelf" automations, boxed and price-tagged -->
           <svg class="shelf-art" viewBox="0 0 170 100" aria-hidden="true">
             <g font-family="Rubik, Heebo, sans-serif" text-anchor="middle">
@@ -291,8 +325,8 @@
             <path d="M18 81v12M152 81v12" stroke="var(--muted)" stroke-width="4"/>
           </svg>
         </div>
-        <p class="reveal">אני מתמחה בייעוץ והתאמת מערכות טכנולוגיות באופן אישי.<br />מקשיבה היטב לסיפור של העסק החל מנקודת הפתיחה, דרך נקודות החוזק ומנסה להניח אצבע על נקודות התורפה. מחברת נקודה לנקודה עד לקבלת התמונה השלמה.</p>
-        <p class="reveal">בנקודה הזו, אני יושבת לבנות את האוטומציה שהיא כולה שלכם.<br />בעזרת ידע טכנולוגי, היכרות עם כלי AI מתקדמים, פיצ'רים חדשניים וחשיבה יצירתית אני מוצאת את הדרך לפתור כל צורך ייחודי שהעסק שלכם מבקש.</p>
+        <p class="reveal">אני מתמחה בייעוץ והתאמת מערכות טכנולוגיות באופן אישי.<br />מקשיבה היטב לסיפור של העסק החל מנקודת הפתיחה, דרך נקודות החוזק ומנסה להניח אצבע על נקודות התורפה. אני מחברת נקודה לנקודה עד לקבלת התמונה השלמה.</p>
+        <p class="reveal">ובנקודה הזו, אני יושבת לבנות את האוטומציה שהיא כולה שלכם.<br />בעזרת ידע טכנולוגי, היכרות עם כלי AI מתקדמים, פיצ'רים חדשניים וחשיבה יצירתית אני מוצאת את הדרך לפתור כל צורך ייחודי שהעסק שלכם מבקש.</p>
         <p class="reveal strong-line">ואתם מקבלים מערכת שנתפרה לפי מידות העסק שלכם בדיוק.</p>
         <div class="punch reveal">
           <p>לא פחות, ולא יותר.</p>
@@ -300,15 +334,17 @@
         </div>
       </div>
 
-      <div class="robot-say robot-say-center reveal">
+      <div class="robot-say robot-say-center robot-say-link reveal">
         <img src="robot-check-3d.png" alt="הרובוט של DBIZ עם וי" class="robot-3d floaty" />
-        <p class="bubble">
-          אני פה הרובוט...<br />
-          <strong>היחס אנושי, אישי וחם.</strong><br />
-          <span class="bubble-later"><strong>וזה לא אני אמרתי</strong>😊<br />
-          <a href="#testimonials" class="bubble-link">לקריאת ההמלצות ←</a></span>
+        <p class="bubble" data-after="whyLink">
+          <span class="tl">אני פה הרובוט...</span><br />
+          <strong class="tl">היחס אנושי.</strong><br />
+          <strong class="tl">אישי וחם.</strong><br />
+          <strong class="tl" data-pause="1800">וזה לא אני אמרתי😊</strong>
         </p>
       </div>
+      <!-- Shows only once the bubble has finished "talking" -->
+      <p class="after-link" id="whyLink"><a href="#testimonials" class="bubble-link">לקריאת ההמלצות ←</a></p>
     </div>
   </section>
 
@@ -328,7 +364,7 @@
         <article class="card reveal">
           <span class="card-num">2</span>
           <h3>נקודה למחשבה</h3>
-          <p>זה הזמן שלי לחבר את הנקודות, להגיע לתמונה השלמה, ולחשוב... אני יוצאת מנקודת הנחה שהכול בר ביצוע, ללא תקרת זכוכית, ומביאה פתרונות חדשים ויצירתיים עבור העסק שלכם.</p>
+          <p>זה הזמן שלי לחבר את הנקודות, להגיע לתמונה השלמה, ולחשוב... אני יוצאת מנקודת הנחה שהכול בר ביצוע, ומביאה פתרונות חדשים ויצירתיים עבור העסק שלכם.</p>
         </article>
         <article class="card reveal">
           <span class="card-num">3</span>
@@ -342,8 +378,7 @@
         </article>
       </div>
       <div class="cta-block reveal">
-        <p class="slogan accent">נקודה.</p>
-        <a href="#contact" class="btn btn-primary">אני רוצה להזניק את העסק שלי!</a>
+        <a href="#contact" class="btn btn-primary">אני רוצה להזניק את העסק שלי. נקודה!</a>
       </div>
     </div>
   </section>
@@ -524,7 +559,7 @@
 
         <div class="robot-say robot-say-inline">
           <img src="robot-phone-3d.png" alt="הרובוט של DBIZ עם טלפון" class="robot-3d floaty" />
-          <p class="bubble"><strong>עוד לפני שהמים יגיעו לנקודת הרתיחה.</strong></p>
+          <p class="bubble"><strong class="tl">עוד לפני שהמים יגיעו לנקודת הרתיחה.</strong></p>
         </div>
 
         <ul class="contact-list">
@@ -567,7 +602,7 @@
         <!-- After a successful send the robot pops up with a speech bubble -->
         <div class="form-robot" id="formNote" hidden>
           <img src="robot-hello-3d.png" alt="" class="robot-3d" />
-          <p class="bubble"><strong>אני כבר אסדר את הבלאגן.</strong><span class="bubble-late"><br /><strong>זה לא התפקיד שלכם, נקודה.😊</strong></span></p>
+          <p class="bubble"><strong class="tl">אני כבר אסדר את הבלאגן.</strong><br /><strong class="tl" data-pause="1500">זה לא התפקיד שלכם, נקודה.😊</strong></p>
         </div>
       </form>
     </div>

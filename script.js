@@ -45,8 +45,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const CASES = [
   ['רואים כסאות.', 'רואים את הדברים שנופלים ביניהם.'],
   ['רואים מאפים.', 'רואים רק את הקשה.'],
-  ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.'],
   ['רואים מכשירי כושר.', 'רואים שעות של זיעה ומאמץ.'],
+  ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.'],
 ];
 const themEl = document.getElementById('caseThem');
 const youEl = document.getElementById('caseYou');
@@ -93,6 +93,72 @@ const playCases = async () => {
   }
 };
 playCases();
+
+// ===== Key pair: typed once, when its pinned screen comes into view =====
+const keySection = document.getElementById('key');
+const keyThem = document.getElementById('keyThem');
+const keyYou = document.getElementById('keyYou');
+const KEY = ['רואים קליניקה מפנקת.', 'יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'];
+const keyObserver = new IntersectionObserver(async (entries) => {
+  if (!entries[0].isIntersecting) return;
+  keyObserver.disconnect();
+  if (reduceMotion) {
+    [keyThem.textContent, keyYou.textContent] = KEY;
+    return;
+  }
+  await wait(300);
+  await typeInto(keyThem, KEY[0], 60);
+  await wait(600);
+  await typeInto(keyYou, KEY[1], 48);
+}, { threshold: 0.3 });
+keyObserver.observe(keySection);
+
+// ===== Robot bubbles "talk": each .tl line is typed in turn =====
+// The untyped rest of a line sits in an invisible ghost span, so the bubble never changes size.
+const prepBubble = (bubble) => [...bubble.querySelectorAll('.tl')].map((line) => {
+  const chars = Array.from(line.textContent); // keeps emoji whole
+  const on = document.createElement('span');
+  const ghost = document.createElement('span');
+  ghost.className = 'tl-ghost';
+  ghost.textContent = chars.join('');
+  line.replaceChildren(on, ghost);
+  return { on, ghost, chars, pause: +(line.dataset.pause || 0) };
+});
+
+const talk = async (bubble, lines) => {
+  if (bubble._talking) return;
+  bubble._talking = true;
+  await wait(650); // let the bubble pop in first
+  for (const { on, ghost, chars, pause } of lines) {
+    await wait(pause);
+    for (let i = 1; i <= chars.length; i++) {
+      on.textContent = chars.slice(0, i).join('');
+      ghost.textContent = chars.slice(i).join('');
+      await wait(45);
+    }
+  }
+  const after = bubble.dataset.after && document.getElementById(bubble.dataset.after);
+  if (after) after.classList.add('shown');
+};
+
+const bubbleObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    bubbleObserver.unobserve(entry.target);
+    talk(entry.target, entry.target._lines);
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll('.bubble').forEach((bubble) => {
+  if (reduceMotion) {
+    const after = bubble.dataset.after && document.getElementById(bubble.dataset.after);
+    if (after) after.classList.add('shown');
+    return;
+  }
+  bubble._lines = prepBubble(bubble);
+  // The post-send robot talks when it appears, not on scroll
+  if (!bubble.closest('.form-robot')) bubbleObserver.observe(bubble);
+});
 
 // ===== Marquees: duplicate each lane so the loop has no seam =====
 document.querySelectorAll('.marquee-lane').forEach((lane) => {
@@ -201,6 +267,12 @@ form.addEventListener('submit', async (e) => {
     if (!res.ok) throw new Error(`webhook responded ${res.status}`);
 
     note.hidden = false;
+    const sentBubble = note.querySelector('.bubble');
+    if (sentBubble._lines) {
+      sentBubble._talking = false;
+      sentBubble._lines.forEach(({ on, ghost, chars }) => { on.textContent = ''; ghost.textContent = chars.join(''); });
+      talk(sentBubble, sentBubble._lines);
+    }
     submitBtn.textContent = 'נשלח ✓';
     form.reset();
   } catch (err) {

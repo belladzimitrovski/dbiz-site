@@ -189,7 +189,7 @@ a { color: inherit; text-decoration: none; }
 .case-them { font-size: clamp(1.7rem, 3.8vw, 3rem); color: var(--ink); margin-bottom: 16px; min-height: 1.25em; }
 .case-you  { font-size: clamp(2rem, 4.6vw, 3.7rem); color: var(--teal); min-height: 2.5em; }
 /* Blinking caret on whichever line is being typed */
-.case-text .typing::after {
+.case-text .typing::after, .key-text .typing::after {
   content: ""; display: inline-block; width: 3px; height: 0.95em; margin-inline-start: 4px;
   background: currentColor; vertical-align: -0.1em; animation: caret 0.8s steps(1) infinite;
 }
@@ -255,23 +255,39 @@ a { color: inherit; text-decoration: none; }
 .prose-airy p { margin-bottom: 30px; line-height: 1.9; }
 .prose .still { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
 .prose .strong-line { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); }
-.wink {
-  padding: 3px 10px; border-radius: 10px; background: var(--teal-soft); color: var(--teal); font-weight: 500;
-  -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
+/* A gentle touch: just colour, no badge */
+.wink { color: var(--teal); }
 
-/* ===== Key pair — the case the pains grow out of ===== */
-.key-point { min-height: 90svh; display: flex; align-items: center; background: linear-gradient(180deg, var(--bg) 0%, var(--tint-2) 100%); }
-.key-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.key-img {
-  width: clamp(180px, 26vw, 280px); aspect-ratio: 1; object-fit: cover; border-radius: 50%;
-  border: 6px solid var(--surface); box-shadow: var(--shadow-md); margin-bottom: 40px;
+/* ===== Key pair — the clinic case. Same "הם / אתם" voice as the opener,
+   but on an inverted teal screen that stays pinned while you scroll past ===== */
+.key-point {
+  height: 180svh; position: relative;
+  background: radial-gradient(ellipse at 30% 40%, #13706f 0%, #0c4547 45%, #08292b 100%);
+  color: #fff;
 }
-.key-them, .key-you { font-family: "Rubik", "Heebo", sans-serif; font-weight: 800; line-height: 1.2; text-wrap: balance; }
-.key-them { font-size: clamp(1.9rem, 4.6vw, 3.4rem); color: var(--ink); margin-bottom: 18px; }
-.key-you  { font-size: clamp(2.3rem, 6.4vw, 5rem); color: var(--teal); max-width: 1000px; }
-/* The second line lands a beat after the first */
-.key-you.reveal { transition-delay: 0.9s !important; }
+.key-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.key-inner { display: grid; grid-template-columns: 1.3fr 0.7fr; align-items: center; gap: 56px; padding-top: 60px; }
+.key-text p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 800; line-height: 1.2; }
+.key-them { font-size: clamp(2rem, 4.4vw, 3.4rem); color: #fff; margin-bottom: 18px; min-height: 1.2em; }
+.key-you  { font-size: clamp(2.4rem, 5.6vw, 4.6rem); color: #7fe7e3; min-height: 2.4em; }
+.key-art {
+  position: relative; justify-self: center; width: 100%; max-width: 340px;
+  background: #fff; border-radius: 34px; padding: 54px 30px 26px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55);
+}
+.key-sign {
+  position: absolute; top: 16px; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  font-family: "Rubik", sans-serif; font-weight: 600; font-size: 0.9rem; color: #0e7c7f;
+  background: #e6f4f4; padding: 5px 16px; border-radius: 100px;
+}
+.key-art svg { width: 100%; display: block; }
+.foot { fill: #f7e6d8; stroke: #e2c4ad; stroke-width: 2; }
+.zones path { stroke: #159a9d; stroke-width: 1.6; stroke-dasharray: 4 5; opacity: 0.55; }
+.pts circle { fill: #159a9d; opacity: 0.75; }
+.pt-main { fill: #159a9d; }
+.pt-main-ring { fill: none; stroke: #159a9d; stroke-width: 3; transform-origin: 106px 156px; animation: ping 1.8s ease-out infinite; }
+@keyframes ping { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(3.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pt-main-ring { animation: none; } }
 
 /* ===== Why me: the "off-the-shelf" joke ===== */
 .shelf-line { display: flex; align-items: center; gap: 28px; margin-bottom: 30px; }
@@ -306,8 +322,10 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 /* Bubbles pop slightly after their robot appears */
 .robot-say .bubble { transform: scale(0.85); opacity: 0; transform-origin: bottom center; transition: transform 0.6s var(--ease) 0.5s, opacity 0.6s var(--ease) 0.5s; }
 .visible .bubble, .visible.robot-say .bubble { transform: none; opacity: 1; }
-.bubble-later { display: inline-block; opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease) 3s, transform 0.6s var(--ease) 3s; }
-.visible .bubble-later { opacity: 1; transform: none; }
+/* Typed bubble lines: the untyped rest stays invisible so the bubble keeps its final size */
+.tl-ghost { visibility: hidden; }
+.after-link { text-align: center; margin: -36px 0 0; opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.after-link.shown { opacity: 1; transform: none; }
 
 /* ===== About ===== */
 .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; max-width: 980px; margin: 0 auto; }
@@ -512,8 +530,6 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 .form-robot[hidden] { display: none; }
 .form-robot img { width: clamp(150px, 20vw, 210px); animation: popIn 0.6s var(--ease) 0.1s both; }
 .form-robot .bubble { margin-bottom: 90px; font-size: 1.15rem; animation: popIn 0.6s var(--ease) 0.45s both; }
-.bubble-late { animation: fadeUp 0.6s var(--ease) 2.6s both; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes popIn { from { opacity: 0; transform: scale(0.6) translateY(20px); } to { opacity: 1; transform: none; } }
 
 /* ===================================================
@@ -543,6 +559,8 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .cases { grid-template-columns: 1fr; gap: 12px; align-content: center; }
   .case-stage { order: -1; max-width: 320px; }
   .case-text { text-align: center; align-items: center; }
+  .key-inner { grid-template-columns: 1fr; gap: 20px; text-align: center; padding-top: 70px; }
+  .key-art { order: -1; max-width: 260px; }
   .cards, .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .options { grid-template-columns: repeat(3, 1fr); }
   .quote { flex: 0 0 calc((100% - 24px) / 2); }
@@ -580,6 +598,8 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .header-inner { gap: 14px; }
   .section { padding: 72px 0; }
   .cards, .cards-3 { grid-template-columns: 1fr; }
+  .key-art { max-width: 210px; padding: 46px 18px 16px; }
+  .key-sign { font-size: 0.78rem; }
   .shelf-line { flex-direction: column; align-items: stretch; }
   .shelf-art { width: 170px; align-self: center; }
   .form-robot { flex-direction: column; }
