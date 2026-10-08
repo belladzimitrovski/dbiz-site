@@ -44,9 +44,16 @@
     </div>
   </header>
 
-  <!-- ===== Opener: one screen that cycles the "they see / you see" cases ===== -->
-  <section class="hero" id="hero">
-    <div class="hero-glow"></div>
+  <!-- ===== Opener: full-screen photos that change with the typed "they see / you see" cases ===== -->
+  <section class="hero" id="hero" data-pos="top-center" data-tone="dark">
+    <!-- One photo per case, full screen; object-position keeps the subject in frame on phones -->
+    <div class="hero-bg" aria-hidden="true">
+      <img src="cases/chairs.jpg" alt="" class="stage-img" style="object-position: 40% 0%" />
+      <img src="cases/bread.jpg" alt="" class="stage-img" style="object-position: 25% 50%" />
+      <img src="cases/gym.jpg" alt="" class="stage-img" style="object-position: 50% 15%" />
+      <img src="cases/watches.jpg" alt="" class="stage-img" style="object-position: 50% 50%" />
+    </div>
+
     <div class="container hero-inner">
       <h1 class="hero-kicker">נקודת מבט של לקוחות, <span class="accent">היא לא נקודת המבט שלכם- בעלי העסק...</span></h1>
 
@@ -56,18 +63,9 @@
           <p class="case-them"><span class="case-fixed">הם</span> <span id="caseThem"></span></p>
           <p class="case-you"><span class="case-fixed">אתם</span> <span id="caseYou"></span></p>
         </div>
-
-        <!-- One picture per case; the active one fades in on the left -->
-        <div class="case-stage" aria-hidden="true">
-          <img src="cases/chairs.jpg" alt="" class="stage-img" />
-          <img src="cases/bread.jpg" alt="" class="stage-img" />
-          <img src="cases/gym.jpg" alt="" class="stage-img" />
-          <img src="cases/watches.jpg" alt="" class="stage-img" />
-        </div>
-
         <ul class="sr-only">
           <li>הם רואים כסאות. אתם רואים את הדברים שנופלים ביניהם.</li>
-          <li>הם רואים מאפים. אתם רואים רק את הקשה.</li>
+          <li>הם רואים לחמים. אתם רואים רק את הקשה.</li>
           <li>הם רואים מכשירי כושר. אתם רואים שעות של זיעה ומאמץ.</li>
           <li>הם רואים שעוני יוקרה. אתם רואים את הזמן נוזל בין האצבעות.</li>
         </ul>
@@ -79,51 +77,113 @@
     </div>
   </section>
 
-  <!-- ===== Key pair: the clinic case, pinned on its own screen so nobody scrolls past it ===== -->
+  <!-- ===== Key pair: the clinic case, pinned on its own screen so nobody scrolls past it.
+       A full-screen illustrated reflexology room; the text sits on the empty wall. ===== -->
   <section class="key-point" id="key">
     <div class="key-pin">
+      <svg class="key-scene" id="keyScene" viewBox="0 0 1600 900" preserveAspectRatio="xMinYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="kWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3ebe1"/><stop offset="1" stop-color="#e7d9c9"/></linearGradient>
+          <linearGradient id="kFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79f7b"/><stop offset="1" stop-color="#a8805e"/></linearGradient>
+          <radialGradient id="kGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#fff8ec" stop-opacity="0.9"/><stop offset="1" stop-color="#fff8ec" stop-opacity="0"/></radialGradient>
+          <radialGradient id="kFlame" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd27a" stop-opacity="0.8"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+        </defs>
+
+        <!-- room -->
+        <rect width="1600" height="900" fill="url(#kWall)"/>
+        <circle cx="420" cy="220" r="420" fill="url(#kGlow)"/>
+        <rect y="742" width="1600" height="158" fill="url(#kFloor)"/>
+        <g stroke="#9c7655" stroke-width="2" opacity="0.35"><path d="M0 790h1600M0 846h1600"/><path d="M180 742v48M520 790v56M860 742v48M1200 790v56M1460 742v48"/></g>
+        <rect y="730" width="1600" height="14" fill="#d9c7b4"/>
+
+        <!-- framed reflexology poster -->
+        <g transform="translate(300 96)">
+          <rect x="-12" y="-12" width="284" height="424" rx="6" fill="#b98d6a"/>
+          <rect width="260" height="400" fill="#fffdf9"/>
+          <text x="130" y="38" text-anchor="middle" font-family="Rubik, Heebo, sans-serif" font-weight="700" font-size="22" fill="#0e7c7f">רפלקסולוגיה</text>
+          <g transform="translate(42 58) scale(0.8)">
+                <g class="foot">
+                  <ellipse cx="74" cy="44" rx="19" ry="24"/><circle cx="106" cy="30" r="12"/><circle cx="130" cy="34" r="11"/>
+                  <circle cx="150" cy="46" r="10"/><circle cx="166" cy="64" r="9"/>
+                  <path d="M96 62c36-4 60 16 64 52 4 42 6 78 2 120-4 48-12 88-34 118-16 22-46 22-60 2-15-22-12-52-9-82 3-36-6-60-11-90-6-38-2-68 10-88 10-14 22-21 38-32z"/>
+                </g>
+                <g class="zones" fill="none">
+                  <path d="M52 130c36 6 76 6 108-2"/><path d="M56 196c34 6 70 6 104-2"/><path d="M62 262c30 6 58 6 88-2"/>
+                </g>
+                <g class="pts">
+                  <circle cx="74" cy="44" r="4"/><circle cx="106" cy="30" r="3"/><circle cx="130" cy="34" r="3"/>
+                  <circle cx="150" cy="46" r="3"/><circle cx="166" cy="64" r="3"/><circle cx="80" cy="104" r="4"/>
+                  <circle cx="136" cy="104" r="4"/><circle cx="70" cy="166" r="4"/><circle cx="142" cy="170" r="4"/>
+                  <circle cx="88" cy="228" r="4"/><circle cx="130" cy="232" r="4"/><circle cx="96" cy="300" r="4"/>
+                  <circle cx="122" cy="318" r="4"/>
+                </g>
+                <circle class="pt-main-ring" cx="106" cy="156" r="10"/>
+                <circle class="pt-main" cx="106" cy="156" r="8"/>
+          </g>
+        </g>
+
+        <!-- big plant in the corner -->
+        <g>
+          <g fill="#5f9b6b">
+            <ellipse cx="70" cy="560" rx="22" ry="70" transform="rotate(-22 70 620)"/>
+            <ellipse cx="96" cy="540" rx="22" ry="84" transform="rotate(4 96 620)"/>
+            <ellipse cx="124" cy="566" rx="20" ry="66" transform="rotate(26 124 620)"/>
+          </g>
+          <g fill="#4c8458">
+            <ellipse cx="84" cy="588" rx="16" ry="50" transform="rotate(-38 84 630)"/>
+            <ellipse cx="112" cy="590" rx="16" ry="48" transform="rotate(34 112 630)"/>
+          </g>
+          <path d="M52 628h92l-10 112H62z" fill="#efe7dd"/>
+          <rect x="48" y="620" width="100" height="16" rx="4" fill="#e2d6c8"/>
+        </g>
+
+        <!-- reflexology bed -->
+        <ellipse cx="520" cy="742" rx="380" ry="18" fill="#000" opacity="0.12"/>
+        <g fill="#b98d6a"><rect x="210" y="612" width="18" height="128" rx="4"/><rect x="760" y="612" width="18" height="128" rx="4"/><rect x="226" y="690" width="536" height="10" rx="4"/></g>
+        <rect x="186" y="598" width="616" height="18" rx="6" fill="#d8c3ae"/>
+        <rect x="170" y="552" width="650" height="52" rx="24" fill="#159a9d"/>
+        <rect x="170" y="552" width="650" height="14" rx="7" fill="#fff" opacity="0.18"/>
+        <rect x="818" y="572" width="20" height="10" fill="#d8c3ae"/>
+        <rect x="834" y="560" width="96" height="34" rx="17" fill="#159a9d"/>
+        <!-- rolled towel and folded towel on the bed -->
+        <rect x="196" y="520" width="132" height="38" rx="19" fill="#fffaf3"/>
+        <path d="M216 524v30M236 522v34" stroke="#e8dccd" stroke-width="3"/>
+        <rect x="560" y="530" width="170" height="26" rx="6" fill="#f6efe6"/>
+        <rect x="560" y="541" width="170" height="5" fill="#7fc7c4"/>
+
+        <!-- side table with massage oil, candle and towels -->
+        <ellipse cx="1030" cy="742" rx="70" ry="9" fill="#000" opacity="0.12"/>
+        <rect x="1022" y="600" width="16" height="140" fill="#a8805e"/>
+        <ellipse cx="1030" cy="740" rx="48" ry="8" fill="#a8805e"/>
+        <ellipse cx="1030" cy="600" rx="92" ry="15" fill="#b98d6a"/>
+        <!-- massage oil (amber dropper bottle) -->
+        <g>
+          <rect x="962" y="516" width="44" height="78" rx="11" fill="#c47a2b"/>
+          <rect x="962" y="516" width="12" height="78" rx="6" fill="#fff" opacity="0.22"/>
+          <rect x="968" y="540" width="32" height="30" rx="3" fill="#f7efe6"/>
+          <text x="984" y="560" text-anchor="middle" font-family="Rubik, Heebo, sans-serif" font-size="9" font-weight="600" fill="#8a4f16">שמן</text>
+          <rect x="975" y="496" width="18" height="22" fill="#c47a2b"/>
+          <rect x="971" y="478" width="26" height="22" rx="6" fill="#2b2e30"/>
+          <ellipse cx="984" cy="470" rx="9" ry="11" fill="#2b2e30"/>
+        </g>
+        <!-- candle -->
+        <circle cx="1052" cy="548" r="34" fill="url(#kFlame)"/>
+        <rect x="1036" y="556" width="32" height="38" rx="5" fill="#fffaf3"/>
+        <path d="M1052 556v-6" stroke="#2b2e30" stroke-width="2"/>
+        <path class="flame" d="M1052 534c6 7 6 13 0 16-6-3-6-9 0-16z" fill="#f5b83d"/>
+        <!-- rolled towels -->
+        <g transform="translate(1092 572)"><circle r="16" fill="#fffaf3"/><circle r="10" fill="none" stroke="#e8dccd" stroke-width="3"/><circle r="4" fill="#e8dccd"/></g>
+        <g transform="translate(1100 548) scale(0.8)"><circle r="16" fill="#cfe9e7"/><circle r="10" fill="none" stroke="#a9d6d3" stroke-width="3"/><circle r="4" fill="#a9d6d3"/></g>
+        <!-- smooth stones -->
+        <ellipse cx="1000" cy="596" rx="14" ry="6" fill="#6f6a66"/><ellipse cx="1016" cy="590" rx="9" ry="5" fill="#8b8580"/>
+      </svg>
+
       <div class="container key-inner">
         <div class="key-text" aria-hidden="true">
           <p class="case-them key-them"><span class="case-fixed">הם</span> <span id="keyThem"></span></p>
-          <p class="case-you key-you"><span class="case-fixed">אתם</span> <span id="keyYou"></span></p>
+          <p class="case-you key-you"><span class="case-fixed">אתם</span> <span id="keyYou"></span><strong class="key-point-word" id="keyYouPoint"></strong></p>
         </div>
         <p class="sr-only">הם רואים קליניקה מפנקת. אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</p>
-
-        <!-- A reflexology hand map: the pressure points are literally "the point" -->
-        <figure class="key-art" aria-hidden="true">
-          <span class="key-sign">קליניקה לרפלקסולוגיה</span>
-          <svg viewBox="0 0 220 310">
-            <g class="hand-edge">
-              <rect x="60" y="44" width="30" height="112" rx="15" transform="rotate(-7 75 150)"/>
-              <rect x="94" y="22" width="32" height="130" rx="16"/>
-              <rect x="130" y="34" width="30" height="118" rx="15" transform="rotate(6 145 150)"/>
-              <rect x="162" y="70" width="25" height="92" rx="12.5" transform="rotate(14 174 160)"/>
-              <rect x="33" y="140" width="32" height="100" rx="16" transform="rotate(-24 49 190)"/>
-              <path d="M62 146c0-14 10-22 24-22h80c16 0 24 10 22 26l-6 92c-3 38-30 56-66 56-34 0-56-20-58-52z"/>
-            </g>
-            <g class="hand">
-              <rect x="60" y="44" width="30" height="112" rx="15" transform="rotate(-7 75 150)"/>
-              <rect x="94" y="22" width="32" height="130" rx="16"/>
-              <rect x="130" y="34" width="30" height="118" rx="15" transform="rotate(6 145 150)"/>
-              <rect x="162" y="70" width="25" height="92" rx="12.5" transform="rotate(14 174 160)"/>
-              <rect x="33" y="140" width="32" height="100" rx="16" transform="rotate(-24 49 190)"/>
-              <path d="M62 146c0-14 10-22 24-22h80c16 0 24 10 22 26l-6 92c-3 38-30 56-66 56-34 0-56-20-58-52z"/>
-            </g>
-            <g class="zones" fill="none">
-              <path d="M70 178c38 6 76 6 112-2"/>
-              <path d="M72 240c34 6 70 6 104-2"/>
-            </g>
-            <g class="pts">
-              <circle cx="72" cy="58" r="4"/><circle cx="110" cy="36" r="4"/><circle cx="148" cy="48" r="4"/>
-              <circle cx="182" cy="84" r="3.5"/><circle cx="36" cy="160" r="4"/>
-              <circle cx="80" cy="112" r="3"/><circle cx="110" cy="96" r="3"/><circle cx="142" cy="110" r="3"/>
-              <circle cx="92" cy="160" r="4"/><circle cx="150" cy="162" r="4"/>
-              <circle cx="84" cy="262" r="4"/><circle cx="160" cy="256" r="4"/><circle cx="122" cy="276" r="4"/>
-            </g>
-            <circle class="pt-main-ring" cx="122" cy="210" r="10"/>
-            <circle class="pt-main" cx="122" cy="210" r="8"/>
-          </svg>
-        </figure>
       </div>
     </div>
   </section>
@@ -131,26 +191,8 @@
   <!-- ===== The point ===== -->
   <section class="section" id="point">
     <div class="container prose prose-airy">
-      <h2 class="reveal">וזאת בדיוק הנקודה.</h2>
-      <p class="reveal">אתם בעלי העסק, ואתם רואים...</p>
-      <p class="reveal">אתם רואים את הפרטים שנופלים בין הכיסאות: תשלום שלא עבר, גביה שלא נעשתה, משלוחים שיצאו לכתובת בלתי מעודכנת,</p>
-      <p class="reveal">ולידים...<br />לידים שמתפספסים כל הזמן...</p>
-      <p class="reveal">העסק הוא הבייבי שלכם, אתם מטפלים בו סביב לשעון, לילה ויום. זמינים לטלפון, מתאמים פגישות, ממלאים טבלאות,</p>
-      <p class="reveal">ואולי אתם גם מעסיקים עובדים.</p>
-      <p class="reveal">עובדים מוכשרים, וחרוצים שדורשים אחזקת משרד, גיוס שוטף, וגם משכורת לא קטנה...</p>
-      <p class="reveal still">ועדיין...</p>
-      <p class="reveal">הזמן נוזל בין האצבעות, נוטל מרווח נשימה, והר המשימות ממשיך להעפיל...</p>
-      <p class="reveal">הראש מלא במידע שאסור לשכוח, דיוקים, ועדכונים של הרגע האחרון. <span class="wink">(אם רק היה אפשר לרכוש עוד דיסק קשיח למוח 😊...)</span></p>
-      <p class="reveal">המחשב מלא בתיקיות ותתי תיקיות<br />מה בדיוק הן מכילות? כבר הספקתם להתבלבל.</p>
-
-      <div class="punch reveal">
-        <p>הכול מרגיש קשה, קשה...</p>
-        <p>והכי מתסכל-</p>
-        <p>רק אתם יודעים- שאתם בעצם <span class="accent">לא יודעים.</span></p>
-      </div>
-
-      <p class="reveal">אתם לא יודעים כמה העסק שלכם מרוויח. (ואם הוא מרוויח בכלל?!)</p>
-      <p class="reveal">הוצאות ותשלומים שוטפים את העו״ש, התזרים נע ונד והשאלה ״כמה הרווחת?״ נמצאת קשה מידי במבחן המציאות.</p>
+      <p class="reveal">אתם בעלי העסק, ואתם רואים...<br />את כל הפרטים הקטנים שנופלים בין הכיסאות.</p>
+      <p class="reveal">אתם מרגישים שחוקים מהשעות הרבות שאתם משקיעים בעסק, ועדיין אין לכם תמונה ברורה על מצב העסק.</p>
 
       <div class="punch reveal">
         <p>ואם נתמקד בנקודה -</p>
@@ -233,8 +275,8 @@
 
       <div class="belief reveal">
         <p class="belief-head">אני מאמינה שצריך לעבוד כדי להרוויח, בהחלט צריך לעבוד.<br /><span class="accent">אבל לא לעבוד קשה!</span></p>
-        <p>ואני עוזרת לבעלי עסקים לעבוד בקלות, לשחרר עומס ולהתפנות למינוף העסק שלהם בעזרת מערכת שעובדת בשבילם.</p>
-        <p>גם המערכת הזו- צריכה להיות נוחה. אני מארגנת תכנים, מצמצמת תפריטים, ובונה לכם ממשק ידידותי למשתמש וקל לתפעול.</p>
+        <p>ואני עוזרת לבעלי עסקים לעבוד בקלות, לשחרר עומס ולהתפנות למינוף העסק שלהם<br />בעזרת מערכת חכמה שעובדת בשבילם.</p>
+        <p>גם המערכת הזו- צריכה להיות נוחה.<br />אני מארגנת מידע, מצמצמת תפריטים, ובונה לכם ממשק ידידותי למשתמש וקל לתפעול.</p>
         <p class="belief-foot">כל כך קל, גם לכאלה שעדיין לא למדו לקרוא בלי נקודות...</p>
       </div>
     </div>
@@ -317,7 +359,7 @@
       <div class="prose prose-why prose-airy">
         <p class="reveal">לכל עסק יש תהליך עבודה משלו, אפיון לקוח שונה וצרכים ייחודיים-<br />הדורשים גם כן מענה ייחודי!</p>
         <div class="shelf-line reveal">
-          <p class="strong-line">ובדיוק מהסיבה הזו, אצלי לא תמצאו אוטומציות מוצעות למכירה על המדף...</p>
+          <p class="strong-line">ובדיוק מהסיבה הזו,<br />אצלי לא תמצאו אוטומציות מוצעות למכירה על המדף...</p>
           <!-- Tongue-in-cheek: "off-the-shelf" automations, boxed and price-tagged -->
           <svg class="shelf-art" viewBox="0 0 170 100" aria-hidden="true">
             <g font-family="Rubik, Heebo, sans-serif" text-anchor="middle">
