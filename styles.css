@@ -147,78 +147,67 @@ a { color: inherit; text-decoration: none; }
 .menu-toggle span { width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; }
 
 /* ===================================================
-   Hero — full-screen photos that change with the text.
-   Each case puts its text on the emptiest part of its photo
-   (data-pos on .hero) and picks dark or light ink (data-tone).
+   Hero
 =================================================== */
 .hero {
   position: relative; min-height: 100svh; display: flex;
-  padding: 96px 0 24px; overflow: hidden; background: #1a1612;
+  padding: 104px 0 28px; overflow: hidden;
 }
-.hero-bg { position: absolute; inset: 0; }
-.stage-img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transform: scale(1.06);
-  transition: opacity 1s var(--ease), transform 7s ease-out;
-}
-.stage-img.active { opacity: 1; transform: scale(1); }
-/* Soft wash under the header so the nav stays readable on any photo */
-.hero-bg::after {
-  content: ""; position: absolute; inset: 0 0 auto; height: 180px;
-  background: linear-gradient(180deg, rgba(10, 14, 15, 0.55), transparent);
+.hero-glow {
+  position: absolute; top: 10%; inset-inline-end: -8%;
+  width: 760px; height: 760px; max-width: 130vw;
+  background: radial-gradient(circle, var(--teal-glow) 0%, rgba(21,154,157,0.04) 45%, transparent 70%);
+  z-index: 0; pointer-events: none;
 }
 .hero-inner {
-  position: relative; z-index: 1; width: 100%;
-  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px;
 }
-/* The framing line sits on a frosted pill so it reads on every photo */
+/* The framing line stays small and on top, leaving the screen to the cases */
 .hero-kicker {
-  font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 600; line-height: 1.4;
-  text-align: center; color: #fff; text-wrap: balance;
-  background: rgba(10, 18, 20, 0.5); backdrop-filter: blur(8px);
-  padding: 10px 22px; border-radius: 100px;
+  font-size: clamp(1.15rem, 2.4vw, 1.7rem); font-weight: 600; line-height: 1.4;
+  text-align: center; color: var(--ink-soft); text-wrap: balance;
 }
-.hero-kicker .accent { color: #7fe7e3; }
+.hero-kicker .accent { color: var(--teal); }
 .scroll-hint {
-  width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.6);
-  display: flex; align-items: center; justify-content: center; color: #fff;
-  background: rgba(10, 18, 20, 0.35); backdrop-filter: blur(6px);
+  width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line);
+  display: flex; align-items: center; justify-content: center; color: var(--teal);
   animation: nudge 2.2s ease-in-out infinite; flex-shrink: 0;
 }
 .scroll-hint svg { width: 22px; height: 22px; }
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
-/* Where the text sits: the stage fills the screen, the text box moves inside it */
-.cases { flex: 1; width: 100%; display: flex; }
-.hero[data-pos^="top"] .cases { align-items: flex-start; }
-.hero[data-pos^="mid"] .cases { align-items: center; }
-.hero[data-pos$="start"] .cases { justify-content: flex-start; }
-.hero[data-pos$="center"] .cases { justify-content: center; }
-.hero[data-pos$="end"] .cases { justify-content: flex-end; }
-.hero[data-pos$="center"] .case-text { text-align: center; }
-
-.case-text {
-  position: relative; max-width: 560px; margin-top: 2vh; padding: 20px 28px; border-radius: 24px;
-  backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
-  transition: background 0.6s var(--ease), color 0.6s var(--ease);
+/* ===================================================
+   Cases — typed "they see / you see" text, art on the left
+=================================================== */
+.cases {
+  width: 100%;
+  display: grid; grid-template-columns: 1.35fr 0.65fr; align-items: center; gap: 48px;
 }
-/* A frosted card behind the words, matched to the ink */
-.hero[data-tone="dark"] .case-text { background: rgba(250, 244, 236, 0.6); }
-.hero[data-tone="light"] .case-text { background: rgba(8, 12, 13, 0.42); }
+.case-text { min-height: 15rem; display: flex; flex-direction: column; justify-content: center; }
 .case-text p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 700; line-height: 1.25; }
-.case-them { font-size: clamp(1.5rem, 2.9vw, 2.35rem); margin-bottom: 10px; min-height: 1.25em; }
-.case-you  { font-size: clamp(1.8rem, 3.5vw, 2.85rem); min-height: 2.5em; }
-.hero[data-tone="dark"] .case-them { color: #1f2a2b; }
-.hero[data-tone="dark"] .case-you  { color: #0b6f72; }
-.hero[data-tone="light"] .case-them { color: #fff; }
-.hero[data-tone="light"] .case-you  { color: #7fe7e3; }
-.case-text p { text-shadow: 0 2px 18px rgba(0, 0, 0, 0.15); }
+.case-them { font-size: clamp(1.7rem, 3.8vw, 3rem); color: var(--ink); margin-bottom: 16px; min-height: 1.25em; }
+.case-you  { font-size: clamp(2rem, 4.6vw, 3.7rem); color: var(--teal); min-height: 2.5em; }
 /* Blinking caret on whichever line is being typed */
 .case-text .typing::after, .key-text .typing::after {
   content: ""; display: inline-block; width: 3px; height: 0.95em; margin-inline-start: 4px;
   background: currentColor; vertical-align: -0.1em; animation: caret 0.8s steps(1) infinite;
 }
 @keyframes caret { 50% { opacity: 0; } }
+
+
+.case-stage {
+  position: relative; width: 100%; max-width: 460px; aspect-ratio: 1; justify-self: center;
+  border-radius: 32px; overflow: hidden; background: var(--surface);
+  border: 1px solid var(--line); box-shadow: var(--shadow-md);
+}
+/* Pictures stack in the frame; the active one fades in with a slow push */
+.stage-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.06);
+  transition: opacity 0.8s var(--ease), transform 6s ease-out;
+}
+.stage-img.active { opacity: 1; transform: scale(1); }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -269,31 +258,37 @@ a { color: inherit; text-decoration: none; }
 /* A gentle touch: just colour, no badge */
 .wink { color: var(--teal); }
 
-/* ===== Key pair — the clinic case. Same typed "הם / אתם" voice as the opener,
-   over a full-screen illustrated reflexology room that stays pinned while you scroll ===== */
-.key-point { height: 180svh; position: relative; background: #ece1d5; }
-.key-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: flex-start; overflow: hidden; }
-.key-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
-/* The words sit on the empty wall, above the bed */
-.key-inner { position: relative; z-index: 1; display: flex; justify-content: flex-start; padding-top: 17vh; }
-.key-text { max-width: 600px; }
-.key-text p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 800; line-height: 1.2; }
-.key-them { font-size: clamp(2rem, 4vw, 3.3rem); color: #24302f; margin-bottom: 18px; min-height: 1.2em; }
-.key-you  { font-size: clamp(2.3rem, 4.8vw, 4.1rem); color: #0b6f72; min-height: 2.4em; }
-/* "להגיע לנקודה" lands heavier, with a teal marker underneath */
-.key-point-word {
-  font-weight: 900; color: #08585a;
-  background: linear-gradient(transparent 62%, rgba(21, 154, 157, 0.28) 62%);
+/* ===== Key pair — the clinic case. Same "הם / אתם" voice as the opener,
+   but on an inverted teal screen that stays pinned while you scroll past ===== */
+.key-point {
+  height: 180svh; position: relative;
+  background: radial-gradient(ellipse at 30% 40%, #13706f 0%, #0c4547 45%, #08292b 100%);
+  color: #fff;
 }
-.foot { fill: #f7e6d8; stroke: #e2c4ad; stroke-width: 2; }
+.key-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.key-inner { display: grid; grid-template-columns: 1.3fr 0.7fr; align-items: center; gap: 56px; padding-top: 60px; }
+.key-text p { font-family: "Rubik", "Heebo", sans-serif; font-weight: 800; line-height: 1.2; }
+.key-them { font-size: clamp(2rem, 4.4vw, 3.4rem); color: #fff; margin-bottom: 18px; min-height: 1.2em; }
+.key-you  { font-size: clamp(2.4rem, 5.6vw, 4.6rem); color: #7fe7e3; min-height: 2.4em; }
+.key-art {
+  position: relative; justify-self: center; width: 100%; max-width: 340px;
+  background: #fff; border-radius: 34px; padding: 54px 30px 26px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55);
+}
+.key-sign {
+  position: absolute; top: 16px; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  font-family: "Rubik", sans-serif; font-weight: 600; font-size: 0.9rem; color: #0e7c7f;
+  background: #e6f4f4; padding: 5px 16px; border-radius: 100px;
+}
+.key-art svg { width: 100%; display: block; }
+.hand-edge { fill: #e2c4ad; stroke: #e2c4ad; stroke-width: 5; }
+.hand { fill: #f7e6d8; }
 .zones path { stroke: #159a9d; stroke-width: 1.6; stroke-dasharray: 4 5; opacity: 0.55; }
 .pts circle { fill: #159a9d; opacity: 0.75; }
 .pt-main { fill: #159a9d; }
-.pt-main-ring { fill: none; stroke: #159a9d; stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: ping 1.8s ease-out infinite; }
+.pt-main-ring { fill: none; stroke: #159a9d; stroke-width: 3; transform-origin: 122px 210px; animation: ping 1.8s ease-out infinite; }
 @keyframes ping { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(3.2); opacity: 0; } }
-.flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker 1.6s ease-in-out infinite; }
-@keyframes flicker { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(0.9, 1.08); } }
-@media (prefers-reduced-motion: reduce) { .pt-main-ring, .flame { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .pt-main-ring { animation: none; } }
 
 /* ===== Why me: the "off-the-shelf" joke ===== */
 .shelf-line { display: flex; align-items: center; gap: 28px; margin-bottom: 30px; }
@@ -562,10 +557,11 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .nav { gap: 20px; }
   .nav a { font-size: 0.92rem; }
   .hero-glow { inset-inline-start: 50%; transform: translateX(-50%); }
-  /* Smaller screens: the room becomes a picture on top, the words go underneath */
-  .key-pin { flex-direction: column; align-items: stretch; justify-content: center; padding-top: 70px; }
-  .key-scene { position: relative; inset: auto; height: auto; aspect-ratio: 1180 / 760; max-height: 52svh; }
-  .key-inner { justify-content: center; text-align: center; padding-top: 10px; }
+  .cases { grid-template-columns: 1fr; gap: 12px; align-content: center; }
+  .case-stage { order: -1; max-width: 320px; }
+  .case-text { text-align: center; align-items: center; }
+  .key-inner { grid-template-columns: 1fr; gap: 20px; text-align: center; padding-top: 70px; }
+  .key-art { order: -1; max-width: 260px; }
   .cards, .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .options { grid-template-columns: repeat(3, 1fr); }
   .quote { flex: 0 0 calc((100% - 24px) / 2); }
@@ -587,13 +583,9 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .menu-toggle.open span:nth-child(2) { opacity: 0; }
   .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  /* Phones: every case reads from the bottom of the photo, light on a dark wash */
-  .hero { padding: 92px 0 18px; }
-  .hero .cases { align-items: flex-end !important; justify-content: center !important; }
-  .hero .case-text { text-align: center; padding: 22px 18px; margin: 0 0 8px; }
-  .hero[data-tone] .case-text { background: rgba(8, 12, 13, 0.5); }
-  .hero[data-tone] .case-them { color: #fff; }
-  .hero[data-tone] .case-you { color: #7fe7e3; }
+  .hero { padding: 96px 0 20px; }
+  .case-stage { max-width: 250px; }
+  .case-text { min-height: 11rem; }
   .options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .option { padding: 14px; font-size: 0.95rem; }
   .biz-line { padding: 14px 16px; gap: 16px; }
@@ -607,7 +599,8 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .header-inner { gap: 14px; }
   .section { padding: 72px 0; }
   .cards, .cards-3 { grid-template-columns: 1fr; }
-
+  .key-art { max-width: 210px; padding: 46px 18px 16px; }
+  .key-sign { font-size: 0.78rem; }
   .shelf-line { flex-direction: column; align-items: stretch; }
   .shelf-art { width: 170px; align-self: center; }
   .form-robot { flex-direction: column; }

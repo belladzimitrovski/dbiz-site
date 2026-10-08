@@ -42,14 +42,12 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ===== Hero cases: "הם" / "אתם" stay fixed; type the rest of each line, erase it, swap the picture, repeat =====
-// [they see, you see, where the photo has room for text, ink]
 const CASES = [
-  ['רואים כסאות.', 'רואים את הדברים שנופלים ביניהם.', 'top-center', 'dark'],
-  ['רואים לחמים.', 'רואים רק את הקשה.', 'top-start', 'light'],
-  ['רואים מכשירי כושר.', 'רואים שעות של זיעה ומאמץ.', 'top-center', 'dark'],
-  ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.', 'top-center', 'light'],
+  ['רואים כסאות.', 'רואים את הדברים שנופלים ביניהם.'],
+  ['רואים מאפים.', 'רואים רק את הקשה.'],
+  ['רואים מכשירי כושר.', 'רואים שעות של זיעה ומאמץ.'],
+  ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.'],
 ];
-const heroEl = document.getElementById('hero');
 const themEl = document.getElementById('caseThem');
 const youEl = document.getElementById('caseYou');
 const caseImgs = [...document.querySelectorAll('.stage-img')];
@@ -77,10 +75,8 @@ const eraseFrom = async (el, speed) => {
 
 const playCases = async () => {
   for (let i = 0; ; i = (i + 1) % CASES.length) {
-    const [them, you, pos, tone] = CASES[i];
+    const [them, you] = CASES[i];
     caseImgs.forEach((img, n) => img.classList.toggle('active', n === i));
-    heroEl.dataset.pos = pos;
-    heroEl.dataset.tone = tone;
     if (reduceMotion) {
       themEl.textContent = them;
       youEl.textContent = you;
@@ -102,33 +98,20 @@ playCases();
 const keySection = document.getElementById('key');
 const keyThem = document.getElementById('keyThem');
 const keyYou = document.getElementById('keyYou');
-const keyYouPoint = document.getElementById('keyYouPoint');
-// The last words are typed into their own, bolder span
-const KEY = ['רואים קליניקה מפנקת.', 'יודעים שכדי לשחרר תקיעות צריך ', 'להגיע לנקודה.'];
+const KEY = ['רואים קליניקה מפנקת.', 'יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'];
 const keyObserver = new IntersectionObserver(async (entries) => {
   if (!entries[0].isIntersecting) return;
   keyObserver.disconnect();
   if (reduceMotion) {
-    [keyThem.textContent, keyYou.textContent, keyYouPoint.textContent] = KEY;
+    [keyThem.textContent, keyYou.textContent] = KEY;
     return;
   }
   await wait(300);
   await typeInto(keyThem, KEY[0], 60);
   await wait(600);
   await typeInto(keyYou, KEY[1], 48);
-  await typeInto(keyYouPoint, KEY[2], 70);
 }, { threshold: 0.3 });
 keyObserver.observe(keySection);
-
-// On smaller screens the room is shown as a picture above the text, cropped to the furniture
-const keyScene = document.getElementById('keyScene');
-const narrow = matchMedia('(max-width: 940px)');
-const fitKeyScene = () => {
-  keyScene.setAttribute('viewBox', narrow.matches ? '0 60 1180 760' : '0 0 1600 900');
-  keyScene.setAttribute('preserveAspectRatio', narrow.matches ? 'xMidYMid meet' : 'xMinYMid slice');
-};
-narrow.addEventListener('change', fitKeyScene);
-fitKeyScene();
 
 // ===== Robot bubbles "talk": each .tl line is typed in turn =====
 // The untyped rest of a line sits in an invisible ghost span, so the bubble never changes size.
