@@ -94,25 +94,6 @@ const playCases = async () => {
 };
 playCases();
 
-// ===== Key pair: typed once, when its pinned screen comes into view =====
-const keySection = document.getElementById('key');
-const keyThem = document.getElementById('keyThem');
-const keyYou = document.getElementById('keyYou');
-const KEY = ['רואים קליניקה מפנקת.', 'יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.'];
-const keyObserver = new IntersectionObserver(async (entries) => {
-  if (!entries[0].isIntersecting) return;
-  keyObserver.disconnect();
-  if (reduceMotion) {
-    [keyThem.textContent, keyYou.textContent] = KEY;
-    return;
-  }
-  await wait(300);
-  await typeInto(keyThem, KEY[0], 60);
-  await wait(600);
-  await typeInto(keyYou, KEY[1], 48);
-}, { threshold: 0.3 });
-keyObserver.observe(keySection);
-
 // ===== Robot bubbles "talk": each .tl line is typed in turn =====
 // The untyped rest of a line sits in an invisible ghost span, so the bubble never changes size.
 const prepBubble = (bubble) => [...bubble.querySelectorAll('.tl')].map((line) => {

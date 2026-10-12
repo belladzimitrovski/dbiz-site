@@ -48,8 +48,6 @@
   <section class="hero" id="hero">
     <div class="hero-glow"></div>
     <div class="container hero-inner">
-      <h1 class="hero-kicker">נקודת מבט של לקוחות, <span class="accent">היא לא נקודת המבט שלכם- בעלי העסק...</span></h1>
-
       <div class="cases">
         <!-- "הם" / "אתם" stay put; script.js types the rest. The list below is what screen readers get -->
         <div class="case-text" aria-hidden="true">
@@ -73,78 +71,21 @@
         </ul>
       </div>
 
-      <a href="#key" class="scroll-hint" aria-label="המשך גלילה">
+      <p class="hero-footnote">נקודת מבט של לקוחות, היא לא נקודת המבט שלכם- בעלי העסק...</p>
+
+      <a href="#point" class="scroll-hint" aria-label="המשך גלילה">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-    </div>
-  </section>
-
-  <!-- ===== Key pair: the clinic case, pinned on its own screen so nobody scrolls past it ===== -->
-  <section class="key-point" id="key">
-    <div class="key-pin">
-      <div class="container key-inner">
-        <div class="key-text" aria-hidden="true">
-          <p class="case-them key-them"><span class="case-fixed">הם</span> <span id="keyThem"></span></p>
-          <p class="case-you key-you"><span class="case-fixed">אתם</span> <span id="keyYou"></span></p>
-        </div>
-        <p class="sr-only">הם רואים קליניקה מפנקת. אתם יודעים שכדי לשחרר תקיעות צריך להגיע לנקודה.</p>
-
-        <!-- A reflexology hand map: the pressure points are literally "the point" -->
-        <figure class="key-art" aria-hidden="true">
-          <span class="key-sign">קליניקה לרפלקסולוגיה</span>
-          <svg viewBox="0 0 220 310">
-            <g class="hand-edge">
-              <rect x="60" y="44" width="30" height="112" rx="15" transform="rotate(-7 75 150)"/>
-              <rect x="94" y="22" width="32" height="130" rx="16"/>
-              <rect x="130" y="34" width="30" height="118" rx="15" transform="rotate(6 145 150)"/>
-              <rect x="162" y="70" width="25" height="92" rx="12.5" transform="rotate(14 174 160)"/>
-              <rect x="33" y="140" width="32" height="100" rx="16" transform="rotate(-24 49 190)"/>
-              <path d="M62 146c0-14 10-22 24-22h80c16 0 24 10 22 26l-6 92c-3 38-30 56-66 56-34 0-56-20-58-52z"/>
-            </g>
-            <g class="hand">
-              <rect x="60" y="44" width="30" height="112" rx="15" transform="rotate(-7 75 150)"/>
-              <rect x="94" y="22" width="32" height="130" rx="16"/>
-              <rect x="130" y="34" width="30" height="118" rx="15" transform="rotate(6 145 150)"/>
-              <rect x="162" y="70" width="25" height="92" rx="12.5" transform="rotate(14 174 160)"/>
-              <rect x="33" y="140" width="32" height="100" rx="16" transform="rotate(-24 49 190)"/>
-              <path d="M62 146c0-14 10-22 24-22h80c16 0 24 10 22 26l-6 92c-3 38-30 56-66 56-34 0-56-20-58-52z"/>
-            </g>
-            <g class="zones" fill="none">
-              <path d="M70 178c38 6 76 6 112-2"/>
-              <path d="M72 240c34 6 70 6 104-2"/>
-            </g>
-            <g class="pts">
-              <circle cx="72" cy="58" r="4"/><circle cx="110" cy="36" r="4"/><circle cx="148" cy="48" r="4"/>
-              <circle cx="182" cy="84" r="3.5"/><circle cx="36" cy="160" r="4"/>
-              <circle cx="80" cy="112" r="3"/><circle cx="110" cy="96" r="3"/><circle cx="142" cy="110" r="3"/>
-              <circle cx="92" cy="160" r="4"/><circle cx="150" cy="162" r="4"/>
-              <circle cx="84" cy="262" r="4"/><circle cx="160" cy="256" r="4"/><circle cx="122" cy="276" r="4"/>
-            </g>
-            <circle class="pt-main-ring" cx="122" cy="210" r="10"/>
-            <circle class="pt-main" cx="122" cy="210" r="8"/>
-          </svg>
-        </figure>
-      </div>
     </div>
   </section>
 
   <!-- ===== The point ===== -->
   <section class="section" id="point">
     <div class="container prose prose-airy">
-      <h2 class="reveal">וזאת בדיוק הנקודה.</h2>
-      <p class="reveal">אתם בעלי העסק, ואתם רואים...</p>
-      <p class="reveal">אתם רואים את הפרטים שנופלים בין הכיסאות: תשלום שלא עבר, גביה שלא נעשתה, משלוחים שיצאו לכתובת בלתי מעודכנת,</p>
-      <p class="reveal">ולידים...<br />לידים שמתפספסים כל הזמן...</p>
-      <p class="reveal">העסק הוא הבייבי שלכם, אתם מטפלים בו סביב לשעון, לילה ויום. זמינים לטלפון, מתאמים פגישות, ממלאים טבלאות,</p>
-      <p class="reveal">ואולי אתם גם מעסיקים עובדים.</p>
-      <p class="reveal">עובדים מוכשרים, וחרוצים שדורשים אחזקת משרד, גיוס שוטף, וגם משכורת לא קטנה...</p>
-      <p class="reveal still">ועדיין...</p>
-      <p class="reveal">הזמן נוזל בין האצבעות, נוטל מרווח נשימה, והר המשימות ממשיך להעפיל...</p>
-      <p class="reveal">הראש מלא במידע שאסור לשכוח, דיוקים, ועדכונים של הרגע האחרון. <span class="wink">(אם רק היה אפשר לרכוש עוד דיסק קשיח למוח 😊...)</span></p>
-      <p class="reveal">המחשב מלא בתיקיות ותתי תיקיות<br />מה בדיוק הן מכילות? כבר הספקתם להתבלבל.</p>
+      <p class="point-lead reveal">אתם בעלי העסק, ואתם רואים...</p>
+      <p class="reveal">פרטים קטנים נופלים לכם בדרך: תשלומים, גביה, ולידים מתפספסים כל הזמן. אתם מתאמצים לזכור כל פרט. מטפלים בעסק סביב לשעון, ועדיין הר המשימות ממשיך להעפיל...</p>
 
       <div class="punch reveal">
-        <p>הכול מרגיש קשה, קשה...</p>
         <p>והכי מתסכל-</p>
         <p>רק אתם יודעים- שאתם בעצם <span class="accent">לא יודעים.</span></p>
       </div>
@@ -154,52 +95,22 @@
 
       <div class="punch reveal">
         <p>ואם נתמקד בנקודה -</p>
-        <p>אתם רואים שהעסק <span class="accent">פשוט לא מתנהל!</span></p>
+        <p>אתם רואים שהעסק <span class="accent">פשוט לא מתנהל</span>!</p>
       </div>
       <p class="reveal aside">(ואת זה גם הלקוחות, שלא רואים, יודעים להרגיש...)</p>
     </div>
   </section>
 
-  <!-- ===== Solution ===== -->
-  <section class="section section-tint" id="solution">
+  <!-- ===== Solution: written very large, filling the screen ===== -->
+  <section class="solution-big" id="solution">
     <div class="container">
-      <div class="section-head reveal">
-        <p class="lead-in">אבל אני -</p>
-        <h2>אני כבר רואה <span class="accent">את הפתרון!</span></h2>
-        <p class="section-sub">
-          אני רואה אוטומציה שנבנתה לפי הצורך המדויק שלכם. מערכת אחת, פשוטה, נוחה וברורה
-          שמזניקה את העסק שלכם לנקודת השיא.
-        </p>
-      </div>
-
-      <div class="cards cards-3">
-        <article class="card reveal">
-          <h3>הלידים?</h3>
-          <p>מטופלים מיד ובאופן אישי, בלי שאף לקוח יתפספס.</p>
-        </article>
-        <article class="card reveal">
-          <h3>הגבייה והתשלומים?</h3>
-          <p>זורמים מעצמם, בלי פיגורים, בלי אי־נעימויות, בלי גירעונות ובלי קנסות.</p>
-        </article>
-        <article class="card reveal">
-          <h3>כוח האדם?</h3>
-          <p>הופך למינימלי, מדויק ויעיל, והתפוקה עולה - כשהמערכת עושה את כל העבודה השחורה והסיזיפית.</p>
-        </article>
-        <article class="card reveal">
-          <h3>התמונה הכללית?</h3>
-          <p>ברורה. מצב העסק עומד מולכם בכל רגע נתון, באופן מדויק.</p>
-        </article>
-        <article class="card reveal">
-          <h3>הרווחים?</h3>
-          <p>מתחילים למלא את הכיס. כי עסק מנוהל חוסך עלויות, וכשהוא גם מפולח נכון - אתם יודעים בדיוק איפה הכסף הגדול ואיזה ענף בעסק להמשיך ולפתח.</p>
-        </article>
-        <article class="card reveal">
-          <h3>והראש שלכם?</h3>
-          <p>מתפנה סוף סוף מכל אלפי הפרטים הקטנים - לדברים הגדולים באמת.</p>
-        </article>
-      </div>
-
-      <p class="ask-more reveal">יש עוד שאלות שלא קיבלו מענה? <a href="#contact">כאן אפשר לשאול.</a></p>
+      <p class="lead-in reveal">אבל אני -</p>
+      <h2 class="reveal">אני כבר רואה <span class="accent">את הפתרון!</span></h2>
+      <p class="solution-lines reveal">
+        אני רואה אוטומציה שנבנתה לפי הצורך המדויק שלכם.<br />
+        מערכת אחת, פשוטה, נוחה וברורה<br />
+        שמזניקה את העסק שלכם לנקודת השיא.
+      </p>
       <p class="slogan reveal">דיביז. העסק עובד - <span class="accent">נקודה!</span></p>
     </div>
   </section>
@@ -230,6 +141,35 @@
           <img src="robot-hello-3d.png" alt="הרובוט של DBIZ מברך לשלום" class="robot-3d floaty" />
         </div>
       </div>
+
+      <div class="cards cards-3">
+        <article class="card reveal">
+          <h3>הלידים?</h3>
+          <p>מטופלים מיד ובאופן אישי, בלי שאף לקוח יתפספס.</p>
+        </article>
+        <article class="card reveal">
+          <h3>הגבייה והתשלומים?</h3>
+          <p>זורמים מעצמם, בלי פיגורים, בלי אי־נעימויות, בלי גירעונות ובלי קנסות.</p>
+        </article>
+        <article class="card reveal">
+          <h3>כוח האדם?</h3>
+          <p>הופך למינימלי, מדויק ויעיל, והתפוקה עולה - כשהמערכת עושה את כל העבודה השחורה והסיזיפית.</p>
+        </article>
+        <article class="card reveal">
+          <h3>התמונה הכללית?</h3>
+          <p>ברורה. מצב העסק עומד מולכם בכל רגע נתון, באופן מדויק.</p>
+        </article>
+        <article class="card reveal">
+          <h3>הרווחים?</h3>
+          <p>מתחילים למלא את הכיס. כי עסק מנוהל חוסך עלויות, וכשהוא גם מפולח נכון - אתם יודעים בדיוק איפה הכסף הגדול ואיזה ענף בעסק להמשיך ולפתח.</p>
+        </article>
+        <article class="card reveal">
+          <h3>והראש שלכם?</h3>
+          <p>מתפנה סוף סוף מכל אלפי הפרטים הקטנים - לדברים הגדולים באמת.</p>
+        </article>
+      </div>
+
+      <p class="ask-more reveal">יש עוד שאלות שלא קיבלו מענה? <a href="#contact">כאן אפשר לשאול.</a></p>
 
       <div class="belief reveal">
         <p class="belief-head">אני מאמינה שצריך לעבוד כדי להרוויח, בהחלט צריך לעבוד.<br /><span class="accent">אבל לא לעבוד קשה!</span></p>
@@ -331,9 +271,9 @@
             <path d="M18 81v12M152 81v12" stroke="var(--muted)" stroke-width="4"/>
           </svg>
         </div>
-        <p class="reveal">אני מתמחה בייעוץ והתאמת מערכות טכנולוגיות באופן אישי.<br />מקשיבה היטב לסיפור של העסק החל מנקודת הפתיחה, דרך נקודות החוזק ומנסה להניח אצבע על נקודות התורפה. אני מחברת נקודה לנקודה עד לקבלת התמונה השלמה.</p>
-        <p class="reveal">ובנקודה הזו, אני יושבת לבנות את האוטומציה שהיא כולה שלכם.<br />בעזרת ידע טכנולוגי, היכרות עם כלי AI מתקדמים, פיצ'רים חדשניים וחשיבה יצירתית אני מוצאת את הדרך לפתור כל צורך ייחודי שהעסק שלכם מבקש.</p>
-        <p class="reveal strong-line">ואתם מקבלים מערכת שנתפרה לפי מידות העסק שלכם בדיוק.</p>
+        <p class="reveal">אני מתמחה בייעוץ והתאמת מערכות טכנולוגיות באופן אישי.<br />אני מקשיבה היטב לסיפור של העסק ויושבת ובונה עבורכם את האוטומציה שהיא כולה שלכם.</p>
+        <p class="reveal">בעזרת ידע טכנולוגי, היכרות עם כלי AI מתקדמים, פיצ'רים חדשניים וחשיבה יצירתית אני מוצאת את הדרך לפתור כל צורך ייחודי שהעסק שלכם מבקש.</p>
+        <p class="reveal">ואתם מקבלים מערכת שנתפרה לפי מידות העסק שלכם בדיוק.</p>
         <div class="punch reveal">
           <p>לא פחות, ולא יותר.</p>
           <p class="accent">נקודה.</p>
@@ -414,11 +354,11 @@
             </header>
             <div class="quote-mark">”</div>
             <blockquote>
-              רק רצינו לומר לך בלי תודה ענקית<br />
-              האוטומציה שבנית חסכה לנו המון עבודה שחורה,<br />
+              בלי, רצינו לומר לך תודה ענקית!<br />
+              בנית לנו אוטומציה מושלמת שחסכה לנו המון עבודה שחורה.<br />
               בזכותך התפננו לעבוד במה שאנחנו באמת אוהבות.<br />
-              והשירות - נדיר!<br />
-              אין מילים...
+              והשירות - נדיר שבנדירים!<br />
+              פשוט אין מילים...
             </blockquote>
           </figure>
 
@@ -432,11 +372,11 @@
             </header>
             <div class="quote-mark">”</div>
             <blockquote>
-              מיד כשפגשנו את בלי, הבנו שהולך להיות שינוי - אבל לא ידענו עד כמה.<br />
-              בלי סידרה לנו את כל הנתונים בצורה מדהימה, ויותר מהכל - את הראש.<br />
-              היינו עד לא מזמן עם אקסלים שונים ומשונים, ועכשיו הכל מסודר במערכת אחת נוחה ומסודרת.<br />
-              החל מהרשמת תלמידים ועד ניהול תרומות - פשוט החיים של לפני ואחרי.<br />
-              תודה רבה על הכל!
+              מייד בפגישה הראשונה שלנו עם בלי, הבנו שאנחנו לקראת שינוי - אבל לא ידענו עד כמה היא תהיה משמעותית...<br />
+              האוטומציה שבלי בנתה עבורנו סידרה לנו את כל הנתונים בצורה מדהימה, ויותר מהכול - סידרה לנו את הראש.<br />
+              עד עכשיו התנהלנו עם טבלאות אקסל שונות ומשונות, וכעת, בבת אחת הכול מאורגן לנו במערכת אחת נוחה ומסודרת.<br />
+              החל מהרשמת תלמידים ועד ניהול תרומות ועוד כמה עניינים באמצע - פשוט לחלק לחיים של לפני ואחרי.<br />
+              תודה רבה על הכול!
             </blockquote>
           </figure>
 
@@ -450,9 +390,10 @@
             </header>
             <div class="quote-mark">”</div>
             <blockquote>
-              בלי הבינה במהירות את צרכי העסק והציעה פתרונות יצירתיים ומדויקים.<br />
-              העבודה איתה הקפיצה משמעותית את העסק ושיפרה את חוויית העובדים והלקוחות כאחד.<br />
-              היא מקצועית, זמינה וסבלנית - מומלצת בחום!
+              התרשמתי מאוד מחדות וזריזות המחשבה של בלי. היא הבינה במהירות את הצרכים המדויקים של העסק והציעה פתרונות יצירתיים וקולעים.<br />
+              האוטומציה שיפרה את חוויית העובדים והלקוחות כאחד והקפיצה העסק קדימה...<br />
+              היא מקצועית, זמינה וסבלנית -<br />
+              מומלצת בחום!!!
             </blockquote>
           </figure>
 
@@ -466,43 +407,34 @@
             </header>
             <div class="quote-mark">”</div>
             <blockquote>
-              רציתי לפרגן לבלי - אנחנו מאוד מרוצים.<br />
-              היא עובדת בסבלנות ובשירות, ובנתה לנו אוטומציות מעולות - כאלה שאפילו
-              לא ידענו שאנחנו צריכים.<br />
-              היא הגדילה ראש וחשבה מה באמת יעזור לנו. ממליצים מאוד!
+              רציתי לפרגן לבלי - כי זה פשוט מגיע לה!<br />
+              היא עובדת בסבלנות ונותנת שירות מדהים!<br />
+              היא מגדילה ראש וחושבת מה באמת יעזור לעסק להתנהל נכון. היא בנתה לנו אוטומציות מעולות שהצליחו לפתור באגים שהיינו נתקעים בהם שוב ושוב בעסק.<br />
+              ממליצים לכל עסק שרוצה לצמוח בראש שקט!
             </blockquote>
           </figure>
 
           <figure class="quote quote-anon">
             <div class="quote-mark">”</div>
             <blockquote>
-              ממליצה בחום על בלי. היא ממש הצילה אותי בפרויקט מורכב ללקוח -
-              מסבירה בבהירות, מונחת עמוק בתוך אוריגמי ומעודכנת בכל פיצ'ר שקיים.
-              היא עשתה לי סדר בכל הלוגיקות והאפשרויות. בקיצור, תפנו אליה - לא תתחרטו.
+              מצטרפת להמלצות!<br />
+              בלי אלופה !<br />
+              יצירתית, פותחת את הראש לצרכים האמיתיים של העסק ומבינה עניין במהירות.
             </blockquote>
           </figure>
 
           <figure class="quote quote-anon">
             <div class="quote-mark">”</div>
             <blockquote>
-              מצטרפת להמלצה על בלי. אלופה שאין דברים כאלה - היא עזרה לי לבנות ללקוח
-              מערכת מורכבת עם אינספור נוסחאות. רק אל תיקחו לי אותה :)
+              מצטרפת להמלצה על בלי.<br />
+              היא אלופה שאין דברים כאלה - עזרה לי לבנות מערכת מורכבת עם אינספור נוסחאות. היא אחת ויחידה! רק אל תיקחו לי אותה :)
             </blockquote>
           </figure>
 
           <figure class="quote quote-anon">
             <div class="quote-mark">”</div>
             <blockquote>
-              מצטרפת להמלצות! בלי אלופה - יצירתית, פותחת את הראש ומבינה עניין מהר.
-            </blockquote>
-          </figure>
-
-          <figure class="quote quote-anon">
-            <div class="quote-mark">”</div>
-            <blockquote>
-              בלי מקסימה, שירותית ויסודית מאוד. היא בנתה את המערכת מתוך ירידה
-              לפרטים וראש גדול שחושב גם קדימה. נהנתי ממנה מאוד, והמערכת שבנתה
-              עונה על הציפיות - בהחלט!
+              ממליצה בחום על בלי. השירות שלה ממש הציל אותי בפרויקט מורכב שביצעתי ללקוח. בלי מסבירה בבהירות וברהיטות, מונחת עמוק בעולם הדיגיטל ומעודכנת בכל פיצ'ר חדשני שיצא לשוק. היא עשתה לי סדר בכל הלוגיקות והאפשרויות ונתנה שירות מעל ומעבר. ובמילה אחת: תפנו אליה - לא תתחרטו.
             </blockquote>
           </figure>
         </div>
