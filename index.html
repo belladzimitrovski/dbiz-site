@@ -46,59 +46,57 @@
 
   <!-- ===== Opener: one screen that cycles the "they see / you see" cases ===== -->
   <section class="hero" id="hero">
-    <div class="hero-glow"></div>
+    <!-- The background "video": one store per case, filling the hero. A real photo with a slow
+         camera drift and moving details on top (a cinemagraph that loops like a GIF). -->
+    <div class="case-stage" aria-hidden="true">
+      <!-- 1. Furniture store: things keep slipping through the gap between the chairs -->
+      <div class="stage-img cine cine-chairs">
+        <img src="cases/chairs.jpg" alt="" style="object-position: 30% 60%" />
+        <div class="fx">
+          <svg class="fall f1" viewBox="-30 -36 60 72"><rect x="-24" y="-30" width="48" height="60" rx="4" fill="#fffdf8"/><path d="M-14 -16h28M-14 -6h28M-14 4h18M-14 14h22" stroke="#9aa6aa" stroke-width="3" stroke-linecap="round"/></svg>
+          <svg class="fall f2" viewBox="-34 -24 68 48"><rect x="-30" y="-19" width="60" height="38" rx="6" fill="#1f2a2c"/><rect x="-30" y="-11" width="60" height="8" fill="#0e7c7f"/><rect x="-22" y="4" width="12" height="9" rx="2" fill="#e2b04a"/></svg>
+          <svg class="fall f3" viewBox="-20 -20 40 40"><circle r="17" fill="#d9a63c"/><circle r="11" fill="none" stroke="#fbe3a0" stroke-width="2.5" opacity=".8"/></svg>
+          <svg class="fall f4" viewBox="-30 -36 60 72"><rect x="-22" y="-28" width="44" height="56" rx="4" fill="#fffdf8"/><path d="M-12 -14h24M-12 -4h24M-12 6h16" stroke="#9aa6aa" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+
+      <!-- 2. Bakery: warm steam rises off the loaves, flour hangs in the air -->
+      <div class="stage-img cine cine-bread">
+        <img src="cases/bread.jpg" alt="" style="object-position: 20% 50%" />
+        <div class="fx">
+          <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span><span class="steam s4"></span>
+          <span class="dust d1"></span><span class="dust d2"></span><span class="dust d3"></span><span class="dust d4"></span>
+          <span class="dust d5"></span><span class="dust d6"></span><span class="dust d7"></span><span class="dust d8"></span>
+        </div>
+      </div>
+
+      <!-- 3. Gym: beads of sweat run down the glass -->
+      <div class="stage-img cine cine-gym">
+        <img src="cases/gym.jpg" alt="" style="object-position: 35% 40%" />
+        <div class="fx">
+          <span class="fog"></span>
+          <span class="bead b1"></span><span class="bead b2"></span><span class="bead b3"></span><span class="bead b4"></span>
+          <span class="bead b5"></span><span class="bead b6"></span><span class="bead b7"></span>
+        </div>
+      </div>
+
+      <!-- 4. Watch shop: light sweeps the window while golden sand runs out -->
+      <div class="stage-img cine cine-watch">
+        <img src="cases/watches.jpg" alt="" style="object-position: 15% 50%" />
+        <div class="fx">
+          <span class="sheen"></span>
+          <span class="grain g1"></span><span class="grain g2"></span><span class="grain g3"></span><span class="grain g4"></span>
+          <span class="grain g5"></span><span class="grain g6"></span><span class="grain g7"></span><span class="grain g8"></span>
+          <span class="grain g9"></span><span class="grain g10"></span>
+        </div>
+      </div>
+    </div>
     <div class="container hero-inner">
       <div class="cases">
         <!-- "הם" / "אתם" stay put; script.js types the rest. The list below is what screen readers get -->
         <div class="case-text" aria-hidden="true">
           <p class="case-them"><span class="case-fixed">הם</span> <span id="caseThem"></span></p>
           <p class="case-you"><span class="case-fixed">אתם</span> <span id="caseYou"></span></p>
-        </div>
-
-        <!-- One store per case: a real photo with a slow camera push, plus a moving detail on top
-             (a cinemagraph, looping like a GIF). Only the active one plays. -->
-        <div class="case-stage" aria-hidden="true">
-          <!-- 1. Furniture store: things keep slipping through the gap between the chairs -->
-          <div class="stage-img cine cine-chairs">
-            <img src="cases/chairs.jpg" alt="" />
-            <div class="fx">
-              <svg class="fall f1" viewBox="-30 -36 60 72"><rect x="-24" y="-30" width="48" height="60" rx="4" fill="#fffdf8"/><path d="M-14 -16h28M-14 -6h28M-14 4h18M-14 14h22" stroke="#9aa6aa" stroke-width="3" stroke-linecap="round"/></svg>
-              <svg class="fall f2" viewBox="-34 -24 68 48"><rect x="-30" y="-19" width="60" height="38" rx="6" fill="#1f2a2c"/><rect x="-30" y="-11" width="60" height="8" fill="#0e7c7f"/><rect x="-22" y="4" width="12" height="9" rx="2" fill="#e2b04a"/></svg>
-              <svg class="fall f3" viewBox="-20 -20 40 40"><circle r="17" fill="#d9a63c"/><circle r="11" fill="none" stroke="#fbe3a0" stroke-width="2.5" opacity=".8"/></svg>
-              <svg class="fall f4" viewBox="-30 -36 60 72"><rect x="-22" y="-28" width="44" height="56" rx="4" fill="#fffdf8"/><path d="M-12 -14h24M-12 -4h24M-12 6h16" stroke="#9aa6aa" stroke-width="3" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-
-          <!-- 2. Bakery: warm steam rises off the loaves, flour hangs in the air -->
-          <div class="stage-img cine cine-bread">
-            <img src="cases/bread.jpg" alt="" />
-            <div class="fx">
-              <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span><span class="steam s4"></span>
-              <span class="dust d1"></span><span class="dust d2"></span><span class="dust d3"></span><span class="dust d4"></span>
-              <span class="dust d5"></span><span class="dust d6"></span><span class="dust d7"></span><span class="dust d8"></span>
-            </div>
-          </div>
-
-          <!-- 3. Gym: beads of sweat run down the glass -->
-          <div class="stage-img cine cine-gym">
-            <img src="cases/gym.jpg" alt="" />
-            <div class="fx">
-              <span class="fog"></span>
-              <span class="bead b1"></span><span class="bead b2"></span><span class="bead b3"></span><span class="bead b4"></span>
-              <span class="bead b5"></span><span class="bead b6"></span><span class="bead b7"></span>
-            </div>
-          </div>
-
-          <!-- 4. Watch shop: light sweeps the window while golden sand runs out -->
-          <div class="stage-img cine cine-watch">
-            <img src="cases/watches.jpg" alt="" />
-            <div class="fx">
-              <span class="sheen"></span>
-              <span class="grain g1"></span><span class="grain g2"></span><span class="grain g3"></span><span class="grain g4"></span>
-              <span class="grain g5"></span><span class="grain g6"></span><span class="grain g7"></span><span class="grain g8"></span>
-              <span class="grain g9"></span><span class="grain g10"></span>
-            </div>
-          </div>
         </div>
 
         <ul class="sr-only">
