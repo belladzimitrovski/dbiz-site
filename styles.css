@@ -211,103 +211,139 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ===================================================
-   Hero scenes — looping SVG animations, one per case (like a GIF, but crisp and light)
+   Hero scenes — cinemagraphs: a real store photo with a slow camera push,
+   and one moving detail on top. Loops like a GIF; only the active one plays.
 =================================================== */
-/* The hero is always a deep teal stage, so the animations read the same in both themes */
+/* The hero is always a deep teal stage, so the scenes read the same in both themes */
 .hero { background: radial-gradient(ellipse at 22% 55%, #135a5a 0%, #0b2a2c 48%, #081416 100%); }
 .hero .case-them { color: #fff; }
 .hero .case-you { color: #7fe7e3; }
 .hero-footnote { color: rgba(255, 255, 255, 0.5); }
 .hero .scroll-hint { border-color: rgba(255, 255, 255, 0.25); color: #7fe7e3; }
 
-.case-stage { position: relative; width: 100%; max-width: 620px; aspect-ratio: 1; justify-self: center; }
-.case-stage::before {
-  content: ""; position: absolute; inset: 6%; border-radius: 50%;
-  background: radial-gradient(circle, rgba(127, 231, 227, 0.22) 0%, rgba(127, 231, 227, 0.06) 45%, transparent 70%);
+.case-stage {
+  position: relative; width: 100%; max-width: 540px; aspect-ratio: 1; justify-self: center;
+  border-radius: 32px; overflow: hidden; background: #0b2a2c;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
-.scene-defs { position: absolute; }
-.stage-img {
-  position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;
-  opacity: 0; transform: scale(0.82) translateY(24px);
-  transition: opacity 0.55s var(--ease), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.stage-img.active { opacity: 1; transform: none; }
-/* Only the visible scene animates */
-.stage-img:not(.active), .stage-img:not(.active) * { animation-play-state: paused !important; }
-.stage-img .shadow { fill: rgba(0, 0, 0, 0.32); }
+.stage-img { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s var(--ease); }
+.stage-img.active { opacity: 1; }
+.cine > img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+/* Slow camera push while the case is on screen */
+.cine.active > img { animation: push 9s ease-out forwards; }
+@keyframes push { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.12) translate(-1.5%, -1%); } }
+.fx { position: absolute; inset: 0; pointer-events: none; }
+.stage-img:not(.active) *, .stage-img:not(.active) *::before { animation-play-state: paused !important; }
 
-/* 1. Chairs */
-.scene-chairs .chair { animation: sway 4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
-.scene-chairs .fall { opacity: 0; animation: fall 2.4s cubic-bezier(0.5, 0, 0.75, 0.6) infinite; }
-.scene-chairs .f1 { --x: 292px; animation-delay: 0s; }
-.scene-chairs .f2 { --x: 308px; animation-delay: 0.6s; }
-.scene-chairs .f3 { --x: 300px; animation-delay: 1.2s; }
-.scene-chairs .f4 { --x: 296px; animation-delay: 1.8s; }
-@keyframes fall {
-  0%   { transform: translate(var(--x), 30px) rotate(-25deg); opacity: 0; }
-  12%  { opacity: 1; }
-  78%  { opacity: 1; }
-  100% { transform: translate(calc(var(--x) + 6px), 500px) rotate(170deg); opacity: 0; }
+/* 1. Furniture store */
+.cine-chairs .fall {
+  position: absolute; left: var(--x); top: 0; width: var(--w); opacity: 0;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
+  animation: drop 3.2s cubic-bezier(0.45, 0, 0.75, 0.55) infinite;
 }
-@keyframes sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-1deg); } }
+.cine-chairs .f1 { --x: 46%; --w: 9%;  animation-delay: 0s; }
+.cine-chairs .f2 { --x: 50%; --w: 10%; animation-delay: 0.8s; }
+.cine-chairs .f3 { --x: 48%; --w: 6%;  animation-delay: 1.6s; }
+.cine-chairs .f4 { --x: 44%; --w: 8%;  animation-delay: 2.4s; }
+@keyframes drop {
+  0%   { transform: translateY(-20%) rotate(-25deg); opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(820%) rotate(160deg); opacity: 0; }
+}
 
-/* 2. Bread */
-.scene-bread .loaf { animation: breathe 3s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
-.scene-bread .cracks path { stroke-dasharray: 90; stroke-dashoffset: 90; animation: crack 3s ease-out infinite; }
-.scene-bread .cracks path:nth-child(2) { animation-delay: 0.25s; }
-.scene-bread .cracks path:nth-child(3) { animation-delay: 0.5s; }
-.scene-bread .cr { opacity: 0; animation: crumb 3s ease-in infinite; }
-.scene-bread .c1 { --dx: -90px; --dy: 190px; animation-delay: 0.3s; }
-.scene-bread .c2 { --dx: 20px;  --dy: 220px; animation-delay: 0.55s; }
-.scene-bread .c3 { --dx: 110px; --dy: 150px; animation-delay: 0.8s; }
-.scene-bread .c4 { --dx: -40px; --dy: 210px; animation-delay: 1s; }
-.scene-bread .c5 { --dx: 70px;  --dy: 185px; animation-delay: 1.2s; }
-.scene-bread .c6 { --dx: -120px; --dy: 150px; animation-delay: 0.65s; }
-@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015, 0.99); } }
-@keyframes crack { 0% { stroke-dashoffset: 90; opacity: 1; } 35% { stroke-dashoffset: 0; } 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
-@keyframes crumb {
+/* 2. Bakery */
+.cine-bread .steam {
+  position: absolute; bottom: 64%; left: var(--x); width: 22%; height: 38%; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 70%, rgba(255, 248, 238, 0.85), rgba(255, 248, 238, 0.25) 45%, transparent 68%);
+  filter: blur(12px); opacity: 0; animation: steam 4.5s ease-out infinite;
+}
+.cine-bread .s1 { --x: 6%;  animation-delay: 0s; }
+.cine-bread .s2 { --x: 28%; animation-delay: 1.1s; }
+.cine-bread .s3 { --x: 62%; animation-delay: 2.2s; }
+.cine-bread .s4 { --x: 82%; animation-delay: 3.3s; }
+@keyframes steam {
+  0%   { transform: translateY(20%) scale(0.6, 0.5); opacity: 0; }
+  30%  { opacity: 0.9; }
+  100% { transform: translateY(-70%) scale(1.3, 1.4) translateX(8%); opacity: 0; }
+}
+.cine-bread .dust {
+  position: absolute; left: var(--x); top: var(--y); width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255, 250, 240, 0.85); box-shadow: 0 0 6px rgba(255, 250, 240, 0.7);
+  opacity: 0; animation: dust 6s ease-in-out infinite;
+}
+.cine-bread .d1 { --x: 12%; --y: 30%; animation-delay: 0s; }
+.cine-bread .d2 { --x: 30%; --y: 52%; animation-delay: 0.8s; }
+.cine-bread .d3 { --x: 48%; --y: 24%; animation-delay: 1.6s; }
+.cine-bread .d4 { --x: 66%; --y: 44%; animation-delay: 2.4s; }
+.cine-bread .d5 { --x: 82%; --y: 28%; animation-delay: 3.2s; }
+.cine-bread .d6 { --x: 22%; --y: 70%; animation-delay: 4s; }
+.cine-bread .d7 { --x: 58%; --y: 66%; animation-delay: 4.8s; }
+.cine-bread .d8 { --x: 90%; --y: 60%; animation-delay: 5.4s; }
+@keyframes dust {
   0%   { transform: translate(0, 0); opacity: 0; }
-  8%   { opacity: 1; }
-  30%  { transform: translate(calc(var(--dx) * 0.5), -40px); }
-  85%  { opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+  20%  { opacity: 0.9; }
+  100% { transform: translate(18px, 60px); opacity: 0; }
 }
 
-/* 3. Gym */
-.scene-gym .dumbbell { animation: lift 2.2s ease-in-out infinite; }
-.scene-gym .drop { opacity: 0; animation: drip 2.2s ease-in infinite; }
-.scene-gym .d2 { animation-delay: 0.55s; }
-.scene-gym .d3 { animation-delay: 1.1s; }
-.scene-gym .d4 { animation-delay: 1.65s; }
-@keyframes lift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-@keyframes drip {
-  0%   { transform: translateY(0) scale(0.4); opacity: 0; }
-  15%  { transform: translateY(0) scale(1); opacity: 1; }
-  45%  { transform: translateY(60px) scale(1); }
-  100% { transform: translateY(230px) scale(0.9); opacity: 0; }
+/* 3. Gym — condensation on the lens */
+.cine-gym .fog { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)); }
+.cine-gym .bead {
+  position: absolute; left: var(--x); top: var(--y); width: var(--s); height: calc(var(--s) * 1.25);
+  border-radius: 50% 50% 48% 48% / 42% 42% 58% 58%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.95) 0 12%, rgba(255, 255, 255, 0.25) 28%, rgba(180, 230, 235, 0.12) 60%, rgba(0, 0, 0, 0.18) 100%);
+  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1.5px) brightness(1.15);
+  animation: bead var(--t) cubic-bezier(0.6, 0, 0.9, 0.6) infinite;
 }
+/* The faint trail each bead leaves behind */
+.cine-gym .bead::before {
+  content: ""; position: absolute; left: 30%; bottom: 80%; width: 40%; height: 0;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.28));
+  border-radius: 4px; animation: trail var(--t) cubic-bezier(0.6, 0, 0.9, 0.6) infinite; animation-delay: inherit;
+}
+.cine-gym .b1 { --x: 14%; --y: 6%;  --s: 18px; --t: 3.6s; animation-delay: 0s; }
+.cine-gym .b2 { --x: 32%; --y: 18%; --s: 13px; --t: 4.4s; animation-delay: 0.9s; }
+.cine-gym .b3 { --x: 54%; --y: 4%;  --s: 22px; --t: 3.2s; animation-delay: 1.7s; }
+.cine-gym .b4 { --x: 72%; --y: 14%; --s: 15px; --t: 4s;   animation-delay: 0.4s; }
+.cine-gym .b5 { --x: 86%; --y: 8%;  --s: 19px; --t: 3.8s; animation-delay: 2.3s; }
+.cine-gym .b6 { --x: 42%; --y: 30%; --s: 11px; --t: 4.6s; animation-delay: 2.9s; }
+.cine-gym .b7 { --x: 22%; --y: 36%; --s: 16px; --t: 4.2s; animation-delay: 1.3s; }
+@keyframes bead {
+  0%, 15% { transform: translateY(0); opacity: 0; }
+  20%     { opacity: 1; }
+  90%     { opacity: 1; }
+  100%    { transform: translateY(2600%); opacity: 0; }
+}
+@keyframes trail { 0%, 20% { height: 0; } 100% { height: 1600%; } }
 
-/* 4. Watch */
-.scene-watch .watch { animation: float 4s ease-in-out infinite; }
-.scene-watch .hand-m { transform-box: view-box; transform-origin: 300px 270px; animation: spin 1.6s linear infinite; }
-.scene-watch .hand-h { transform-box: view-box; transform-origin: 300px 270px; animation: spin 12s linear infinite; }
-.scene-watch .gr { fill: #f2cf7a; opacity: 0; animation: pour 1.2s linear infinite; }
-.scene-watch .g1 { --dx: -2px; animation-delay: 0s; }
-.scene-watch .g2 { --dx: 3px;  animation-delay: 0.15s; }
-.scene-watch .g3 { --dx: -4px; animation-delay: 0.3s; }
-.scene-watch .g4 { --dx: 1px;  animation-delay: 0.45s; }
-.scene-watch .g5 { --dx: 4px;  animation-delay: 0.6s; }
-.scene-watch .g6 { --dx: -1px; animation-delay: 0.75s; }
-.scene-watch .g7 { --dx: 2px;  animation-delay: 0.9s; }
-.scene-watch .g8 { --dx: -3px; animation-delay: 1.05s; }
-.scene-watch .sand-pile { transform-box: fill-box; transform-origin: 50% 100%; animation: pile 4s ease-in-out infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-@keyframes pour { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translate(var(--dx), 140px); opacity: 0; } }
-@keyframes pile { 0%, 100% { transform: scale(0.85, 0.8); } 50% { transform: scale(1, 1); } }
+/* 4. Watch shop */
+.cine-watch .sheen {
+  position: absolute; top: -20%; bottom: -20%; width: 30%; left: -40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 245, 220, 0.38), transparent);
+  mix-blend-mode: screen; transform: skewX(-18deg); animation: sheen 4.2s ease-in-out infinite;
+}
+@keyframes sheen { 0%, 25% { left: -40%; } 75%, 100% { left: 120%; } }
+.cine-watch .grain {
+  position: absolute; left: calc(50% + var(--dx)); top: 0; width: 4px; height: 4px; border-radius: 50%;
+  background: #f4d27e; box-shadow: 0 0 4px rgba(255, 215, 120, 0.8);
+  opacity: 0; animation: sand 1.6s linear infinite;
+}
+.cine-watch .g1  { --dx: 0px;  animation-delay: 0s; }
+.cine-watch .g2  { --dx: 3px;  animation-delay: 0.16s; }
+.cine-watch .g3  { --dx: -3px; animation-delay: 0.32s; }
+.cine-watch .g4  { --dx: 1px;  animation-delay: 0.48s; }
+.cine-watch .g5  { --dx: -2px; animation-delay: 0.64s; }
+.cine-watch .g6  { --dx: 4px;  animation-delay: 0.8s; }
+.cine-watch .g7  { --dx: -1px; animation-delay: 0.96s; }
+.cine-watch .g8  { --dx: 2px;  animation-delay: 1.12s; }
+.cine-watch .g9  { --dx: -4px; animation-delay: 1.28s; }
+.cine-watch .g10 { --dx: 1px;  animation-delay: 1.44s; }
+@keyframes sand { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateY(13000%); opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
   .stage-img, .stage-img * { animation: none !important; }
-  .scene-chairs .fall, .scene-bread .cr, .scene-gym .drop, .scene-watch .gr { opacity: 0; }
+  .fx { display: none; }
 }
 
 /* floating robots */

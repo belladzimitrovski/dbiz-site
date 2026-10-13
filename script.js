@@ -83,13 +83,13 @@ const playCases = async () => {
       await wait(5000);
       continue;
     }
-    await typeInto(themEl, them, 32);
-    await wait(280);
-    await typeInto(youEl, you, 24);
-    await wait(2000);
-    await eraseFrom(youEl, 9);
-    await eraseFrom(themEl, 11);
-    await wait(150);
+    await typeInto(themEl, them, 42);
+    await wait(420);
+    await typeInto(youEl, you, 32);
+    await wait(3000);
+    await eraseFrom(youEl, 13);
+    await eraseFrom(themEl, 15);
+    await wait(250);
   }
 };
 playCases();
