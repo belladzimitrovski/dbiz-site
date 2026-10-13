@@ -18,3 +18,6 @@ robot-point.svg
 # Build output (the repo root already is the site)
 dist/
 node_modules/
+
+# Reference material from the client (not part of the site)
+*.mp4
