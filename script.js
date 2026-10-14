@@ -87,8 +87,8 @@ const playCases = async () => {
     await wait(700);
     await typeInto(youEl, you, 48);
     await wait(4200);
-    await eraseFrom(youEl, 18);
-    await eraseFrom(themEl, 20);
+    // Both lines are erased together, which saves time between cases
+    await Promise.all([eraseFrom(youEl, 18), eraseFrom(themEl, 18)]);
     await wait(400);
   }
 };
