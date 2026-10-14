@@ -121,9 +121,10 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow-sm);
 }
 .logo { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
-.logo img { height: 46px; width: auto; transition: filter 0.4s var(--ease); filter: var(--logo-filter); }
-.logo-tag { font-family: "Rubik", sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--teal); letter-spacing: 0.01em; white-space: nowrap; }
-.header-inner { display: flex; align-items: center; gap: 28px; height: 96px; }
+.logo img { height: 62px; width: auto; transition: filter 0.4s var(--ease); filter: var(--logo-filter); }
+/* The positioning line: big and unmissable, so visitors know at once this is about automation */
+.logo-tag { font-family: "Rubik", sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--teal); letter-spacing: 0.01em; white-space: nowrap; line-height: 1.2; }
+.header-inner { display: flex; align-items: center; gap: 28px; height: 116px; }
 .nav { display: flex; align-items: center; gap: 30px; }
 .nav a { font-size: 0.98rem; color: var(--ink-soft); font-weight: 500; transition: color 0.3s; position: relative; }
 .nav a:not(.nav-cta)::after {
@@ -158,7 +159,7 @@ a { color: inherit; text-decoration: none; }
 =================================================== */
 .hero {
   position: relative; min-height: 100svh; display: flex;
-  padding: 118px 0 28px; overflow: hidden;
+  padding: 138px 0 28px; overflow: hidden;
 }
 .hero-glow {
   position: absolute; top: 10%; inset-inline-end: -8%;
@@ -172,7 +173,9 @@ a { color: inherit; text-decoration: none; }
 }
 /* The framing line stays small and on top, leaving the screen to the cases */
 /* The framing line reads like a footnote, so the cases keep their punch */
-.hero-footnote { font-size: 0.88rem; color: var(--muted); text-align: center; font-style: italic; margin-top: -8px; }
+/* Sits just above the typed sentences, in the same column */
+.hero-footnote { grid-column: 1; align-self: end; font-size: 0.88rem; color: var(--muted); font-style: italic; margin-bottom: -6px; }
+.cases .case-text { grid-column: 1; }
 .scroll-hint {
   width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line);
   display: flex; align-items: center; justify-content: center; color: var(--teal);
@@ -397,7 +400,7 @@ a { color: inherit; text-decoration: none; }
 .solution-big h2 .accent { color: var(--teal); }
 .solution-lines { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); font-size: clamp(1.4rem, 3.4vw, 2.6rem); line-height: 1.45; margin-bottom: 44px; }
 .solution-big .slogan { font-size: clamp(1.8rem, 4vw, 3rem); }
-#about .cards { margin-top: 70px; }
+#about .cards { margin-top: 130px; }
 .prose .still { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
 .prose .strong-line { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); }
 /* A gentle touch: just colour, no badge */
@@ -439,7 +442,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 .visible .bubble, .visible.robot-say .bubble { transform: none; opacity: 1; }
 /* Typed bubble lines: the untyped rest stays invisible so the bubble keeps its final size */
 .tl-ghost { visibility: hidden; }
-.after-link { text-align: center; margin: -36px 0 0; opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.after-link { text-align: center; margin: -20px 0 0; opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
 .after-link.shown { opacity: 1; transform: none; }
 
 /* ===== About ===== */
@@ -672,6 +675,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .nav a { font-size: 0.92rem; }
   .hero-glow { inset-inline-start: 50%; transform: translateX(-50%); }
   .cases { grid-template-columns: 1fr; gap: 12px; align-content: center; }
+  .hero-footnote { text-align: center; }
   .case-text { text-align: center; align-items: center; }
   .cards, .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .options { grid-template-columns: repeat(3, 1fr); }
@@ -682,7 +686,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 
 @media (max-width: 640px) {
   .nav {
-    position: fixed; top: 84px; inset-inline: 0; flex-direction: column; gap: 0;
+    position: fixed; top: 96px; inset-inline: 0; flex-direction: column; gap: 0;
     background: var(--header-scroll); backdrop-filter: blur(14px);
     padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease);
     border-bottom: 1px solid var(--line);
@@ -694,7 +698,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .menu-toggle.open span:nth-child(2) { opacity: 0; }
   .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .hero { padding: 104px 0 20px; }
+  .hero { padding: 116px 0 20px; }
   .case-stage::after {
     background: linear-gradient(0deg, #0b2a2c 0%, rgba(11, 42, 44, 0.9) 38%, rgba(11, 42, 44, 0.25) 70%, rgba(8, 20, 22, 0.6) 100%);
   }
@@ -708,9 +712,10 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .robot-say img { width: 108px; }
   .robot-say-inline img { width: 88px; }
   .bubble { font-size: 0.98rem; padding: 14px 18px; margin-bottom: 50px; }
-  .logo img { height: 36px; }
-  .logo-tag { font-size: 0.8rem; }
-  .header-inner { height: 84px; }
+  .logo img { height: 46px; }
+  .logo-tag { font-size: 0.98rem; }
+  .header-inner { height: 96px; }
+  #about .cards { margin-top: 90px; }
   .btn-primary { padding: 16px 30px; font-size: 1.05rem; white-space: normal; text-align: center; }
   .header-inner { gap: 14px; }
   .section { padding: 72px 0; }
