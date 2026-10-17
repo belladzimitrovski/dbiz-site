@@ -551,8 +551,6 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 .client:has(.bleed) { padding: 0; background: #0b0d16; }
 .q-logo:has(.bleed) { padding: 0; background: #0b0d16; }
 .bleed { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; }
-/* Alfon Arad has a dark teal background baked in, so its plate matches that teal */
-.client:has(.tealplate) { background: #10495a; border-color: #10495a; }
 
 /* ===== Testimonials carousel ===== */
 .carousel { position: relative; display: flex; align-items: center; gap: 10px; }
