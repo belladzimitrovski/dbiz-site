@@ -625,6 +625,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 40px; box-shadow: var(--shadow-md);
 }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .field { margin-bottom: 20px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .field label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); margin-bottom: 8px; font-family: "Rubik", sans-serif; }

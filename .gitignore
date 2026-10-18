@@ -21,3 +21,9 @@ node_modules/
 
 # Reference material from the client (not part of the site)
 *.mp4
+
+# Secrets (Resend key, email) live in Vercel env vars, never in the repo
+.env
+.env.*
+!.env.example
+.vercel/

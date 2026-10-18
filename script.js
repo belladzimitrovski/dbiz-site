@@ -210,8 +210,10 @@ quotes.addEventListener('scroll', () => {
 window.addEventListener('resize', buildDots);
 buildDots();
 
-// ===== Contact form → Make webhook =====
+// ===== Contact form → Make webhook + email (Resend, via the serverless function in api/contact.js) =====
 const WEBHOOK_URL = 'https://hook.eu2.make.com/0fw2nh2spvtsxqtujz3ph4hrm9rum67z';
+// The Vercel deployment of this repo; update if Vercel gives the project a different address
+const EMAIL_API_URL = 'https://dbiz-site.vercel.app/api/contact';
 const form = document.getElementById('contactForm');
 const note = document.getElementById('formNote');
 const submitBtn = form.querySelector('button');
@@ -233,19 +235,25 @@ form.addEventListener('submit', async (e) => {
     message: form.message.value.trim(),
     source: 'DBIZ Landing Page',
     submittedAt: new Date().toISOString(),
+    website: form.website.value, // spam trap, empty for real people
   };
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'שולח...';
 
   try {
-    const res = await fetch(WEBHOOK_URL, {
+    // Send to both at once; the enquiry counts as sent if either one gets it
+    const post = (url) => fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
+    }).then((res) => {
+      // fetch only rejects on network failure, so a 4xx/5xx must be caught here
+      if (!res.ok) throw new Error(`${url} responded ${res.status}`);
     });
-    // fetch only rejects on network failure, so a 4xx/5xx from Make must be caught here
-    if (!res.ok) throw new Error(`webhook responded ${res.status}`);
+    const results = await Promise.allSettled([post(WEBHOOK_URL), post(EMAIL_API_URL)]);
+    results.filter((r) => r.status === 'rejected').forEach((r) => console.warn(r.reason));
+    if (results.every((r) => r.status === 'rejected')) throw new Error('both destinations failed');
 
     note.hidden = false;
     const sentBubble = note.querySelector('.bubble');

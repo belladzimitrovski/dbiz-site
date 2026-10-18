@@ -131,8 +131,15 @@ npx http-server -p 8080 -c-1
 
 ## נושאים פתוחים / הערות
 
-- [ ] **הטופס שולח ל-Make webhook** ([`script.js`](script.js), משתנה `WEBHOOK_URL`). ה-URL
-      חשוף בקוד הצד-לקוח (בלתי נמנע באתר סטטי) — אם מגיע ספאם, להוסיף reCAPTCHA או לעבור ל-Formspree.
+- [ ] **הטופס שולח לשני יעדים במקביל** ([`script.js`](script.js)): ל-Make webhook (`WEBHOOK_URL`) ולמייל
+      דרך Resend (`EMAIL_API_URL`). הפנייה נחשבת "נשלחה" אם לפחות אחד מהם קיבל אותה. יש שדה מלכודת נסתר
+      (`website`) נגד בוטים; אם עדיין מגיע ספאם — להוסיף reCAPTCHA / Turnstile.
+- [ ] **המייל (Resend) רץ כפונקציה ב-Vercel** — [`api/contact.js`](api/contact.js). GitHub Pages לא מריץ קוד ולא
+      מחזיק סודות, לכן הפונקציה יושבת על Vercel (חינמי) והמפתח נשמר רק שם. הקמה חד-פעמית:
+      1. vercel.com → Add New Project → לייבא את המאגר `dbiz-site` (בלי Build Command, Framework: Other).
+      2. Settings → Environment Variables: `RESEND_API_KEY`, `CONTACT_EMAIL` (רשימה ב-[`.env.example`](.env.example)) → Redeploy.
+      3. אם הכתובת שקיבל הפרויקט אינה `dbiz-site.vercel.app` — לעדכן את `EMAIL_API_URL` ב-`script.js`.
+      בלי דומיין מאומת ב-Resend, השולח `onboarding@resend.dev` מגיע **רק** למייל שאיתו נפתח חשבון ה-Resend.
 - [ ] **דומיין** — כרגע כתובת של github.io. אפשר לחבר דומיין מותאם דרך Settings › Pages › Custom domain + רשומות DNS.
 - [ ] **איות השם** — בהמלצות מופיע "דזימיטרובסקי" (עם י'), בשאר האתר "דזימטרובסקי". לא אוחד (השארנו את ההמלצות כלשונן).
 - [ ] **Origami בסקשן הכלים** — הסמל חולץ מתמונה קטנה (218×72) ועלול להיראות מעט מרוכך במסכים חדים. אם תגיע גרסה גדולה יותר — להחליף.

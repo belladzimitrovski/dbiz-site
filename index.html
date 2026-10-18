@@ -552,6 +552,8 @@
       </div>
 
       <form class="contact-form reveal" id="contactForm" novalidate>
+        <!-- Spam trap: hidden from people, bots tend to fill it in -->
+        <div class="hp" aria-hidden="true"><label>אתר <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
         <div class="field">
           <label for="name">רק שם</label>
           <input type="text" id="name" name="name" placeholder="איך קוראים לכם?" required />
