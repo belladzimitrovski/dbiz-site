@@ -44,7 +44,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ===== Hero cases: "הם" / "אתם" stay fixed; type the rest of each line, erase it, swap the picture, repeat =====
 const CASES = [
   ['רואים כסאות.', 'רואים את מה שנופל ביניהם.'],
-  ['רואים את הלחם.', 'רואים רק את הקשה.'],
+  ['רואים לחם.', 'רואים רק את הקשה.'],
   ['רואים מכשירי כושר.', 'רואים שעות של זיעה ומאמץ.'],
   ['רואים שעוני יוקרה.', 'רואים את הזמן נוזל בין האצבעות.'],
 ];
