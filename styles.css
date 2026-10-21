@@ -364,13 +364,13 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== Solution — very large, fills the screen ===== */
 .solution-big {
-  min-height: 78svh; display: flex; align-items: center; text-align: center; padding: 100px 0 80px;
+  display: flex; align-items: center; text-align: center; padding: 110px 0 100px;
   background: radial-gradient(ellipse at 50% 40%, var(--teal-soft) 0%, transparent 60%), linear-gradient(180deg, var(--surface) 0%, var(--tint-2) 100%);
 }
 .solution-big .lead-in { font-size: clamp(1.1rem, 2.2vw, 1.4rem); }
-.solution-big h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 28px; }
+.solution-big h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 28px; }
 .solution-big h2 .accent { color: var(--teal); }
-.solution-lines { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); font-size: clamp(1.15rem, 2.3vw, 1.6rem); line-height: 1.6; margin-bottom: 36px; }
+.solution-lines { font-family: "Rubik", sans-serif; font-weight: 500; color: var(--ink); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.6; margin-bottom: 36px; }
 .solution-big .slogan { font-size: clamp(1.4rem, 2.8vw, 2rem); }
 #about .cards { margin-top: 130px; }
 .prose .still { font-family: "Rubik", sans-serif; font-weight: 700; color: var(--ink); font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
@@ -720,24 +720,18 @@ h1 strong, h2 strong { font-weight: 400; }
 .slogan .accent { color: var(--dot-teal); }
 .band-yellow .slogan .accent { color: #0b6e70; }
 
-/* ===== Pains — a soft mint band with three friendly cards ===== */
+/* ===== Pains — one calm column on a light mint band; punchlines get a big dot instead of a bar ===== */
 .band-soft { background: #e8f5f1; }
 [data-theme="dark"] .band-soft { background: #142624; }
-.point-title { text-align: center; font-size: clamp(2rem, 4.4vw, 3rem); margin-bottom: 48px; }
-.pain-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
-.pain {
-  position: relative; background: var(--surface); border: 2px solid var(--border-strong); border-radius: 26px;
-  padding: 34px 30px 30px; display: flex; flex-direction: column; gap: 12px;
+.point-prose .point-lead { font-family: "Varela Round", "Heebo", sans-serif; font-weight: 400; font-size: clamp(1.9rem, 4vw, 2.6rem); }
+.point-prose p { color: var(--ink-soft); }
+.dot-punch { position: relative; border: 0; padding: 0 0 0 0; padding-inline-start: 58px; margin: 44px 0; }
+.dot-punch::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: 6px; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--yellow); box-shadow: 14px 22px 0 -8px var(--dot-teal);
 }
-.pain p { color: var(--ink-soft); font-size: 1.06rem; line-height: 1.8; }
-.pain-big p { font-family: "Varela Round", "Heebo", sans-serif; color: var(--ink); font-size: 1.45rem; line-height: 1.45; }
-.pain-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
-.pain:nth-child(2) .pain-dot { background: var(--dot-teal); }
-.pain:nth-child(3) .pain-dot { background: var(--border-strong); }
-.point-focus { text-align: center; margin-top: 56px; display: flex; flex-direction: column; gap: 6px; align-items: center; }
-.point-focus p { font-family: "Varela Round", "Heebo", sans-serif; font-size: clamp(1.2rem, 2.4vw, 1.5rem); color: var(--ink-soft); }
-.point-focus .point-focus-line { font-size: clamp(1.6rem, 3.6vw, 2.3rem); color: var(--ink); }
-.point-focus .point-aside { font-family: "Heebo", sans-serif; font-size: 1rem; color: var(--muted); font-style: italic; margin-top: 8px; }
+.dot-punch-teal::before { background: var(--dot-teal); box-shadow: 14px 22px 0 -8px var(--yellow); }
+.point-prose .dot-punch p { font-family: "Varela Round", "Heebo", sans-serif; font-weight: 400; color: var(--ink); font-size: clamp(1.35rem, 2.8vw, 1.8rem); line-height: 1.4; }
 .band-soft .accent {
   color: var(--teal); background: none; border: 2px solid var(--teal); padding: 0 0.28em; border-radius: 12px;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
@@ -756,7 +750,6 @@ h1 strong, h2 strong { font-weight: 400; }
   .hero-footnote { text-align: center; }
   .case-text { text-align: center; align-items: center; }
   .cards, .cards-3 { grid-template-columns: repeat(2, 1fr); }
-  .pain-cards { grid-template-columns: 1fr; }
   .options { grid-template-columns: repeat(3, 1fr); }
   .quote { flex: 0 0 calc((100% - 24px) / 2); }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
