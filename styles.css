@@ -3,16 +3,22 @@
    Palette & base
 =================================================== */
 :root {
-  --teal:        #159a9d;
-  --teal-dark:   #0e7c7f;
-  --teal-soft:   #e6f4f4;
-  --teal-glow:   rgba(21, 154, 157, 0.18);
-  --ink:         #2b2e30;
-  --ink-soft:    #4a5054;
-  --muted:       #7b8388;
-  --bg:          #fbfcfc;
+  /* "Dots" palette: cream ground, ink, a yellow dot and a teal dot */
+  --yellow:      #ffd84d;
+  --dot-teal:    #1fb5b0;
+  --border-strong: #14211f;
+  --cta-bg:      #14211f;
+  --cta-fg:      #ffd84d;
+  --teal:        #0b6e70;
+  --teal-dark:   #074f51;
+  --teal-soft:   #e2f3f1;
+  --teal-glow:   rgba(31, 181, 176, 0.22);
+  --ink:         #14211f;
+  --ink-soft:    #3e4b49;
+  --muted:       #5d6b69;
+  --bg:          #fbfaf5;
   --surface:     #ffffff;
-  --line:        #e8edee;
+  --line:        #e1dfd2;
   --shadow-sm:   0 2px 10px rgba(43, 46, 48, 0.05);
   --shadow-md:   0 12px 40px rgba(21, 154, 157, 0.08), 0 4px 14px rgba(43, 46, 48, 0.05);
   --radius:      22px;
@@ -21,34 +27,39 @@
   --ease:        cubic-bezier(0.22, 1, 0.36, 1);
 
   /* themeable surfaces */
-  --tint-2:          #f4faf9;
-  --header-bg:       rgba(251, 252, 252, 0.7);
-  --header-scroll:   rgba(251, 252, 252, 0.92);
+  --tint-2:          #f4f1e6;
+  --header-bg:       rgba(251, 250, 245, 0.82);
+  --header-scroll:   rgba(251, 250, 245, 0.96);
   --input-focus-bg:  #ffffff;
-  --footer-bg:       #23282a;
-  --footer-text:     #cfd5d6;
-  --footer-muted:    #8b9294;
+  --footer-bg:       #14211f;
+  --footer-text:     #e9e6da;
+  --footer-muted:    #9aa39f;
   --logo-filter:     none;
 }
 
 /* ===== Dark theme ===== */
 [data-theme="dark"] {
-  --teal-soft:   rgba(28, 177, 180, 0.16);
-  --teal-glow:   rgba(28, 177, 180, 0.28);
-  --ink:         #eaf3f3;
-  --ink-soft:    #b4c2c3;
-  --muted:       #7f8d8f;
-  --bg:          #0e1618;
-  --surface:     #162225;
-  --line:        #27383c;
+  --border-strong: #f4f1e6;
+  --cta-bg:      #ffd84d;
+  --cta-fg:      #14211f;
+  --teal:        #4fd6cf;
+  --teal-dark:   #1fb5b0;
+  --teal-soft:   rgba(79, 214, 207, 0.14);
+  --teal-glow:   rgba(79, 214, 207, 0.26);
+  --ink:         #f4f1e6;
+  --ink-soft:    #c9cdc3;
+  --muted:       #8f9a96;
+  --bg:          #101a19;
+  --surface:     #182624;
+  --line:        #2c3c39;
   --shadow-sm:   0 2px 10px rgba(0, 0, 0, 0.32);
   --shadow-md:   0 16px 44px rgba(0, 0, 0, 0.42), 0 4px 14px rgba(0, 0, 0, 0.3);
 
-  --tint-2:          #122024;
-  --header-bg:       rgba(13, 21, 23, 0.62);
-  --header-scroll:   rgba(13, 21, 23, 0.9);
-  --input-focus-bg:  #1b2a2e;
-  --footer-bg:       #0a1012;
+  --tint-2:          #142120;
+  --header-bg:       rgba(16, 26, 25, 0.75);
+  --header-scroll:   rgba(16, 26, 25, 0.94);
+  --input-focus-bg:  #1d2d2b;
+  --footer-bg:       #0b1312;
   --footer-text:     #c3d0d1;
   --footer-muted:    #74817f;
   --logo-filter:     brightness(0) invert(1);
@@ -214,144 +225,91 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ===================================================
-   Hero scenes — cinemagraphs: a real store photo with a slow camera push,
-   and one moving detail on top. Loops like a GIF; only the active one plays.
+   Hero scenes — each business drawn from dots of many sizes.
+   The dots pop in from the centre when a case starts; a few
+   extra dots keep moving (things falling, crumbs, sweat, sand).
 =================================================== */
-/* The hero is always a deep teal stage, so the scenes read the same in both themes */
-.hero { background: radial-gradient(ellipse at 22% 55%, #135a5a 0%, #0b2a2c 48%, #081416 100%); }
-.hero .case-them { color: #fff; }
-.hero .case-you { color: #7fe7e3; }
-.hero-footnote { color: rgba(255, 255, 255, 0.5); }
-.hero .scroll-hint { border-color: rgba(255, 255, 255, 0.25); color: #7fe7e3; }
+.hero { background: var(--bg); }
+.hero .case-them { color: var(--ink); }
+.hero .case-you { color: var(--teal); }
 
-/* The scene fills the hero and melts into the page colour on the text side, like a background video */
-.case-stage { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #0b2a2c; }
+.case-stage { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; justify-self: center; }
+/* Text on the right (footnote + sentences), the drawing on the left across both rows */
+.cases .case-stage { grid-column: 2; grid-row: 1 / span 2; }
+/* The big yellow dot and its two small friends, as in the design */
+.case-stage::before {
+  content: ""; position: absolute; inset: 8% 10% 12% 6%; border-radius: 50%; background: var(--yellow); opacity: 0.55;
+}
 .case-stage::after {
-  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background:
-    linear-gradient(270deg, #0b2a2c 0%, rgba(11, 42, 44, 0.92) 30%, rgba(11, 42, 44, 0.45) 55%, rgba(11, 42, 44, 0.1) 80%, rgba(11, 42, 44, 0.25) 100%),
-    linear-gradient(0deg, #0b2a2c 0%, transparent 22%),
-    linear-gradient(180deg, rgba(8, 20, 22, 0.75) 0%, transparent 20%);
+  content: ""; position: absolute; width: 18%; aspect-ratio: 1; right: 2%; bottom: 8%; border-radius: 50%;
+  background: var(--dot-teal);
 }
-.hero-inner { z-index: 1; }
-.stage-img { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); }
+.stage-img { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 1; opacity: 0; transition: opacity 0.4s var(--ease); }
 .stage-img.active { opacity: 1; }
-.cine > img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
-/* Slow camera push while the case is on screen */
-.cine.active > img { animation: push 14s ease-out forwards; }
-@keyframes push { from { transform: scale(1.03) translate(0, 0); } to { transform: scale(1.14) translate(1.5%, -1%); } }
-.fx { position: absolute; inset: 0; pointer-events: none; }
-.stage-img:not(.active) *, .stage-img:not(.active) *::before { animation-play-state: paused !important; }
+.stage-img:not(.active) *, .stage-img:not(.active) { animation-play-state: paused !important; }
 
-/* 1. Furniture store */
-.cine-chairs .fall {
-  position: absolute; left: var(--x); top: 0; width: var(--w); opacity: 0;
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
-  animation: drop 4.8s cubic-bezier(0.45, 0, 0.75, 0.55) infinite;
-}
-.cine-chairs .f1 { --x: 37%; --w: 4%;   animation-delay: 0s; }
-.cine-chairs .f2 { --x: 40%; --w: 4.4%; animation-delay: 1.2s; }
-.cine-chairs .f3 { --x: 39%; --w: 2.6%; animation-delay: 2.4s; }
-.cine-chairs .f4 { --x: 35%; --w: 3.6%; animation-delay: 3.6s; }
-@keyframes drop {
-  0%   { transform: translateY(-20%) rotate(-25deg); opacity: 0; }
-  10%  { opacity: 1; }
+.dot-scene .dots circle { transform-box: fill-box; transform-origin: center; transform: scale(0); }
+.dot-scene.active .dots circle { animation: dotIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d) forwards; }
+@keyframes dotIn { to { transform: scale(1); } }
+/* After landing, the whole drawing breathes a little */
+.dot-scene.active .dots { animation: breathe 4s ease-in-out 1.4s infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
+
+/* 1. Chairs: things keep slipping through the gap between them */
+.scene-chairs .fall > g { opacity: 0; animation: fall 3.4s cubic-bezier(0.45, 0, 0.75, 0.55) infinite; }
+.scene-chairs .f1 { --x: 292px; animation-delay: 0s !important; }
+.scene-chairs .f2 { --x: 296px; animation-delay: 0.85s !important; }
+.scene-chairs .f3 { --x: 304px; animation-delay: 1.7s !important; }
+.scene-chairs .f4 { --x: 300px; animation-delay: 2.55s !important; }
+@keyframes fall {
+  0%   { transform: translate(var(--x), 70px) rotate(-20deg); opacity: 0; }
+  12%  { opacity: 1; }
   80%  { opacity: 1; }
-  100% { transform: translateY(1500%) rotate(160deg); opacity: 0; }
+  100% { transform: translate(calc(var(--x) + 6px), 500px) rotate(160deg); opacity: 0; }
 }
-
-/* 2. Bakery */
-.cine-bread .steam {
-  position: absolute; bottom: 64%; left: var(--x); width: 22%; height: 38%; border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 70%, rgba(255, 248, 238, 0.85), rgba(255, 248, 238, 0.25) 45%, transparent 68%);
-  filter: blur(14px); opacity: 0; animation: steam 6.5s ease-out infinite;
-}
-.cine-bread .s1 { --x: 6%;  animation-delay: 0s; }
-.cine-bread .s2 { --x: 28%; animation-delay: 1.1s; }
-.cine-bread .s3 { --x: 44%; animation-delay: 2.2s; }
-.cine-bread .s4 { --x: 16%; animation-delay: 3.3s; }
-@keyframes steam {
-  0%   { transform: translateY(20%) scale(0.6, 0.5); opacity: 0; }
-  30%  { opacity: 0.9; }
-  100% { transform: translateY(-70%) scale(1.3, 1.4) translateX(8%); opacity: 0; }
-}
-.cine-bread .dust {
-  position: absolute; left: var(--x); top: var(--y); width: 6px; height: 6px; border-radius: 50%;
-  background: rgba(255, 250, 240, 0.85); box-shadow: 0 0 6px rgba(255, 250, 240, 0.7);
-  opacity: 0; animation: dust 8s ease-in-out infinite;
-}
-.cine-bread .d1 { --x: 12%; --y: 30%; animation-delay: 0s; }
-.cine-bread .d2 { --x: 30%; --y: 52%; animation-delay: 0.8s; }
-.cine-bread .d3 { --x: 48%; --y: 24%; animation-delay: 1.6s; }
-.cine-bread .d4 { --x: 66%; --y: 44%; animation-delay: 2.4s; }
-.cine-bread .d5 { --x: 82%; --y: 28%; animation-delay: 3.2s; }
-.cine-bread .d6 { --x: 22%; --y: 70%; animation-delay: 4s; }
-.cine-bread .d7 { --x: 58%; --y: 66%; animation-delay: 4.8s; }
-.cine-bread .d8 { --x: 90%; --y: 60%; animation-delay: 5.4s; }
-@keyframes dust {
+/* 2. Bread: crumbs fly off the crust */
+.scene-bread .crumbs circle { opacity: 0; animation: crumb 3.2s ease-in infinite; }
+.scene-bread .c1 { --dx: -90px;  --dy: 180px; animation-delay: 0.6s; }
+.scene-bread .c2 { --dx: 20px;   --dy: 210px; animation-delay: 0.9s; }
+.scene-bread .c3 { --dx: 110px;  --dy: 140px; animation-delay: 1.2s; }
+.scene-bread .c4 { --dx: -40px;  --dy: 200px; animation-delay: 1.5s; }
+.scene-bread .c5 { --dx: 70px;   --dy: 175px; animation-delay: 1.8s; }
+.scene-bread .c6 { --dx: -120px; --dy: 140px; animation-delay: 1.05s; }
+@keyframes crumb {
   0%   { transform: translate(0, 0); opacity: 0; }
-  20%  { opacity: 0.9; }
-  100% { transform: translate(18px, 60px); opacity: 0; }
+  8%   { opacity: 1; }
+  30%  { transform: translate(calc(var(--dx) * 0.5), -40px); }
+  85%  { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
 }
-
-/* 3. Gym — condensation on the lens */
-.cine-gym .fog { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)); }
-.cine-gym .bead {
-  position: absolute; left: var(--x); top: var(--y); width: var(--s); height: calc(var(--s) * 1.25);
-  border-radius: 50% 50% 48% 48% / 42% 42% 58% 58%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.95) 0 12%, rgba(255, 255, 255, 0.25) 28%, rgba(180, 230, 235, 0.12) 60%, rgba(0, 0, 0, 0.18) 100%);
-  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(1.5px) brightness(1.15);
-  animation: bead var(--t) cubic-bezier(0.6, 0, 0.9, 0.6) infinite;
+/* 3. Gym: sweat drips off the weights */
+.scene-gym .drops circle { opacity: 0; animation: drip 2.6s ease-in infinite; }
+.scene-gym .d2 { animation-delay: 0.5s; }
+.scene-gym .d3 { animation-delay: 1s; }
+.scene-gym .d4 { animation-delay: 1.5s; }
+.scene-gym .d5 { animation-delay: 2s; }
+@keyframes drip {
+  0%   { transform: translateY(0); opacity: 0; }
+  15%  { opacity: 1; }
+  45%  { transform: translateY(40px); }
+  100% { transform: translateY(230px); opacity: 0; }
 }
-/* The faint trail each bead leaves behind */
-.cine-gym .bead::before {
-  content: ""; position: absolute; left: 30%; bottom: 80%; width: 40%; height: 0;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.28));
-  border-radius: 4px; animation: trail var(--t) cubic-bezier(0.6, 0, 0.9, 0.6) infinite; animation-delay: inherit;
-}
-.cine-gym .b1 { --x: 14%; --y: 6%;  --s: 18px; --t: 5.4s; animation-delay: 0s; }
-.cine-gym .b2 { --x: 32%; --y: 18%; --s: 13px; --t: 6s; animation-delay: 0.9s; }
-.cine-gym .b3 { --x: 54%; --y: 4%;  --s: 22px; --t: 4.8s; animation-delay: 1.7s; }
-.cine-gym .b4 { --x: 8%;  --y: 14%; --s: 15px; --t: 5.2s; animation-delay: 0.4s; }
-.cine-gym .b5 { --x: 48%; --y: 8%;  --s: 19px; --t: 5s;   animation-delay: 2.3s; }
-.cine-gym .b6 { --x: 42%; --y: 30%; --s: 11px; --t: 6.2s; animation-delay: 2.9s; }
-.cine-gym .b7 { --x: 22%; --y: 36%; --s: 16px; --t: 5.8s; animation-delay: 1.3s; }
-@keyframes bead {
-  0%, 15% { transform: translateY(0); opacity: 0; }
-  20%     { opacity: 1; }
-  90%     { opacity: 1; }
-  100%    { transform: translateY(3800%); opacity: 0; }
-}
-@keyframes trail { 0%, 20% { height: 0; } 100% { height: 2400%; } }
-
-/* 4. Watch shop */
-.cine-watch .sheen {
-  position: absolute; top: -20%; bottom: -20%; width: 30%; left: -40%;
-  background: linear-gradient(100deg, transparent, rgba(255, 245, 220, 0.38), transparent);
-  mix-blend-mode: screen; transform: skewX(-18deg); animation: sheen 6.5s ease-in-out infinite;
-}
-@keyframes sheen { 0%, 25% { left: -40%; } 75%, 100% { left: 120%; } }
-.cine-watch .grain {
-  position: absolute; left: calc(30% + var(--dx)); top: 0; width: 4px; height: 4px; border-radius: 50%;
-  background: #f4d27e; box-shadow: 0 0 4px rgba(255, 215, 120, 0.8);
-  opacity: 0; animation: sand 2.6s linear infinite;
-}
-.cine-watch .g1  { --dx: 0px;  animation-delay: 0s; }
-.cine-watch .g2  { --dx: 3px;  animation-delay: 0.16s; }
-.cine-watch .g3  { --dx: -3px; animation-delay: 0.32s; }
-.cine-watch .g4  { --dx: 1px;  animation-delay: 0.48s; }
-.cine-watch .g5  { --dx: -2px; animation-delay: 0.64s; }
-.cine-watch .g6  { --dx: 4px;  animation-delay: 0.8s; }
-.cine-watch .g7  { --dx: -1px; animation-delay: 0.96s; }
-.cine-watch .g8  { --dx: 2px;  animation-delay: 1.12s; }
-.cine-watch .g9  { --dx: -4px; animation-delay: 1.28s; }
-.cine-watch .g10 { --dx: 1px;  animation-delay: 1.44s; }
-@keyframes sand { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateY(24000%); opacity: 0; } }
+/* 4. Watch: the hands race and sand pours out */
+.scene-watch .hand-hm { transform-box: view-box; transform-origin: 300px 270px; animation: spin 2.2s linear infinite; }
+.scene-watch .hand-hh { transform-box: view-box; transform-origin: 300px 270px; animation: spin 14s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.scene-watch .sand circle { opacity: 0; animation: pour 1.6s linear infinite; }
+.scene-watch .g2 { animation-delay: 0.16s; } .scene-watch .g3 { animation-delay: 0.32s; } .scene-watch .g4 { animation-delay: 0.48s; }
+.scene-watch .g5 { animation-delay: 0.64s; } .scene-watch .g6 { animation-delay: 0.8s; } .scene-watch .g7 { animation-delay: 0.96s; }
+.scene-watch .g8 { animation-delay: 1.12s; } .scene-watch .g9 { animation-delay: 1.28s; } .scene-watch .g10 { animation-delay: 1.44s; }
+@keyframes pour { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(140px); opacity: 0; } }
+.scene-watch .pile { transform-box: fill-box; transform-origin: 50% 100%; animation: pile 4s ease-in-out infinite; }
+@keyframes pile { 0%, 100% { transform: scale(0.85, 0.8); } 50% { transform: scale(1, 1); } }
 
 @media (prefers-reduced-motion: reduce) {
+  .dot-scene .dots circle { transform: none; }
   .stage-img, .stage-img * { animation: none !important; }
-  .fx { display: none; }
+  .dot-scene .fx { display: none; }
 }
 
 /* floating robots */
@@ -667,6 +625,76 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ===================================================
+   "Dots" design — cream ground, ink outlines, yellow and teal dots.
+   Overrides the component styles above; the palette lives in :root.
+=================================================== */
+h1, h2, h3, .slogan, .lead-in, .solution-lines, .point-lead, .about-hello, .belief-head, .key-them { font-family: "Varela Round", "Heebo", sans-serif; font-weight: 400; }
+h1 strong, h2 strong { font-weight: 400; }
+
+/* Calls to action: ink pill with yellow type (yellow pill with ink type in dark mode) */
+.btn-primary { background: var(--cta-bg); color: var(--cta-fg); box-shadow: 0 12px 26px -10px rgba(20, 33, 31, 0.55); }
+.btn-primary:hover { background: var(--cta-bg); box-shadow: 0 16px 30px -10px rgba(20, 33, 31, 0.7); }
+.btn-primary::after { animation-name: ctaPulseDots; }
+@keyframes ctaPulseDots { 0% { box-shadow: 0 0 0 0 rgba(255, 216, 77, 0.75); } 70%, 100% { box-shadow: 0 0 0 14px rgba(255, 216, 77, 0); } }
+.nav-cta { background: var(--cta-bg); color: var(--cta-fg) !important; box-shadow: none; }
+.nav-cta:hover { background: var(--cta-bg); }
+.nav a:not(.nav-cta)::after { background: var(--yellow); height: 4px; border-radius: 4px; }
+
+/* Cards and boxes: white with a strong outline, no soft shadows */
+.card, .option, .biz-line, .quote, .belief, .contact-form, .client {
+  border: 2px solid var(--border-strong); box-shadow: none; border-radius: 26px;
+}
+.card:hover, .quote:hover, .option:hover { box-shadow: 6px 6px 0 var(--border-strong); transform: translate(-3px, -3px); border-color: var(--border-strong); }
+.card-num { background: var(--yellow); color: #14211f; }
+.card:hover .card-num { background: var(--dot-teal); color: #fff; }
+.option::before { width: 14px; height: 14px; box-shadow: none; background: var(--yellow); }
+.option:nth-child(3n+2)::before { background: var(--dot-teal); }
+.option:nth-child(3n)::before { background: var(--border-strong); }
+.biz-art { background: var(--yellow); }
+.bubble { border: 2px solid var(--border-strong); box-shadow: none; }
+.bubble::after { border-color: var(--border-strong); }
+.field input, .field textarea { border: 2px solid var(--line); }
+.section-tint { background: var(--tint-2); }
+
+/* Pains: an ink band, the punchline highlighted in yellow */
+#point { background: #14211f; color: #f4f1e6; }
+#point .prose p { color: #c9cdc3; }
+#point .point-lead { color: #fff; }
+#point .punch { border-color: var(--yellow); }
+#point .punch p { color: #fff; }
+#point .accent { color: #14211f; background: var(--yellow); padding: 0 10px; border-radius: 8px; }
+#point .aside { color: #9aa39f; }
+
+/* The big solution screen: a yellow dot behind the words */
+.solution-big { background: var(--bg); position: relative; overflow: hidden; }
+.solution-big::before {
+  content: ""; position: absolute; width: 46vmin; aspect-ratio: 1; border-radius: 50%; background: var(--yellow);
+  opacity: 0.35; left: 6%; top: 12%;
+}
+.solution-big::after {
+  content: ""; position: absolute; width: 12vmin; aspect-ratio: 1; border-radius: 50%; background: var(--dot-teal);
+  opacity: 0.8; right: 10%; bottom: 14%;
+}
+.solution-big .container { position: relative; z-index: 1; }
+/* On the dark ground the yellow dots stay soft so they do not turn olive */
+[data-theme="dark"] .case-stage::before { opacity: 0.2; }
+[data-theme="dark"] .solution-big::before { opacity: 0.14; }
+
+/* Testimonials on a yellow band */
+#testimonials { background: var(--yellow); }
+#testimonials .section-head h2, #testimonials .section-label { color: #14211f; }
+#testimonials .quote { background: #fffdf5; }
+#testimonials .quote-mark { color: #14211f; opacity: 0.25; }
+#testimonials .quote blockquote, #testimonials .q-role { color: #3e4b49; }
+#testimonials .q-name { color: #14211f; }
+#testimonials .car-arrow { border: 2px solid #14211f; background: #fffdf5; color: #14211f; }
+#testimonials .car-dot { background: rgba(20, 33, 31, 0.25); }
+#testimonials .car-dot.active { background: #14211f; }
+
+/* A full stop in teal or yellow ends the big slogans */
+.slogan .accent { color: var(--dot-teal); }
+
+/* ===================================================
    Responsive
 =================================================== */
 @media (max-width: 940px) {
@@ -674,6 +702,8 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
   .nav a { font-size: 0.92rem; }
   .hero-glow { inset-inline-start: 50%; transform: translateX(-50%); }
   .cases { grid-template-columns: 1fr; gap: 12px; align-content: center; }
+  .case-stage { order: -1; max-width: 340px; }
+  .cases .case-stage { grid-column: 1; grid-row: auto; }
   .hero-footnote { text-align: center; }
   .case-text { text-align: center; align-items: center; }
   .cards, .cards-3 { grid-template-columns: repeat(2, 1fr); }
@@ -703,10 +733,7 @@ img + .bubble::after { inset-inline-end: auto; inset-inline-start: -9px; transfo
 @media (max-width: 640px) {
   .nav { top: 96px; }
   .hero { padding: 116px 0 20px; }
-  .case-stage::after {
-    background: linear-gradient(0deg, #0b2a2c 0%, rgba(11, 42, 44, 0.9) 38%, rgba(11, 42, 44, 0.25) 70%, rgba(8, 20, 22, 0.6) 100%);
-  }
-  .hero-inner { justify-content: flex-end; }
+  .case-stage { max-width: 260px; }
   .case-text { min-height: 11rem; }
   .options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .option { padding: 14px; font-size: 0.95rem; }
