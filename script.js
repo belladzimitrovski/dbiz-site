@@ -1,11 +1,11 @@
 // ===== Theme toggle (dark / light) =====
 const root = document.documentElement;
-const savedTheme = localStorage.getItem('dbiz-theme');
+const savedTheme = localStorage.getItem('dbiz-theme-v2');
 if (savedTheme) root.setAttribute('data-theme', savedTheme);
 document.getElementById('themeToggle').addEventListener('click', () => {
   const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
-  localStorage.setItem('dbiz-theme', next);
+  localStorage.setItem('dbiz-theme-v2', next);
 });
 
 // ===== Header shadow on scroll =====

@@ -19,6 +19,7 @@
   --bg:          #fbfaf5;
   --surface:     #ffffff;
   --line:        #e1dfd2;
+  --c-ink: #14211f; --c-ink-soft: #3e4b49; --c-muted: #5d6b69; --c-teal: #0b6e70; --c-line: #e1dfd2;
   --shadow-sm:   0 2px 10px rgba(43, 46, 48, 0.05);
   --shadow-md:   0 12px 40px rgba(21, 154, 157, 0.08), 0 4px 14px rgba(43, 46, 48, 0.05);
   --radius:      22px;
@@ -52,6 +53,7 @@
   --bg:          #101a19;
   --surface:     #182624;
   --line:        #2c3c39;
+  --c-ink: #f4f1e6; --c-ink-soft: #c9cdc3; --c-muted: #8f9a96; --c-teal: #4fd6cf; --c-line: #2c3c39;
   --shadow-sm:   0 2px 10px rgba(0, 0, 0, 0.32);
   --shadow-md:   0 16px 44px rgba(0, 0, 0, 0.42), 0 4px 14px rgba(0, 0, 0, 0.3);
 
@@ -656,43 +658,52 @@ h1 strong, h2 strong { font-weight: 400; }
 .field input, .field textarea { border: 2px solid var(--line); }
 .section-tint { background: var(--tint-2); }
 
-/* Pains: an ink band, the punchline highlighted in yellow */
-#point { background: #14211f; color: #f4f1e6; }
-#point .prose p { color: #c9cdc3; }
-#point .point-lead { color: #fff; }
-#point .punch { border-color: var(--yellow); }
-#point .punch p { color: #fff; }
-#point .accent { color: #14211f; background: var(--yellow); padding: 0 10px; border-radius: 8px; }
-#point .aside { color: #9aa39f; }
+/* ===================================================
+   Colour bands — the page alternates light, ink, yellow and teal.
+   A band re-points the text colours for everything inside it;
+   white boxes inside a band (cards, bubbles, the form) switch back
+   to the regular reading colours so they stay legible.
+=================================================== */
+.band-dark   { background: #14211f; --ink: #f4f1e6; --ink-soft: #c9cdc3; --muted: #9aa39f; --teal: #ffd84d; --line: #2c3c39; }
+.band-yellow { background: #ffd84d; --ink: #14211f; --ink-soft: #2f3b39; --muted: #4a5654; --teal: #0b6e70; --line: #e6c23c; }
+.band-teal   { background: #1fb5b0; --ink: #0d1f1d; --ink-soft: #133230; --muted: #1d4542; --teal: #0d1f1d; --line: #189a96; }
+.band-dark, .band-yellow, .band-teal { color: var(--ink); }
 
-/* The big solution screen: a yellow dot behind the words */
-.solution-big { background: var(--bg); position: relative; overflow: hidden; }
+:is(.band-dark, .band-yellow, .band-teal) :is(.card, .quote, .bubble, .option, .contact-form, .belief, .biz-line, .tool, .car-arrow) {
+  --ink: var(--c-ink); --ink-soft: var(--c-ink-soft); --muted: var(--c-muted); --teal: var(--c-teal); --line: var(--c-line);
+  color: var(--ink);
+}
+
+/* Highlights: yellow marker on ink and teal bands, ink type on yellow */
+.band-dark .accent, .band-teal .accent { color: #14211f; background: var(--yellow); padding: 0 0.22em; border-radius: 8px; }
+.band-dark .punch { border-color: var(--yellow); }
+/* On the ink band the call to action flips to a yellow pill */
+.band-dark .btn-primary { background: var(--yellow); color: #14211f; }
+.band-yellow .punch { border-color: #14211f; }
+.band-teal .punch { border-color: #14211f; }
+
+/* Carousel controls read on any band */
+:is(.band-dark, .band-yellow, .band-teal) .car-dot { background: currentColor; opacity: 0.3; }
+:is(.band-dark, .band-yellow, .band-teal) .car-dot.active { opacity: 1; }
+.band-yellow .quote-mark { color: #14211f; }
+
+/* The big solution screen sits on yellow: white and teal dots behind the words */
+.solution-big { position: relative; overflow: hidden; }
 .solution-big::before {
-  content: ""; position: absolute; width: 46vmin; aspect-ratio: 1; border-radius: 50%; background: var(--yellow);
-  opacity: 0.35; left: 6%; top: 12%;
+  content: ""; position: absolute; width: 46vmin; aspect-ratio: 1; border-radius: 50%; background: #ffffff;
+  opacity: 0.4; left: 6%; top: 12%;
 }
 .solution-big::after {
   content: ""; position: absolute; width: 12vmin; aspect-ratio: 1; border-radius: 50%; background: var(--dot-teal);
-  opacity: 0.8; right: 10%; bottom: 14%;
+  right: 10%; bottom: 14%;
 }
 .solution-big .container { position: relative; z-index: 1; }
-/* On the dark ground the yellow dots stay soft so they do not turn olive */
+/* On the dark ground the yellow hero dot stays soft so it does not turn olive */
 [data-theme="dark"] .case-stage::before { opacity: 0.2; }
-[data-theme="dark"] .solution-big::before { opacity: 0.14; }
 
-/* Testimonials on a yellow band */
-#testimonials { background: var(--yellow); }
-#testimonials .section-head h2, #testimonials .section-label { color: #14211f; }
-#testimonials .quote { background: #fffdf5; }
-#testimonials .quote-mark { color: #14211f; opacity: 0.25; }
-#testimonials .quote blockquote, #testimonials .q-role { color: #3e4b49; }
-#testimonials .q-name { color: #14211f; }
-#testimonials .car-arrow { border: 2px solid #14211f; background: #fffdf5; color: #14211f; }
-#testimonials .car-dot { background: rgba(20, 33, 31, 0.25); }
-#testimonials .car-dot.active { background: #14211f; }
-
-/* A full stop in teal or yellow ends the big slogans */
+/* A full stop in teal ends the big slogans on light ground */
 .slogan .accent { color: var(--dot-teal); }
+.band-yellow .slogan .accent { color: #0b6e70; }
 
 /* ===================================================
    Responsive
