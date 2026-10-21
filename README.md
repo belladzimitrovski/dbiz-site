@@ -72,7 +72,7 @@ npx http-server -p 8080 -c-1
 | `robot-check-3d.png` | רובוט עם וי — **כותרת ההמלצות** |
 | `robot-phone-3d.png` | רובוט עם טלפון — **צרו קשר** |
 | `logo-*.svg / .png` | לוגואי הכלים: make, origami, fireberry, zoho, airtable, n8n, claude |
-| `client-*.svg / .png` | לוגואי לקוחות: hamerkaz, heichal-yosef, schwartz, shalmei-simcha, platinum, klass, alfon, aquarelle |
+| `client-*.svg / .png` | לוגואי לקוחות: hamerkaz, heichal-yosef, schwartz, shalmei-simcha, platinum, klass, alfon, avital-schwartz |
 
 **לא במאגר** (מוגדר ב-`.gitignore`, נשאר מקומי בלבד): קבצי המקור הכבדים —
 תיקיות `רובוטים/` ו-`לוגואים לקוחות/`, תמונות ChatGPT המקוריות, הבריף (`.docx`),
@@ -117,7 +117,7 @@ npx http-server -p 8080 -c-1
 כטוקן עגול (הסמל על מדליון עגול לבן, אפוי לתוך ה-PNG) כדי להישאר גלוי בשתי הערכות.
 
 **לקוחות (רצועה + המלצות):** המרכז/עלי באר, ישיבת היכל יוסף, שוורץ תכשיטים,
-שלמי שמחה, פלטיניום, Klass, אלפון ערד, Aquarelle (אקוורל). כל הלוגואים על לוחית לבנה.
+שלמי שמחה, פלטיניום, Klass, אלפון ערד, אביטל שוורץ (החליפה את Aquarelle). כל הלוגואים על לוחית לבנה.
 לוגו אלפון ערד הוחלף (אוקטובר 2026) בלוגו החדש "אלפון אנ״ש גור ערד", בלי השנה ובלי מספר הגיליון.
 
 **המלצות (8 בקרוסלה):** 4 עם שם+לוגו (ציפי אולמן, היכל יוסף, גב' קפלן, Klass)
