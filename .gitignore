@@ -27,3 +27,6 @@ node_modules/
 .env.*
 !.env.example
 .vercel/
+
+# Text exports for proofreading (not part of the site)
+טקסטים לאתר*.pdf
