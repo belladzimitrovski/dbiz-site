@@ -54,42 +54,62 @@ const caseImgs = [...document.querySelectorAll('.stage-img')];
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const wait = (ms) => new Promise(r => setTimeout(r, ms));
 
-const typeInto = async (el, text, speed) => {
-  el.classList.add('typing');
-  for (let i = 1; i <= text.length; i++) {
-    el.textContent = text.slice(0, i);
-    await wait(speed);
-  }
-  el.classList.remove('typing');
+// Smooth typing: the whole sentence is laid out from the start (the untyped part is an
+// invisible ghost), so lines never re-wrap or jump; letters are revealed on animation frames.
+const prepLine = (el, text) => {
+  const on = document.createElement('span');
+  const ghost = document.createElement('span');
+  on.className = 'on';
+  ghost.className = 'ghost';
+  ghost.textContent = text;
+  el.replaceChildren(on, ghost);
+  el._chars = Array.from(text);
+  el._shown = 0;
 };
 
-// Backspace effect: remove one letter at a time, faster than typing
-const eraseFrom = async (el, speed) => {
-  el.classList.add('typing');
-  for (let i = el.textContent.length - 1; i >= 0; i--) {
-    el.textContent = el.textContent.slice(0, i);
-    await wait(speed);
-  }
-  el.classList.remove('typing');
+const showChars = (el, n) => {
+  if (n === el._shown) return;
+  el._shown = n;
+  el.firstChild.textContent = el._chars.slice(0, n).join('');
+  el.lastChild.textContent = el._chars.slice(n).join('');
 };
+
+// Reveal (or hide) letters at a steady rate in letters per second
+const animateChars = (el, from, to, perSecond) => new Promise((resolve) => {
+  el.classList.add('typing');
+  const start = performance.now();
+  const total = Math.abs(to - from);
+  const step = (now) => {
+    const done = Math.min(total, Math.floor(((now - start) / 1000) * perSecond));
+    showChars(el, from < to ? from + done : from - done);
+    if (done < total) requestAnimationFrame(step);
+    else { el.classList.remove('typing'); resolve(); }
+  };
+  requestAnimationFrame(step);
+});
+
+const typeInto = (el, perSecond) => animateChars(el, 0, el._chars.length, perSecond);
+const eraseFrom = (el, perSecond) => animateChars(el, el._shown, 0, perSecond);
 
 const playCases = async () => {
   for (let i = 0; ; i = (i + 1) % CASES.length) {
     const [them, you] = CASES[i];
     caseImgs.forEach((img, n) => img.classList.toggle('active', n === i));
+    prepLine(themEl, them);
+    prepLine(youEl, you);
     if (reduceMotion) {
-      themEl.textContent = them;
-      youEl.textContent = you;
-      await wait(5000);
+      showChars(themEl, themEl._chars.length);
+      showChars(youEl, youEl._chars.length);
+      await wait(4000);
       continue;
     }
-    await typeInto(themEl, them, 50);
-    await wait(300);
-    await typeInto(youEl, you, 40);
-    await wait(2000);
-    // Both lines are erased together, which saves time between cases
-    await Promise.all([eraseFrom(youEl, 9), eraseFrom(themEl, 9)]);
-    await wait(120);
+    await typeInto(themEl, 30);
+    await wait(150);
+    await typeInto(youEl, 34);
+    await wait(1500);
+    // Both lines are erased together, quickly
+    await Promise.all([eraseFrom(youEl, 90), eraseFrom(themEl, 90)]);
+    await wait(80);
   }
 };
 playCases();
