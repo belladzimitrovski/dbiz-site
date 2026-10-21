@@ -80,13 +80,14 @@ const scenes = {
   ],
   watch: [
     { test: ellipse(300, 548, 150, 16), color: C.grey, size: 0.55 },
-    { test: rrect(244, 30, 112, 100, 16), color: C.gold, size: 0.85 },            // strap
-    { test: rrect(244, 410, 112, 110, 16), color: C.gold, size: 0.85 },
-    { test: ring(300, 270, 128, 160), color: C.yellow, size: 0.95 },              // bezel
+    { test: rrect(244, 30, 112, 100, 16), color: C.ink, size: 0.85 },             // strap
+    { test: rrect(244, 410, 112, 110, 16), color: C.ink, size: 0.85 },
+    { test: ring(300, 270, 128, 160), color: C.teal, size: 0.95 },                // bezel
     { test: circle(300, 270, 128), color: C.ink, size: 0.9 },                     // dial
-    { test: rrect(452, 254, 26, 32, 8), color: C.gold, size: 0.9 },               // crown
+    { test: ring(300, 270, 118, 124), color: C.tealDark, size: 0.6 },               // inner rim
+    { test: rrect(452, 254, 26, 32, 8), color: C.tealDark, size: 0.9 },           // crown
     { test: capsule(300, 270, 300, 168, 9), color: C.yellow, size: 1, cls: 'hm' }, // minute hand
-    { test: capsule(300, 270, 372, 300, 11), color: C.teal, size: 1, cls: 'hh' },  // hour hand
+    { test: capsule(300, 270, 372, 300, 11), color: C.white, size: 1, cls: 'hh' }, // hour hand
   ],
 };
 
@@ -98,7 +99,7 @@ const extras = {
       <g class="f3"><circle r="11" fill="${C.gold}"/><circle cx="-4" cy="-4" r="4" fill="${C.yellow}"/></g>
       <g class="f4"><circle r="6" fill="${C.tealDark}"/><circle cx="10" cy="8" r="5" fill="${C.tealDark}"/><circle cx="-8" cy="10" r="4" fill="${C.teal}"/></g>
     </g>`,
-  bread: `<g class="fx crumbs">${[[230, 290, 7], [330, 260, 6], [410, 320, 8], [270, 270, 5], [370, 290, 6], [200, 320, 5]].map(([x, y, r], i) => `<circle class="c${i + 1}" cx="${x}" cy="${y}" r="${r}" fill="${C.crust}"/>`).join('')}</g>`,
+  bread: `<g class="fx steam">${[200, 265, 335, 400].map((x, col) => [10, 8.5, 7, 6, 5, 4].map((r, i) => `<circle class="s s${col + 1}" cx="${x + (i % 2 ? 6 : -6)}" cy="${170 - i * 4}" r="${r}" fill="${i % 2 ? C.white : '#f3efe2'}" stroke="#a89e80" stroke-width="1.6" style="--i:${i}"/>`).join('')).join('')}</g><g class="fx crumbs">${[[230, 290, 7], [330, 260, 6], [410, 320, 8], [270, 270, 5], [370, 290, 6], [200, 320, 5]].map(([x, y, r], i) => `<circle class="c${i + 1}" cx="${x}" cy="${y}" r="${r}" fill="${C.crust}"/>`).join('')}</g>`,
   gym: `<g class="fx drops">${[[120, 220, 9], [480, 230, 10], [300, 300, 7], [160, 240, 6], [440, 250, 7]].map(([x, y, r], i) => `<circle class="d${i + 1}" cx="${x}" cy="${y}" r="${r}" fill="${C.teal}"/>`).join('')}</g>`,
   watch: `<g class="fx sand">${Array.from({ length: 10 }, (_, i) => `<circle class="g${i + 1}" cx="${410 + ((i * 7) % 9) - 4}" cy="384" r="${3 + (i % 3)}" fill="${C.sand}"/>`).join('')}<path class="pile" d="M330 540q80-56 160 0z" fill="${C.gold}"/></g>`,
 };
