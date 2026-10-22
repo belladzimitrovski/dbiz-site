@@ -1,5 +1,8 @@
 # DBIZ — אתר נחיתה של בלי דזימטרובסקי
 
+> **2026-10-23 - new design is live.** The whole page is now one file: `index.html` (styles and script inline), plus `scenes.js` (the dot pictures in the opening) and `img/`. The contact form sends to Netlify Forms (email notice) and to the Make webhook. The previous design is kept in the tag `design-dots-2026-10-23` and at https://belladzimitrovski.github.io/dbiz-demo/ (repo dbiz-demo).
+
+
 > **מסמך המשכיות.** נקודת הכניסה לכל מי (או כל סשן של Claude) שממשיך לעבוד על הפרויקט —
 > מה זה, איפה זה חי, איך מעלים עדכון, ומה נשאר פתוח.
 
