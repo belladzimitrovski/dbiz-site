@@ -242,11 +242,11 @@ a { color: inherit; text-decoration: none; }
 .cases .case-stage { grid-column: 2; grid-row: 1 / span 2; }
 /* The big yellow dot and its two small friends, as in the design */
 .case-stage::before {
-  content: ""; position: absolute; inset: 8% 10% 12% 6%; border-radius: 50%; background: var(--yellow); opacity: 0.55;
+  content: ""; position: absolute; inset: 8% 10% 12% 6%; border-radius: 50%; background: #d8efea;
 }
 .case-stage::after {
-  content: ""; position: absolute; width: 18%; aspect-ratio: 1; right: 2%; bottom: 8%; border-radius: 50%;
-  background: var(--dot-teal);
+  content: ""; position: absolute; width: 11%; aspect-ratio: 1; right: 4%; bottom: 10%; border-radius: 50%;
+  background: var(--yellow);
 }
 .stage-img { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 1; opacity: 0; transition: opacity 0.25s var(--ease); }
 .stage-img.active { opacity: 1; }
@@ -703,19 +703,21 @@ h1 strong, h2 strong { font-weight: 400; }
 :is(.band-dark, .band-yellow, .band-teal) .car-dot.active { opacity: 1; }
 .band-yellow .quote-mark { color: #14211f; }
 
-/* The big solution screen sits on yellow: white and teal dots behind the words */
+/* The big solution screen sits on ink: a soft teal dot and a small yellow one behind the words */
 .solution-big { position: relative; overflow: hidden; }
 .solution-big::before {
-  content: ""; position: absolute; width: 46vmin; aspect-ratio: 1; border-radius: 50%; background: #ffffff;
-  opacity: 0.4; left: 6%; top: 12%;
+  content: ""; position: absolute; width: 46vmin; aspect-ratio: 1; border-radius: 50%; background: var(--dot-teal);
+  opacity: 0.16; left: 6%; top: 12%;
 }
 .solution-big::after {
-  content: ""; position: absolute; width: 12vmin; aspect-ratio: 1; border-radius: 50%; background: var(--dot-teal);
-  right: 10%; bottom: 14%;
+  content: ""; position: absolute; width: 6vmin; aspect-ratio: 1; border-radius: 50%; background: var(--yellow);
+  right: 12%; bottom: 18%;
 }
 .solution-big .container { position: relative; z-index: 1; }
+.band-dark .solution-big h2 .accent, .solution-big.band-dark h2 .accent, .band-dark .slogan .accent { color: var(--dot-teal); border: 0; padding: 0; }
+.band-dark .section-head h2 .accent { color: var(--dot-teal); border: 0; padding: 0; }
 /* On the dark ground the yellow hero dot stays soft so it does not turn olive */
-[data-theme="dark"] .case-stage::before { opacity: 0.2; }
+[data-theme="dark"] .case-stage::before { background: rgba(31, 181, 176, 0.14); }
 
 /* A full stop in teal ends the big slogans on light ground */
 .slogan .accent { color: var(--dot-teal); }
