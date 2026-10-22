@@ -738,6 +738,29 @@ h1 strong, h2 strong { font-weight: 400; }
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 
+/* ===== Process — a road with a map pin at each of the four stops ===== */
+.road { position: relative; }
+.road-band { position: relative; height: 220px; }
+.road-line { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* pins stand on the road: their tip touches the line (y 80 / 180 of 220) */
+.road-pin { position: absolute; width: 52px; transform: translate(50%, -100%); }
+.road-pin .pin, .step-pin .pin { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 6px rgba(20, 33, 31, 0.2)); }
+.road-pin.p1 { right: 12.5%; top: calc(80 / 220 * 100%); }
+.road-pin.p2 { right: 37.5%; top: calc(180 / 220 * 100%); }
+.road-pin.p3 { right: 62.5%; top: calc(80 / 220 * 100%); }
+.road-pin.p4 { right: 87.5%; top: calc(180 / 220 * 100%); width: 64px; }
+.road-steps { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 26px; }
+.road-step { text-align: center; }
+.road-step .step-pin { display: none; }
+.road-step h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.road-step p { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.75; }
+/* pins drop onto the road one after another as the section comes into view */
+.road.reveal .road-pin { opacity: 0; transform: translate(50%, -140%); transition: opacity 0.5s var(--ease), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.road.visible .road-pin { opacity: 1; transform: translate(50%, -100%); }
+.road.visible .road-pin.p2 { transition-delay: 0.15s; }
+.road.visible .road-pin.p3 { transition-delay: 0.3s; }
+.road.visible .road-pin.p4 { transition-delay: 0.45s; }
+
 /* ===================================================
    Responsive
 =================================================== */
@@ -759,6 +782,12 @@ h1 strong, h2 strong { font-weight: 400; }
 
 /* Below this width the menu and the big logo no longer fit on one line, so the menu folds into ☰ */
 @media (max-width: 860px) {
+  /* Phones: the road runs down the page, every step with its own pin */
+  .road-band { display: none; }
+  .road-steps { grid-template-columns: 1fr; gap: 26px; margin-top: 0; position: relative; }
+  .road-steps::before { content: ""; position: absolute; top: 30px; bottom: 30px; right: 23px; border-right: 5px dotted var(--border-strong); }
+  .road-step { display: flex; gap: 16px; align-items: flex-start; text-align: right; position: relative; }
+  .road-step .step-pin { display: block; flex-shrink: 0; width: 50px; }
   .nav {
     position: fixed; top: 116px; inset-inline: 0; flex-direction: column; gap: 0;
     background: var(--header-scroll); backdrop-filter: blur(14px);
