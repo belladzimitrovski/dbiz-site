@@ -39,6 +39,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.15; t
 p { text-wrap: pretty; }
 :focus-visible { outline: 3px solid var(--dot-teal); outline-offset: 3px; border-radius: 4px; }
 [hidden] { display: none !important; }
+/* the hosting badge and toolbar the host injects into every page */
+#nl-badge-frame, #nl-hud-frame { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .wrap { max-width: 1240px; margin-inline: auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
