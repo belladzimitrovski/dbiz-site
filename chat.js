@@ -10,18 +10,10 @@
       a: 'אוטומציה שנבנתה לפי הצורך המדויק שלכם.\nמערכת אחת, פשוטה, נוחה וברורה, שממירה את עשרות התיקיות, האקסלים והתזכורות במערכת אחת חכמה - שפשוט עובדת.' },
     { q: 'מה יוצא לי מזה?',
       a: 'הלידים מטופלים מיד ובאופן אישי, בלי שאף לקוח יתפספס.\nהגבייה והתשלומים זורמים מעצמם.\nהתמונה הכללית ברורה - מצב העסק עומד מולכם בכל רגע נתון.\nוהראש שלכם מתפנה סוף סוף מכל אלפי הפרטים הקטנים - לדברים הגדולים באמת.' },
-    { q: 'מה אפשר לחבר למערכת?',
-      a: 'אינסוף אפשרויות במערכת אחת: מערכת דיוור, צירוף קבצים, הצעות מחיר, סליקה, קבלות, ניהול יומן, טפסים חכמים, שימור ומעקב לידים, מערכות טלפוניות, צ׳אטבוטים חכמים, מערכות CRM וסנכרון בין מערכות.' },
     { q: 'איך זה עובד?',
       a: 'ארבע נקודות פשוטות:\n1. נקודת תצפית - פגישת עומק שבה לומדים את תהליכי העבודה וממפים את הצרכים.\n2. נקודה למחשבה - אני מחברת את הנקודות ומביאה פתרונות חדשים ויצירתיים עבור העסק שלכם.\n3. נקודת זינוק - המערכת המותאמת עולה לאוויר, והעסק מזנק בסיעתא דשמיא!\n4. נקודה חמה - ליווי, תיקונים ושיפורים גם הרבה אחרי.' },
-    { q: 'למה דווקא את?',
-      a: 'בגלל ההתאמה. האישית.\nלכל עסק יש תהליך עבודה משלו, אפיון לקוח שונה וצרכים ייחודיים. אצלי לא תמצאו אוטומציות מוצעות למכירה על המדף - אתם מקבלים מערכת שנתפרה לפי מידות העסק שלכם בדיוק.' },
     { q: 'זה מסובך לתפעול?',
       a: 'ממש לא. אני מארגנת תכנים, מצמצמת תפריטים, ובונה לכם ממשק ידידותי למשתמש וקל לתפעול.\nכל כך קל, גם לכאלה שעדיין לא למדו לקרוא בלי נקודות...' },
-    { q: 'ומה קורה אחרי שהמערכת עולה?',
-      a: 'ערוץ הקשר נשאר פתוח גם הרבה אחרי שהמערכת עולה לאוויר. אני כאן לצידכם, זמינה לתיקונים, לשיפורים ולליווי מקיף עד שהעסק שלכם יתחיל לעבוד. נקודה.' },
-    { q: 'עם אילו כלים את עובדת?',
-      a: 'בין השאר Make, Origami, Fireberry, Zoho, Airtable, n8n, Claude ו־SUMIT.\nבעזרת ידע טכנולוגי, היכרות עם כלי AI מתקדמים, פיצ\'רים חדשניים וחשיבה יצירתית אני מוצאת את הדרך לפתור כל צורך ייחודי שהעסק שלכם מבקש.' },
     { q: 'כמה זה עולה?',
       a: 'כל מערכת נתפרת לפי העסק, ולכן גם המחיר. בפגישת האפיון נבין יחד מה העסק שלכם צריך, ואז אוכל לתת הצעה מדויקת.' },
     { q: 'איך מתחילים?',
@@ -55,10 +47,9 @@
   .dc-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: #14211f; color: #fbfaf5; }
   .dc-head img { width: 40px; height: 40px; border-radius: 50%; background: #fff; object-fit: cover; object-position: 50% 12%; }
   .dc-head b { display: block; font-family: Fredoka, Heebo, sans-serif; font-weight: 600; font-size: 17px; }
-  .dc-head span { font-size: 13px; opacity: .75; }
   .dc-x { margin-inline-start: auto; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; }
   .dc-x:hover { background: rgba(255,255,255,.22); }
-  .dc-log { flex: 1; overflow-y: auto; padding: 16px 14px 8px; display: flex; flex-direction: column; gap: 10px; }
+  .dc-log { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 16px 14px 8px; display: flex; flex-direction: column; gap: 10px; }
   .dc-msg { max-width: 86%; padding: 9px 13px; border-radius: 16px; font-size: 15px; line-height: 1.55; white-space: pre-line; animation: dcIn .3s ease both; }
   .dc-bot { align-self: flex-start; background: #fff; border: 1.5px solid #14211f; border-start-start-radius: 4px; }
   .dc-me { align-self: flex-end; background: #1fb5b0; color: #fff; border-start-end-radius: 4px; font-weight: 500; }
@@ -73,11 +64,12 @@
   .dc-chip.other { border-style: dashed; }
   .dc-chip.go { background: #14211f; color: #fff; }
   .dc-form { align-self: stretch; display: grid; gap: 8px; background: #fff; border: 1.5px solid #14211f; border-radius: 16px; padding: 12px; animation: dcIn .3s ease both; }
+  .dc-form input[dir="ltr"] { text-align: right; }
   .dc-form input, .dc-form textarea { width: 100%; font: 15px Heebo, Arial, sans-serif; color: #14211f; border: 0; border-bottom: 2px solid rgba(20,33,31,.18); padding: 6px 2px; background: transparent; resize: none; }
   .dc-form input:focus, .dc-form textarea:focus { outline: none; border-bottom-color: #1fb5b0; }
   .dc-form button { font: 700 15px Heebo, Arial, sans-serif; background: #14211f; color: #fff; border: 0; border-radius: 999px; padding: 10px; cursor: pointer; }
   .dc-form .err { color: #b3261e; font-size: 13px; font-weight: 600; }
-  .dc-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .dc-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .dc-btn:focus-visible, .dc-chip:focus-visible, .dc-x:focus-visible, .dc-form button:focus-visible { outline: 3px solid #1fb5b0; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { .dc-btn, .dc-tip, .dc-panel, .dc-msg, .dc-form, .dc-typing i { transition: none !important; animation: none !important; } }
   `;
@@ -91,7 +83,7 @@
   btn.type = 'button'; btn.setAttribute('aria-label', 'צ\'אט שאלות ותשובות'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'dcPanel');
   const tip = el('p', 'dc-tip', 'יש שאלה? אני פה 😊'); tip.setAttribute('aria-hidden', 'true');
   const panel = el('section', 'dc-panel'); panel.id = 'dcPanel'; panel.hidden = true; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'שאלות ותשובות');
-  panel.innerHTML = `<header class="dc-head"><img src="${ROBOT}" alt=""><div><b>הרובוט של DBIZ</b><span>עונה על שאלות נפוצות</span></div><button type="button" class="dc-x" aria-label="סגירה">×</button></header>
+  panel.innerHTML = `<header class="dc-head"><img src="${ROBOT}" alt=""><div><b>הרובוט של DBIZ</b></div><button type="button" class="dc-x" aria-label="סגירה">×</button></header>
     <div class="dc-log" aria-live="polite"></div><div class="dc-chips"></div>`;
   document.body.append(btn, tip, panel);
   const log = panel.querySelector('.dc-log'), chips = panel.querySelector('.dc-chips');
@@ -136,32 +128,34 @@
   async function openForm() {
     if (busy || panel.querySelector('.dc-form')) return; busy = true;
     meSay('יש לי שאלה אחרת');
-    await botSay('בשמחה! השאירו שם וטלפון, ובלי תחזור אליכם בהקדם.');
+    await botSay('בשמחה! השאירו שם, טלפון ומייל, ובלי תחזור אליכם בהקדם.');
     const f = el('form', 'dc-form');
     f.innerHTML = `<input name="name" placeholder="שם" autocomplete="name" aria-label="שם">
       <input name="phone" type="tel" placeholder="טלפון" autocomplete="tel" aria-label="טלפון">
+      <input name="email" type="email" placeholder="מייל" autocomplete="email" aria-label="מייל" dir="ltr">
       <textarea name="question" rows="2" placeholder="מה רציתם לשאול?" aria-label="השאלה"></textarea>
       <p class="dc-hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></p>
       <button type="submit">שליחה</button><p class="err" hidden></p>`;
     log.appendChild(f); scroll(); f.elements.name.focus();
     f.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = f.elements.name.value.trim(), phone = f.elements.phone.value.trim(), question = f.elements.question.value.trim();
+      const name = f.elements.name.value.trim(), phone = f.elements.phone.value.trim(), email = f.elements.email.value.trim(), question = f.elements.question.value.trim();
       const err = f.querySelector('.err'); err.hidden = true;
-      if (!name || !phone) { err.textContent = 'צריך שם וטלפון כדי שבלי תוכל לחזור אליכם 🙂'; err.hidden = false; return; }
+      if (!name || !phone || !email) { err.textContent = 'צריך שם, טלפון ומייל כדי שבלי תוכל לחזור אליכם 🙂'; err.hidden = false; return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'נראה שכתובת המייל לא שלמה'; err.hidden = false; return; }
       const sendBtn = f.querySelector('button'); sendBtn.disabled = true; sendBtn.textContent = 'שולח...';
       const bot = f.elements.website.value !== '';
       const check = (r) => { if (!r.ok) throw new Error(r.status); };
       const toMail = bot ? Promise.resolve() : fetch(MAIL_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ 'שם': name, 'טלפון': phone, 'השאלה': question || '-', _subject: 'שאלה מהצ\'אט באתר: ' + name, _template: 'table', _captcha: 'false' }) }).then(check);
+        body: JSON.stringify({ 'שם': name, 'טלפון': phone, 'מייל': email, 'השאלה': question || '-', _subject: 'שאלה מהצ\'אט באתר: ' + name, _template: 'table', _captcha: 'false', _replyto: email }) }).then(check);
       const toMake = bot ? Promise.resolve() : fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, email: '', message: question, source: 'DBIZ Chat', submittedAt: new Date().toISOString(), website: '' }) }).then(check);
+        body: JSON.stringify({ name, phone, email, message: question, source: 'DBIZ Chat', submittedAt: new Date().toISOString(), website: '' }) }).then(check);
       const res = await Promise.allSettled([toMail, toMake]);
       if (res.every((r) => r.status === 'rejected')) {
         err.textContent = 'אופס, משהו השתבש. אפשר גם להתקשר: 052-710-1136'; err.hidden = false;
         sendBtn.disabled = false; sendBtn.textContent = 'שליחה'; return;
       }
-      f.remove(); meSay(name + ', ' + phone);
+      f.remove(); meSay(name + ', ' + phone + ', ' + email);
       await botSay('קיבלתי! 🎉\nבלי תחזור אליכם בהקדם. אני כבר אסדר את הבלאגן - זה לא התפקיד שלכם, נקודה.');
     });
     busy = false;
