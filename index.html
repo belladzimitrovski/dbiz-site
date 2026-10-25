@@ -30,7 +30,7 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.75; direction: rtl; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--paper); }
 img { max-width: 100%; display: block; }
@@ -655,6 +655,7 @@ p { text-wrap: pretty; }
 
 
 <script src="scenes.js"></script>
+<script src="chat.js" defer></script>
 <script>
 (function () {
   'use strict';
