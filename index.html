@@ -625,8 +625,7 @@ p { text-wrap: pretty; }
       <div class="boil"><canvas id="cup" aria-hidden="true"></canvas><p>עוד לפני שהמים יגיעו לנקודת הרתיחה.</p></div>
       <p class="c-info"><span>052-710-1136</span><span>b7101136@gmail.com</span></p>
     </div>
-    <form class="form rv" id="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
-      <input type="hidden" name="form-name" value="contact">
+    <form class="form rv" id="form" name="contact" novalidate>
       <p class="hp" aria-hidden="true"><label>אתר <input name="website" tabindex="-1" autocomplete="off"></label></p>
       <div class="f"><label for="fName">רק שם</label><input id="fName" name="name" placeholder="איך קוראים לכם?" required></div>
       <div class="f-row">
@@ -948,8 +947,10 @@ p { text-wrap: pretty; }
   stage.addEventListener('pointerdown', (e) => { sx = e.clientX; });
   stage.addEventListener('pointerup', (e) => { if (sx === null) return; const dx = e.clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx > 0 ? 1 : -1)); sx = null; });
 
-  /* ---------- contact form: Netlify Forms (emails the enquiry) + the Make webhook ---------- */
+  /* ---------- contact form: FormSubmit (emails the enquiry) + the Make webhook ---------- */
   const WEBHOOK_URL = 'https://hook.eu2.make.com/0fw2nh2spvtsxqtujz3ph4hrm9rum67z';
+  // FormSubmit forwards each enquiry to this inbox; the very first one asks the inbox owner to click "Activate"
+  const MAIL_URL = 'https://formsubmit.co/ajax/b7101136@gmail.com';
   const form = $('#form'), f = form.elements, sendBtn = $('button[type="submit"]', form), sendLabel = sendBtn.textContent, formErr = $('#formErr'), sent = $('#sent');
   const fail = (msg) => { formErr.textContent = msg; formErr.hidden = false; };
   form.addEventListener('submit', async (e) => {
@@ -959,9 +960,15 @@ p { text-wrap: pretty; }
     if (!name || !phone) { fail('אנא מלאו שם וטלפון כדי שאוכל לחזור אליכם 🙂'); return; }
     sendBtn.disabled = true; sendBtn.textContent = 'שולח...';
     const check = (label) => (r) => { if (!r.ok) throw new Error(label + ' responded ' + r.status); };
-    const toNetlify = fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() }).then(check('netlify'));
-    const toMake = fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, email: f['email'].value.trim(), message: f['message'].value.trim(), source: 'DBIZ Landing Page', submittedAt: new Date().toISOString(), website: f['website'].value }) }).then(check('make'));
-    const res = await Promise.allSettled([toNetlify, toMake]);
+    const email = f['email'].value.trim(), message = f['message'].value.trim();
+    // the spam trap is filled only by bots: show them "sent" and send nothing
+    const isBot = f['website'].value !== '';
+    const toMail = isBot ? Promise.resolve() : fetch(MAIL_URL, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ 'שם': name, 'טלפון': phone, 'מייל': email || '-', 'מה קורה בעסק': message || '-', _subject: 'פנייה חדשה מהאתר: ' + name, _template: 'table', _captcha: 'false', ...(email ? { _replyto: email } : {}) }),
+    }).then(check('mail'));
+    const toMake = isBot ? Promise.resolve() : fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, email, message, source: 'DBIZ Landing Page', submittedAt: new Date().toISOString(), website: f['website'].value }) }).then(check('make'));
+    const res = await Promise.allSettled([toMail, toMake]);
     res.filter((r) => r.status === 'rejected').forEach((r) => console.warn(r.reason));
     if (res.every((r) => r.status === 'rejected')) {
       fail('אופס, משהו השתבש בשליחה. אפשר גם להתקשר: 052-710-1136');
